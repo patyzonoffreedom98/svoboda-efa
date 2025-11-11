@@ -1,123 +1,69 @@
-// app/page.tsx
-'use client';
+// app/layout.tsx
 import React from 'react';
+
+export const metadata = {
+  title: 'Patrik Svoboda, EFA – finanční plán, hypotéky, investice',
+  description: 'Hypotéky, investice a zajištění příjmu. Kancelář v Jihlavě, spolupráce po celé ČR.',
+};
 
 const brand = {
   navy: '#0f1f3a',
   navyDark: '#0b162b',
   navyLight: '#102748',
   accent: '#d4a100',
-  bgSoft: '#e9eef7',
-  text: '#0f172a',
-  textMuted: '#334155',
-  border: '#e2e8f0',
-  white: '#ffffff',
+  textLight: '#eef2f7',
 };
 
 const styles: {[k:string]: React.CSSProperties} = {
-  card:{
-    background:brand.white, border:'1px solid ' + brand.border, borderRadius:16,
-    boxShadow:'0 18px 40px rgba(0,0,0,.12)', overflow:'hidden'
+  body:{
+    margin:0, padding:0,
+    fontFamily:'ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial',
+    background:'linear-gradient(180deg,' + brand.navy + ' 0%,' + brand.navyLight + ' 60%,' + brand.navyDark + ' 100%)',
+    color: brand.textLight,
+    minHeight:'100vh'
   },
-  hero:{
-    display:'grid', gridTemplateColumns:'1.1fr .9fr', gap:0, alignItems:'stretch'
+  container:{maxWidth:1180, margin:'0 auto', padding:'12px 20px 40px 20px'},
+  header:{
+    display:'flex', alignItems:'center', justifyContent:'space-between',
+    padding:'12px 0', borderBottom:'1px solid rgba(255,255,255,.15)', marginBottom:16
   },
-  heroLeft:{padding:'40px 32px 40px 32px'},
-  h1:{fontSize:42, fontWeight:800, color:brand.navy, margin:'0 0 8px'},
-  lead:{fontSize:18, color:brand.textMuted},
-  tags:{display:'flex', flexWrap:'wrap', gap:8, margin:'14px 0 0', padding:0, listStyle:'none'},
-  tag:{padding:'6px 10px', border:'1px solid ' + brand.border, borderRadius:9999, background:brand.white, fontSize:13},
-  ctaRow:{display:'flex', gap:12, marginTop:18, flexWrap:'wrap'},
-  btnPrimary:{
-    display:'inline-block', padding:'10px 16px', borderRadius:9999, textDecoration:'none',
-    background:brand.accent, color:brand.navyDark, fontWeight:700, border:'1px solid rgba(0,0,0,.08)'
+  logo:{fontWeight:800, letterSpacing:.3, fontSize:18, color:'#fff'},
+  nav:{display:'flex', gap:10, flexWrap:'wrap'},
+  navLink:{
+    color:'#fff', textDecoration:'none', padding:'8px 12px', borderRadius:9999,
+    border:'1px solid rgba(255,255,255,.25)', fontSize:14
   },
-  btnOutline:{
-    display:'inline-block', padding:'10px 16px', borderRadius:9999, textDecoration:'none',
-    color:brand.navy, border:'1px solid ' + brand.navy
-  },
-  heroRight:{position:'relative', background:'linear-gradient(180deg, ' + brand.navyLight + ', ' + brand.navyDark + ')'},
-  photo:{
-    position:'absolute', right:0, bottom:0, top:0,
-    display:'flex', alignItems:'flex-end', justifyContent:'flex-end',
-    padding:'12px 12px 0 12px'
-  },
-  photoInner:{
-    width:'100%', maxWidth:520, height:'100%', display:'flex', alignItems:'flex-end', justifyContent:'flex-end'
-  },
-  ribbon:{position:'absolute', left:16, bottom:16, background:brand.accent, color:brand.navyDark, padding:'6px 10px', borderRadius:9999, fontSize:12},
-
-  section:{background:brand.white, border:'1px solid ' + brand.border, borderRadius:16, marginTop:18, padding:'24px 24px'},
-  h2:{fontSize:26, fontWeight:800, color:brand.navy, margin:'0 0 8px'},
-  gridCols3:{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(260px,1fr))', gap:16, marginTop:8},
-  serviceCard:{border:'1px solid ' + brand.border, borderRadius:14, padding:16, background:brand.white},
-  h3:{fontSize:18, fontWeight:700, color:brand.navyLight, margin:'0 0 6px'},
-  note:{fontSize:12, color:'#475569', marginTop:8}
+  main:{paddingTop:10},
+  footer:{color:'rgba(255,255,255,.7)', fontSize:12, textAlign:'center', padding:'24px 0', borderTop:'1px solid rgba(255,255,255,.15)'}
 };
 
-export default function Page(){
-  const email = 'patrik.svoboda@wmfinance.cz';
-  const phone = '774 697 755';
-
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      {/* HERO v barevné kartě */}
-      <section style={styles.card}>
-        <div style={styles.hero}>
-          <div style={styles.heroLeft}>
-            <h1 style={styles.h1}>Bc. Patrik Svoboda, EFA</h1>
-            <p style={styles.lead}>
-              Finanční plán, který obstojí v číslech i realitě. Kancelář v Jihlavě, spolupráce po celé ČR.
-              Hypotéky, investice a zajištění příjmu – srozumitelně a dlouhodobě.
-            </p>
+    <html lang="cs">
+      <body style={styles.body}>
+        <div style={styles.container}>
+          <header style={styles.header}>
+            <div style={styles.logo}>Bc. Patrik Svoboda, EFA</div>
+            <nav style={styles.nav}>
+              <a href="/" style={styles.navLink}>Domů</a>
+              <a href="/o-mne" style={styles.navLink}>O mně</a>
+              <a href="/efa-certifikace" style={styles.navLink}>EFA certifikace</a>
+              <a href="/hypoteky-a-financovani" style={styles.navLink}>Hypotéky a financování</a>
+              <a href="/investice-a-cesta-k-rente" style={styles.navLink}>Investice a cesta k rentě</a>
+              <a href="/zajisteni-prijmu-a-majetku" style={styles.navLink}>Zajištění příjmu a majetku</a>
+              <a href="/podnikatelska-rizika" style={styles.navLink}>Podnikatelská rizika</a>
+              <a href="/caste-otazky" style={styles.navLink}>Časté otázky</a>
+              <a href="/ptejte-se" style={styles.navLink}>Ptejte se</a>
+            </nav>
+          </header>
 
-            <ul style={styles.tags}>
-              {['Hypotéky a refinancování','Investice a cesta k rentě','Zajištění příjmu','Podnikatelská rizika','Zaměstnanecké benefity','Lidský přístup'].map(t=>(
-                <li key={t} style={styles.tag}>{t}</li>
-              ))}
-            </ul>
+          <main style={styles.main}>{children}</main>
 
-            <div style={styles.ctaRow}>
-              <a href="/kalkulacky" style={styles.btnPrimary}>Otevřít kalkulačky</a>
-              <a href={'mailto:'+email+'?subject=Konzultace'} style={styles.btnOutline}>Napsat · {email}</a>
-              <a href={'tel:+420'+phone.replace(/\s/g,'')} style={styles.btnOutline}>Zavolat · {phone}</a>
-            </div>
-          </div>
-
-          <div style={styles.heroRight}>
-            <div style={styles.photo}>
-              <div style={styles.photoInner}>
-                <img
-                  src="/ja-bile-pozadi.jpg"
-                  alt="Patrik Svoboda – finanční poradce"
-                  style={{width:'100%', height:'auto', objectFit:'contain'}}
-                />
-              </div>
-              <div style={styles.ribbon}><strong>EFA</strong> • Vysočina & celá ČR</div>
-            </div>
-          </div>
+          <footer style={styles.footer}>
+            © {new Date().getFullYear()} Bc. Patrik Svoboda, EFA • Žižkova 13, Jihlava • IČO 09910263
+          </footer>
         </div>
-      </section>
-
-      {/* SLUŽBY */}
-      <section style={styles.section}>
-        <h2 style={styles.h2}>S čím pomáhám</h2>
-        <div style={styles.gridCols3}>
-          <div style={styles.serviceCard}>
-            <h3 style={styles.h3}>Hypotéky</h3>
-            <ul><li>Nákup i refinancování</li><li>Fixace a LTV</li><li>Kompletní vyřízení</li></ul>
-          </div>
-          <div style={styles.serviceCard}>
-            <h3 style={styles.h3}>Investice a renta</h3>
-            <ul><li>ETF / akcie</li><li>Plán renty</li><li>Pravidelné vklady</li></ul>
-          </div>
-          <div style={styles.serviceCard}>
-            <h3 style={styles.h3}>Zajištění příjmu</h3>
-            <ul><li>Invalidita, PN</li><li>Domácnost, nemovitost</li><li>Odpovědnost</li></ul>
-          </div>
-        </div>
-        <p style={styles.note}>Detailní popis najdeš v sekci Služby.</p>
-      </section>
-    </>
+      </body>
+    </html>
   );
 }
