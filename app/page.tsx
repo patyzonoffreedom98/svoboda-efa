@@ -1,22 +1,22 @@
 'use client';
 import React, { useMemo, useState } from 'react';
-import Image from 'next/image';
 
-/** ─────────── Brand (barvy a rychlé ladění) ─────────── */
+/** ───────── Brand (barvy) ───────── */
 const brand = {
-  navy: '#0f1f3a',        // primární tmavě námořní
+  navy: '#0f1f3a',
   navyDark: '#0b162b',
   navyLight: '#102748',
-  accent: '#d4a100',      // zlatá akcent
-  bgSoft: '#f5f7fb',      // jemné pozadí sekcí
+  accent: '#d4a100',
+  bgSoft: '#f5f7fb',
   text: '#0f172a',
   textMuted: '#334155',
   border: '#e2e8f0',
   white: '#ffffff',
 };
 
+/** ───────── Pomocné funkce ───────── */
 const fmt = (v:number)=> new Intl.NumberFormat('cs-CZ', {style:'currency',currency:'CZK',maximumFractionDigits:0}).format(isFinite(v)?v:0);
-const num = (s:string)=>{const x = Number(String(s).replace(/\s| |,/g,'.')); return isFinite(x)?x:0};
+const num = (s:string)=>{const x = Number(String(s).replace(/\s| |,/g,'.')); return isFinite(x)?x:0;};
 
 // FV měsíčních vkladů
 function fvMonthly(initial:number, monthly:number, years:number, rate:number){
@@ -48,6 +48,7 @@ function lastsMonths(capital:number, monthlyRent:number, ret:number, inf:number)
   return Math.log(monthlyRent/denom)/Math.log(1+r);
 }
 
+/** ───────── Stránka ───────── */
 export default function Page(){
   const phone = '774 697 755';
   const email = 'patrik.svoboda@wmfinance.cz';
@@ -85,15 +86,22 @@ export default function Page(){
           <div style={styles.heroText}>
             <h1 style={styles.h1}>Bc. Patrik Svoboda, EFA</h1>
             <p style={styles.lead}>
-              Finanční plán, který obstojí v číslech i realitě. Spolupracuji s klienty po celé ČR, 
+              Finanční plán, který obstojí v číslech i realitě. Spolupracuji s klienty po celé ČR,
               hlavní kancelář mám v Jihlavě ({address}).
             </p>
             <ul style={styles.tags}>
-              {['Hypotéky a refinancování','Investice a cesta k rentě','Zajištění příjmu','Podnikatelská rizika','Zaměstnanecké benefity','Lidský přístup'].map(t=>(
+              {[
+                'Hypotéky a refinancování',
+                'Investice a cesta k rentě',
+                'Zajištění příjmu',
+                'Podnikatelská rizika',
+                'Zaměstnanecké benefity',
+                'Lidský přístup'
+              ].map(t=>(
                 <li key={t} style={styles.tag}>{t}</li>
               ))}
             </ul>
-            <div style={{display:'flex',gap:12, marginTop:18}}>
+            <div style={{display:'flex',gap:12, marginTop:18, flexWrap:'wrap'}}>
               <a href="#kalk" style={styles.btnPrimary}>Vyzkoušet kalkulačky</a>
               <a href={`mailto:${email}?subject=Konzultace`} style={styles.btnOutline}>Domluvit konzultaci · {phone}</a>
             </div>
@@ -101,16 +109,13 @@ export default function Page(){
 
           <div style={styles.heroPhotoWrap}>
             <div style={styles.photoCard}>
-              <Image
+              <img
                 src="/ja-bile-pozadi.jpg"
                 alt="Patrik Svoboda – finanční poradce"
-                width={520}
-                height={640}
-                priority
                 style={{width:'100%',height:'auto',display:'block', borderRadius:12}}
               />
               <div style={styles.ribbon}>
-                <span style={{fontWeight:700}}>EFA</span> • Vysočina & celá ČR
+                <span style={{fontWeight:700}}>EFA</span> • Vysočina &nbsp;&amp;&nbsp; celá ČR
               </div>
             </div>
           </div>
@@ -141,7 +146,8 @@ export default function Page(){
             <div style={styles.grid2}>
               {field('Počáteční vklad', inv.initial, v=>setInv(s=>({...s,initial:v})))}
               {field('Měsíční vklad', inv.monthly, v=>setInv(s=>({...s,monthly:v})))}
-              {field('Počet let', inv.years, v=>setInv(s=>({...s,years:v})))}
+              {field('Počet let', inv.years, v=>setInv(s=>
+                ({...s,years:v})))}
               {field('Zhodnocení p.a. (%)', inv.rate, v=>setInv(s=>({...s,rate:v})))}
             </div>
             {summary([
@@ -231,17 +237,14 @@ export default function Page(){
         <p style={{fontSize:12, opacity:.85}}>IČO: 09910263 • Pracovní doba: Po–Pá 8:00–18:00</p>
       </section>
 
-      {/* ───────── Paticka ───────── */}
       <footer style={{textAlign:'center', color:'#64748b', fontSize:12, margin:'40px 0'}}>
         © {new Date().getFullYear()} Bc. Patrik Svoboda, EFA • {address}
       </footer>
-
-      <style jsx>{`*{box-sizing:border-box}`}</style>
     </main>
   );
 }
 
-/** ─────────── Styly ─────────── */
+/** ───────── Styly (inline objekty) ───────── */
 const styles: {[k:string]: React.CSSProperties} = {
   wrap:{fontFamily:'ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial', color:brand.text, lineHeight:1.5, background:brand.white},
 
@@ -263,47 +266,4 @@ const styles: {[k:string]: React.CSSProperties} = {
     maxWidth:460,
     background:brand.white,
     border:`1px solid ${brand.border}`,
-    borderRadius:16,
-    padding:12,
-    boxShadow:'0 12px 28px rgba(16,23,42,.08)'
-  },
-  ribbon:{
-    position:'absolute', left:16, bottom:16,
-    background:brand.accent, color:brand.navyDark,
-    padding:'6px 10px', borderRadius:9999, fontSize:12
-  },
-
-  h1:{fontSize:44, margin:'0 0 10px', fontWeight:800, color:brand.navy},
-  h2:{fontSize:28, margin:'0 0 16px', fontWeight:800, color:brand.navy},
-  h3:{fontSize:18, margin:'0 0 8px', fontWeight:700, color:brand.navyLight},
-  lead:{fontSize:18, color:brand.textMuted},
-
-  tags:{display:'flex', flexWrap:'wrap', gap:8, margin:'12px 0 0', padding:0, listStyle:'none'},
-  tag:{padding:'6px 10px', border:`1px solid ${brand.border}`, borderRadius:9999, background:brand.white, fontSize:13},
-
-  btnPrimary:{
-    display:'inline-block', padding:'10px 14px', borderRadius:9999,
-    background:brand.accent, color:brand.navyDark, textDecoration:'none', fontWeight:700
-  },
-  btnOutline:{
-    display:'inline-block', padding:'10px 14px', borderRadius:9999,
-    border:`1px solid ${brand.navy}`, color:brand.navy, textDecoration:'none'
-  },
-  btnLight:{
-    display:'inline-block', padding:'10px 14px', borderRadius:9999,
-    background:brand.white, color:brand.navyDark, textDecoration:'none', fontWeight:700
-  },
-
-  section:{maxWidth:1140, margin:'0 auto', padding:'32px 20px'},
-  cols3:{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(240px,1fr))', gap:16},
-  cols2:{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))', gap:16, marginTop:16},
-  card:{border:`1px solid ${brand.border}`, borderRadius:16, padding:16, background:brand.white},
-  grid2:{display:'grid', gridTemplateColumns:'1fr 1fr', gap:12},
-  input:{width:'100%', padding:'8px 10px', border:`1px solid ${brand.border}`, borderRadius:10},
-  note:{fontSize:12, color:'#475569', marginTop:8}
-};
-
-function field(label:string, value:string, onChange:(v:string)=>void){
-  return (
-    <label style={{display:'grid', gap:6, fontSize:13}}>
-      <span
+    bord
