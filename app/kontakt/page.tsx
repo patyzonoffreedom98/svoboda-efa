@@ -1,54 +1,16 @@
 // app/kontakt/page.tsx
+'use client';
+import React from 'react';
 
-export default function Page() {
+export default function KontaktPage(){
   return (
-    <main style={{ maxWidth: 720, margin: "0 auto", padding: "32px 20px" }}>
-      <h1>Kontakt</h1>
-      <p>
-        Telefon: <strong>774 697 755</strong> • E-mail:{" "}
-        <strong>patrik.svoboda@wmfinance.cz</strong>
-      </p>
+    <div style={{maxWidth:820, margin:'0 auto', background:'#fff', border:'1px solid #e2e8f0', borderRadius:16, padding:20}}>
+      <h1 style={{fontSize:28, fontWeight:800, marginTop:0}}>Kontakt</h1>
+      <p>Tel.: 774 697 755<br/>E-mail: patrik.svoboda@wmfinance.cz<br/>IČO: 09910263<br/>Kancelář: Žižkova 13, Jihlava</p>
 
-      {/* Formspree – posílá na tvůj e-mail po potvrzení endpointu */}
-      <form
-        action="https://formspree.io/f/mzzybvpl"
-        method="POST"
-        style={{ display: "grid", gap: 12, marginTop: 16 }}
-      >
-        <input name="jmeno" placeholder="Jméno" required />
-        <input name="email" type="email" placeholder="E-mail" required />
-        <input name="telefon" placeholder="Telefon" />
-        <textarea name="zprava" placeholder="Vaše zpráva" rows={6} required />
+      <p>Napíšete mi přes <a href="mailto:patrik.svoboda@wmfinance.cz?subject=Poptávka">e-mail</a>, nebo vyplňte kontaktní formulář níže.</p>
 
-        {/* Volitelné: předmět e-mailu + stránka po odeslání */}
-        <input
-          type="hidden"
-          name="_subject"
-          value="Poptávka z webu svoboda-efa.cz"
-        />
-        <input type="hidden" name="_next" value="https://svoboda-efa.cz/?odeslano=1" />
-
-        {/* Honeypot proti spamu – nech prázdné */}
-        <input type="text" name="_gotcha" style={{ display: "none" }} />
-
-        <button type="submit" style={btn}>
-          Odeslat poptávku
-        </button>
-      </form>
-
-      <p style={{ fontSize: 12, opacity: 0.7, marginTop: 8 }}>
-        Odesláním souhlasíte se zpracováním osobních údajů pro účely zpětného
-        kontaktování.
-      </p>
-    </main>
+      {/* Formspree – endpoint doplníme sem (až ho chceš rovnou přidat) */}
+    </div>
   );
 }
-
-const btn: React.CSSProperties = {
-  padding: "10px 14px",
-  borderRadius: 9999,
-  background: "#0f172a",
-  color: "#fff",
-  border: "none",
-  cursor: "pointer",
-};
