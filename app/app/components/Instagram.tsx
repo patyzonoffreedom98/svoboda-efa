@@ -13,7 +13,7 @@ export default function InstagramBlock(){
         </a>
       </div>
 
-      {/* ↓↓ Sem vlož svůj embed URL ze SnapWidgetu / LightWidgetu ↓↓ */}
+      {/* ↓↓↓ ZDE VYMĚŇ URL ZA TVŮJ EMBED ODKAZ (SnapWidget/LightWidget) ↓↓↓ */}
       <div style={{
         border:'1px solid rgba(255,255,255,.08)', borderRadius:16, overflow:'hidden',
         background:'rgba(255,255,255,.03)'
@@ -28,8 +28,8 @@ export default function InstagramBlock(){
       </div>
 
       <p style={{fontSize:12, opacity:.7, marginTop:8}}>
-        Embed odkaz získáš na <strong>snapwidget.com</strong> (nebo <strong>lightwidget.com</strong>): přihlásíš IG, vytvoříš „grid feed“, zkopíruješ
-        adresu <code>src=…</code> a vložíš sem místo „DEMO-NAHRAĎ-VAŠÍM-ODKAZEM“.
+        Embed odkaz získáš na <strong>snapwidget.com</strong> (nebo <strong>lightwidget.com</strong>): přihlásíš IG, vytvoříš „grid feed“,
+        zkopíruješ adresu <code>src=…</code> a vložíš ji sem místo „DEMO-NAHRAĎ-VAŠÍM-ODKAZEM“.
       </p>
     </section>
   );
