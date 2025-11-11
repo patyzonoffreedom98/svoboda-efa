@@ -1,52 +1,27 @@
-// app/sluzby/page.tsx
-export default function SluzbyPage() {
+export const metadata = {
+  title: 'Služby – Hypotéky, Investice, Zajištění | svoboda-efa.cz',
+  description: 'Prakticky, srozumitelně a dlouhodobě: hypotéky, investice a zajištění příjmu/majetku.',
+};
+
+export default function SluzbyIndex() {
+  const box = 'rounded-xl border border-white/10 p-5 bg-white/5 hover:bg-white/10 transition';
   return (
-    <div className="container" style={{ color: '#e6edf6', padding: '28px 0 48px' }}>
-      <h1 style={{ marginTop: 0 }}>Služby</h1>
-
-      <section id="hypoteky" style={box}>
-        <h2>Hypotéky a financování</h2>
-        <ul>
-          <li>Výběr vhodné fixace a sazby</li>
-          <li>Refinancování a konsolidace</li>
-          <li>Porovnání variant a celkové ceny</li>
-        </ul>
-      </section>
-
-      <section id="investice" style={box}>
-        <h2>Investice a cesta k rentě</h2>
-        <ul>
-          <li>Nastavení portfolia dle cíle a horizontu</li>
-          <li>Pravidelné vklady, jednorázové investice</li>
-          <li>Plán čerpání renty a práce s inflací</li>
-        </ul>
-      </section>
-
-      <section id="zajištění" style={box}>
-        <h2>Zajištění příjmu a majetku</h2>
-        <ul>
-          <li>Invalidita, dlouhodobá PN, závažné nemoci</li>
-          <li>Domácnost a nemovitost</li>
-          <li>Odpovědnost a právní ochrana</li>
-        </ul>
-      </section>
-
-      <section id="podnikatele" style={box}>
-        <h2>Podnikatelská rizika</h2>
-        <ul>
-          <li>Odpovědnost, majetek, přerušení provozu</li>
-          <li>Flotilové pojištění</li>
-          <li>Zaměstnanecké benefity</li>
-        </ul>
-      </section>
-    </div>
+    <main className="mx-auto max-w-6xl px-4 py-10 text-white">
+      <h1 className="text-3xl font-bold mb-6">S čím vám pomohu</h1>
+      <div className="grid gap-6 md:grid-cols-3">
+        <a href="/sluzby/hypoteky-a-financovani" className={box}>
+          <h2 className="text-xl font-semibold mb-2">Hypotéky a financování</h2>
+          <p>Porovnání bank, modelace splátek, LTV, fixace, hladké financování záměru.</p>
+        </a>
+        <a href="/sluzby/investice-a-renta" className={box}>
+          <h2 className="text-xl font-semibold mb-2">Investice a cesta k rentě</h2>
+          <p>Plán, portfolia, reálné zhodnocení, inflace, dosažení i čerpání renty.</p>
+        </a>
+        <a href="/sluzby/zajisteni-prijmu-a-majetku" className={box}>
+          <h2 className="text-xl font-semibold mb-2">Zajištění příjmu a majetku</h2>
+          <p>Rozumné pojistné limity, smysluplné výluky, férové náklady.</p>
+        </a>
+      </div>
+    </main>
   );
 }
-
-const box: React.CSSProperties = {
-  background: '#0f1d31',
-  border: '1px solid rgba(255,255,255,.08)',
-  borderRadius: 16,
-  padding: 20,
-  marginBottom: 18,
-};
