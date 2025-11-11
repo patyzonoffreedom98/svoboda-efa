@@ -1,68 +1,76 @@
 // app/layout.tsx
+import './globals.css';
 import React from 'react';
 
 export const metadata = {
-  title: 'Patrik Svoboda, EFA – finanční plán, hypotéky, investice',
-  description: 'Hypotéky, investice a zajištění příjmu. Kancelář v Jihlavě, spolupráce po celé ČR.',
+  title: 'Bc. Patrik Svoboda, EFA',
+  description: 'Finanční plán, který obstojí v číslech i realitě. Hypotéky, investice, zajištění příjmu.',
 };
 
 const brand = {
-  navy: '#0f1f3a',
-  navyDark: '#0b162b',
-  navyLight: '#102748',
-  accent: '#d4a100',
-  textLight: '#eef2f7',
-};
-
-const styles: {[k:string]: React.CSSProperties} = {
-  body:{
-    margin:0, padding:0,
-    fontFamily:'ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial',
-    background:'linear-gradient(180deg,' + brand.navy + ' 0%,' + brand.navyLight + ' 60%,' + brand.navyDark + ' 100%)',
-    color: brand.textLight,
-    minHeight:'100vh'
-  },
-  container:{maxWidth:1180, margin:'0 auto', padding:'12px 20px 40px 20px'},
-  header:{
-    display:'flex', alignItems:'center', justifyContent:'space-between',
-    padding:'12px 0', borderBottom:'1px solid rgba(255,255,255,.15)', marginBottom:16
-  },
-  logo:{fontWeight:800, letterSpacing:.3, fontSize:18, color:'#fff'},
-  nav:{display:'flex', gap:10, flexWrap:'wrap'},
-  navLink:{
-    color:'#fff', textDecoration:'none', padding:'8px 12px', borderRadius:9999,
-    border:'1px solid rgba(255,255,255,.25)', fontSize:14
-  },
-  main:{paddingTop:10},
-  footer:{color:'rgba(255,255,255,.7)', fontSize:12, textAlign:'center', padding:'24px 0', borderTop:'1px solid rgba(255,255,255,.15)'}
+  bg:    '#0b1728',
+  panel: '#0d1c2e',
+  text:  '#e6edf6',
+  mute:  '#9fb1c8',
+  gold:  '#e7b308',
+  line:  'rgba(255,255,255,.08)',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="cs">
-      <body style={styles.body}>
-        <div style={styles.container}>
-          <header style={styles.header}>
-            <div style={styles.logo}>Bc. Patrik Svoboda, EFA</div>
-            <nav style={styles.nav}>
-              <a href="/" style={styles.navLink}>Domů</a>
-              <a href="/o-mne" style={styles.navLink}>O mně</a>
-              <a href="/efa-certifikace" style={styles.navLink}>EFA certifikace</a>
-              <a href="/hypoteky-a-financovani" style={styles.navLink}>Hypotéky a financování</a>
-              <a href="/investice-a-cesta-k-rente" style={styles.navLink}>Investice a cesta k rentě</a>
-              <a href="/zajisteni-prijmu-a-majetku" style={styles.navLink}>Zajištění příjmu a majetku</a>
-              <a href="/podnikatelska-rizika" style={styles.navLink}>Podnikatelská rizika</a>
-              <a href="/caste-otazky" style={styles.navLink}>Časté otázky</a>
-              <a href="/ptejte-se" style={styles.navLink}>Ptejte se</a>
+      <body style={{background:brand.bg, color:brand.text, margin:0}}>
+        {/* FIXNÍ TOP BAR */}
+        <header style={{
+          position:'fixed', top:0, left:0, right:0, zIndex:1000,
+          backdropFilter:'saturate(140%) blur(6px)',
+          background:'rgba(13,28,46,.82)', borderBottom:`1px solid ${brand.line}`
+        }}>
+          <div style={{
+            maxWidth:1280, margin:'0 auto', padding:'14px 20px',
+            display:'flex', alignItems:'center', gap:16, flexWrap:'wrap'
+          }}>
+            <a href="/" style={{
+              color:brand.text, textDecoration:'none', fontWeight:800, letterSpacing:.3,
+              fontSize:18
+            }}>
+              Bc. Patrik Svoboda, EFA
+            </a>
+
+            <nav style={{display:'flex', gap:10, flexWrap:'wrap', marginLeft:'auto'}}>
+              {[
+                ['Domů','/'],
+                ['O mně','/o-mne'],
+                ['EFA certifikace','/efa'],
+                ['Hypotéky a financování','/sluzby#hypoteky'],
+                ['Investice a renta','/sluzby#investice'],
+                ['Zajištění příjmu a majetku','/sluzby#pojisteni'],
+                ['Podnikatelská rizika','/sluzby#firmy'],
+                ['Časté otázky','/sluzby#faq'],
+                ['Aktuality','/blog'],
+                ['Ptejte se','/kontakt'],
+              ].map(([label, href])=>(
+                <a key={href} href={href as string} style={{
+                  color:brand.text, textDecoration:'none', fontSize:14,
+                  padding:'8px 12px', borderRadius:999, border:`1px solid ${brand.line}`,
+                  background:'rgba(255,255,255,.03)'
+                }}>{label}</a>
+              ))}
             </nav>
-          </header>
+          </div>
+        </header>
 
-          <main style={styles.main}>{children}</main>
+        {/* Rezerva pro fixní header (výška ~64–72px) */}
+        <div style={{height:72}} />
 
-          <footer style={styles.footer}>
-            © {new Date().getFullYear()} Bc. Patrik Svoboda, EFA • Žižkova 13, Jihlava • IČO 09910263
-          </footer>
-        </div>
+        {children}
+
+        <footer style={{
+          maxWidth:1280, margin:'0 auto', padding:'40px 20px',
+          color:brand.mute, borderTop:`1px solid ${brand.line}`
+        }}>
+          © {new Date().getFullYear()} Bc. Patrik Svoboda, EFA • Žižkova 13, Jihlava • IČO 09910263
+        </footer>
       </body>
     </html>
   );
