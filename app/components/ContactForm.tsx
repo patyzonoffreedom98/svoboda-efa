@@ -1,59 +1,87 @@
 'use client';
-import React, { useState } from 'react';
 
-const input = {
-  width: '100%',
-  padding: '10px 12px',
-  borderRadius: 10,
-  border: '1px solid #1f2a44',
-  background: '#0f1c2e',
-  color: '#e2e8f0',
-} as React.CSSProperties;
+import { useState } from 'react';
 
 export default function ContactForm() {
-  const [sending, setSending] = useState(false);
-  const [done, setDone] = useState(false);
+  // můžeš sem kdykoli dát svůj Formspree/Getform endpoint
+  const FORMS_ACTION = 'https://formspree.io/f/your-id'; // ← nahraď, až budeš mít
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setSending(true);
-    try {
-      // 🔁 Zatím dummy – klidně napojíme Formspree/Getform
-      await new Promise((r) => setTimeout(r, 1000));
-      setDone(true);
-    } finally {
-      setSending(false);
-    }
-  }
-
-  if (done) {
-    return (
-      <div style={{background:'#0f1c2e', border:'1px solid #1f2a44', borderRadius:12, padding:16, color:'#e2e8f0'}}>
-        Díky! Vaši zprávu jsem přijal – ozvu se co nejdřív.
-      </div>
-    );
-  }
+  const [sent, setSent] = useState(false);
 
   return (
-    <form onSubmit={onSubmit} style={{display:'grid', gap:12, background:'#0f1c2e', border:'1px solid #1f2a44', borderRadius:12, padding:16}}>
-      <label style={{display:'grid', gap:6, color:'#e2e8f0'}}>
-        Jméno
-        <input name="name" required style={input} placeholder="Vaše jméno" />
+    <form
+      method="POST"
+      action={FORMS_ACTION}
+      onSubmit={() => setSent(true)}
+      style={{
+        display: 'grid',
+        gap: 12,
+        maxWidth: 560,
+        width: '100%',
+      }}
+    >
+      <label style={{ display: 'grid', gap: 6 }}>
+        Jméno a příjmení
+        <input
+          name="name"
+          required
+          placeholder="Jan Novák"
+          style={inputStyle}
+        />
       </label>
-      <label style={{display:'grid', gap:6, color:'#e2e8f0'}}>
+
+      <label style={{ display: 'grid', gap: 6 }}>
         E-mail
-        <input type="email" name="email" required style={input} placeholder="vas@email.cz" />
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="jan.novak@email.cz"
+          style={inputStyle}
+        />
       </label>
-      <label style={{display:'grid', gap:6, color:'#e2e8f0'}}>
+
+      <label style={{ display: 'grid', gap: 6 }}>
         Zpráva
-        <textarea name="message" required rows={5} style={{...input, resize:'vertical'}} placeholder="Stručně popište, s čím potřebujete pomoci…" />
+        <textarea
+          name="message"
+          required
+          placeholder="Krátce mi napište, s čím potřebujete pomoci…"
+          rows={5}
+          style={inputStyle}
+        />
       </label>
-      <button disabled={sending} style={{padding:'12px 16px', borderRadius:9999, border:'none', background:'#f1b200', color:'#0b1728', fontWeight:700}}>
-        {sending ? 'Odesílám…' : 'Odeslat'}
+
+      <button
+        type="submit"
+        style={{
+          border: 'none',
+          cursor: 'pointer',
+          padding: '12px 16px',
+          borderRadius: 10,
+          fontWeight: 700,
+          color: '#0b1728',
+          background: '#ffc531',
+        }}
+      >
+        Odeslat zprávu
       </button>
-      <p style={{fontSize:12, opacity:.7, color:'#e2e8f0', margin:0}}>
-        Odesláním souhlasíte se zpracováním údajů pro účely reakce na dotaz.
-      </p>
+
+      {sent && (
+        <p style={{ opacity: 0.8 }}>
+          Odesláno – pokud nepřijde potvrzení, napište prosím přímo na
+          patrik.svoboda@wmfinance.cz
+        </p>
+      )}
     </form>
   );
 }
+
+const inputStyle: React.CSSProperties = {
+  borderRadius: 10,
+  border: '1px solid rgba(255,255,255,0.15)',
+  background: 'rgba(255,255,255,0.02)',
+  color: 'inherit',
+  padding: '10px 12px',
+  outline: 'none',
+};
