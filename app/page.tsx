@@ -2,6 +2,10 @@
 
 import React from 'react';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
+
+// Instagram embed načteme pouze na klientu (některé widgety nemají rády SSR)
+const InstagramBlock = dynamic(()=>import('./components/Instagram'), { ssr:false });
 
 const brand = {
   bg:    '#0b1728',
@@ -49,12 +53,12 @@ export default function Page() {
               Hypotéky, investice a zajištění příjmu – srozumitelně a dlouhodobě.
             </p>
 
-            {/* Benefity */}
+            {/* Benefity (jen 4 body) */}
             <div style={{margin:'0 0 18px'}}>
               {['Profesionalita','Odbornost','Ochota','Dlouhodobost'].map(x => <Tag key={x}>{x}</Tag>)}
             </div>
 
-            {/* Jen kontaktní čipy (bez „Hypotéky / Investice“ v této oblasti) */}
+            {/* Kontaktní čipy (bez tlačítek Hypotéky/Investice v této zóně) */}
             <div style={{display:'flex', gap:14, flexWrap:'wrap', marginTop:10}}>
               <a href="mailto:patrik.svoboda@wmfinance.cz?subject=Konzultace"
                  style={{
@@ -74,7 +78,7 @@ export default function Page() {
             </div>
           </div>
 
-          {/* Pravý sloupec – FOTO (bez bílých okrajů) + příjezd */}
+          {/* Pravý sloupec – FOTO bez bílých okrajů + příjezd zprava */}
           <div className="heroPhotoTile" style={{position:'relative', minHeight:620, overflow:'hidden'}}>
             <Image
               src="/ja-bile-pozadi.jpg"
@@ -84,6 +88,7 @@ export default function Page() {
               sizes="(max-width: 1024px) 100vw, 50vw"
               style={{objectFit:'cover', objectPosition:'center top'}}
             />
+            {/* tmavá maska zleva, aby se lépe navázalo na tmavé pozadí */}
             <div style={{
               position:'absolute', inset:0, pointerEvents:'none',
               background:'linear-gradient(90deg, rgba(11,23,40,0.95) 0%, rgba(11,23,40,0.65) 18%, rgba(11,23,40,0.00) 48%)'
@@ -99,7 +104,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* NOVÁ sekce: Proč řešit finance s odborníkem */}
+      {/* Proč řešit finance s odborníkem */}
       <section style={{maxWidth:980, margin:'0 auto', padding:'0 20px 40px'}}>
         <h2 style={{fontSize:28, fontWeight:800, margin:'0 0 14px'}}>Proč řešit finance s&nbsp;odborníkem</h2>
         <div style={{
@@ -120,6 +125,9 @@ export default function Page() {
           </p>
         </div>
       </section>
+
+      {/* Instagram blok – embed feed (iframe se načte jen na klientu) */}
+      <InstagramBlock />
 
       <style jsx>{`
         .heroPhotoTile{
