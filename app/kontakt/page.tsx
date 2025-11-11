@@ -1,20 +1,16 @@
+// app/kontakt/page.tsx
 import ContactForm from '../components/ContactForm';
 
-export const metadata = {
-  title: 'Kontakt • Bc. Patrik Svoboda, EFA',
-  description:
-    'Ozvěte se – hypotéky, investice, zajištění příjmu a majetku. Kancelář Jihlava, spolupráce po celé ČR.',
-};
-
-export default function Kontakt() {
+export default function KontaktPage() {
   return (
-    <main style={{ padding: '48px 24px', maxWidth: 1000, margin: '0 auto' }}>
-      <h1 style={{ marginTop: 0 }}>Kontakt</h1>
-      <p style={{ opacity: 0.85, marginBottom: 24 }}>
-        Telefon: <strong>774 697 755</strong> · E-mail:{' '}
-        <strong>patrik.svoboda@wmfinance.cz</strong>
-      </p>
+    <div className="container" style={{ color: '#e6edf6', padding: '28px 0 48px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }}>
+      <div>
+        <h1 style={{ marginTop: 0 }}>Kontakt</h1>
+        <p>Telefon: <a href="tel:+420774697755">774 697 755</a><br />E-mail: <a href="mailto:patrik.svoboda@wmfinance.cz">patrik.svoboda@wmfinance.cz</a></p>
+        <p>Vysočina & celá ČR • osobně i online.</p>
+      </div>
+
       <ContactForm />
-    </main>
+    </div>
   );
 }
