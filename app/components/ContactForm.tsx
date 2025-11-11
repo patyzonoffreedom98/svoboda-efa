@@ -1,74 +1,43 @@
-// app/components/ContactForm.tsx
+'use client';
+
 export default function ContactForm() {
+  // Přímý endpoint – ať obejdeme případný problém s env proměnnou
+  const action = 'https://formspree.io/f/xeovqpzd';
+
   return (
-    <form
-      action="https://formspree.io/f/xeovqpzd"
-      method="POST"
-      className="space-y-4 max-w-xl"
-    >
-      {/* Předmět – uvidíš v e-mailu */}
-      <input type="hidden" name="_subject" value="Nezávazná konzultace z webu" />
-
-      <div>
-        <label className="block mb-1">Jméno a příjmení</label>
-        <input
-          name="name"
-          type="text"
-          required
-          className="w-full rounded-md border border-slate-600 bg-transparent px-3 py-2"
-          placeholder="Jan Novák"
-        />
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label className="block mb-1">E-mail</label>
-          <input
-            name="email"
-            type="email"
-            required
-            className="w-full rounded-md border border-slate-600 bg-transparent px-3 py-2"
-            placeholder="jan.novak@email.cz"
-          />
-        </div>
-        <div>
-          <label className="block mb-1">Telefon</label>
-          <input
-            name="phone"
-            type="tel"
-            className="w-full rounded-md border border-slate-600 bg-transparent px-3 py-2"
-            placeholder="+420 777 000 000"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label className="block mb-1">Zpráva</label>
+    <form action={action} method="POST" className="grid gap-3 max-w-xl">
+      <input type="hidden" name="_subject" value="📬 Web – nová konzultace" />
+      <label className="grid gap-1">
+        <span>Jméno a příjmení</span>
+        <input name="name" required className="rounded-lg px-3 py-2 bg-white/5 border border-white/10" />
+      </label>
+      <label className="grid gap-1">
+        <span>E-mail</span>
+        <input type="email" name="email" required className="rounded-lg px-3 py-2 bg-white/5 border border-white/10" />
+      </label>
+      <label className="grid gap-1">
+        <span>Zpráva</span>
         <textarea
           name="message"
+          required
           rows={5}
-          className="w-full rounded-md border border-slate-600 bg-transparent px-3 py-2"
-          placeholder="Dobrý den, rád bych si domluvil úvodní konzultaci…"
+          placeholder="Dobrý den, rád bych si domluvil úvodní konzultaci."
+          className="rounded-lg px-3 py-2 bg-white/5 border border-white/10"
         />
-      </div>
+      </label>
 
-      {/* Honeypot proti botům (nevyplňovat) */}
+      {/* honeypot proti botům (nevyplňovat) */}
       <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
 
-      {/* Volitelně – po odeslání přesměrovat na /kontakt?ok=1
-          <input type="hidden" name="_redirect" value="https://svoboda-efa.vercel.app/kontakt?ok=1" />
-      */}
+      {/* po úspěchu přesměruj na /kontakt?sent=1 (máme jednoduchý toast) */}
+      <input type="hidden" name="_next" value="/kontakt?sent=1" />
 
       <button
         type="submit"
-        className="rounded-md bg-yellow-500 px-5 py-2 font-semibold text-slate-900 hover:bg-yellow-400"
+        className="rounded-xl px-4 py-2 font-medium bg-yellow-500/90 hover:bg-yellow-500 text-slate-900"
       >
         Odeslat
       </button>
-
-      <p className="text-sm text-slate-400">
-        Odesláním souhlasíte se zpracováním údajů pro účely zodpovězení dotazu.
-      </p>
     </form>
   );
 }
