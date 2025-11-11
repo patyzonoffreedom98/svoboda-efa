@@ -1,16 +1,20 @@
-// app/kontakt/page.tsx
-'use client';
-import React from 'react';
+import ContactForm from '../components/ContactForm';
 
-export default function KontaktPage(){
+export const metadata = {
+  title: 'Kontakt • Bc. Patrik Svoboda, EFA',
+  description:
+    'Ozvěte se – hypotéky, investice, zajištění příjmu a majetku. Kancelář Jihlava, spolupráce po celé ČR.',
+};
+
+export default function Kontakt() {
   return (
-    <div style={{maxWidth:820, margin:'0 auto', background:'#fff', border:'1px solid #e2e8f0', borderRadius:16, padding:20}}>
-      <h1 style={{fontSize:28, fontWeight:800, marginTop:0}}>Kontakt</h1>
-      <p>Tel.: 774 697 755<br/>E-mail: patrik.svoboda@wmfinance.cz<br/>IČO: 09910263<br/>Kancelář: Žižkova 13, Jihlava</p>
-
-      <p>Napíšete mi přes <a href="mailto:patrik.svoboda@wmfinance.cz?subject=Poptávka">e-mail</a>, nebo vyplňte kontaktní formulář níže.</p>
-
-      {/* Formspree – endpoint doplníme sem (až ho chceš rovnou přidat) */}
-    </div>
+    <main style={{ padding: '48px 24px', maxWidth: 1000, margin: '0 auto' }}>
+      <h1 style={{ marginTop: 0 }}>Kontakt</h1>
+      <p style={{ opacity: 0.85, marginBottom: 24 }}>
+        Telefon: <strong>774 697 755</strong> · E-mail:{' '}
+        <strong>patrik.svoboda@wmfinance.cz</strong>
+      </p>
+      <ContactForm />
+    </main>
   );
 }
