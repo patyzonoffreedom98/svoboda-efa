@@ -5,14 +5,13 @@ import Image from 'next/image';
 
 const brand = {
   bg:    '#0b1728',   // tmavé pozadí stránky
-  panel: '#0f2238',   // tmavý panel/sekce
+  panel: '#0d1c2e',   // tmavý panel/sekce
   text:  '#e6edf6',   // světlejší text
   mute:  '#9fb1c8',   // popisky
   gold:  '#e7b308',   // akcent (WMF zlatá)
   line:  'rgba(255,255,255,.08)',
 };
 
-// jednoduchý „pill“ badge
 const Tag = ({children}:{children: React.ReactNode}) => (
   <span style={{
     display:'inline-block', padding:'10px 16px',
@@ -25,9 +24,7 @@ export default function Page() {
   return (
     <main style={{background:brand.bg, color:brand.text}}>
       {/* HERO */}
-      <section style={{
-        maxWidth:1280, margin:'0 auto', padding:'32px 20px 48px',
-      }}>
+      <section style={{maxWidth:1280, margin:'0 auto', padding:'32px 20px 48px'}}>
         <div style={{
           display:'grid',
           gridTemplateColumns:'1.1fr .9fr',
@@ -90,39 +87,37 @@ export default function Page() {
             </div>
           </div>
 
-          {/* Pravý sloupec – FOTO s animací „příjezdu“ a fade-inem */}
-          <div className="heroPhotoTile">
+          {/* Pravý sloupec – FOTO bez bílých okrajů + příjezd zprava */}
+          <div className="heroPhotoTile" style={{position:'relative', minHeight:620, overflow:'hidden'}}>
+            {/* samotná fotka přes celou dlaždici */}
+            <Image
+              src="/ja-bile-pozadi.jpg"
+              alt="Patrik Svoboda – finanční poradce"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              // vyplní celý panel – bez okrajů; raději zachováme hlavu (posun k top)
+              style={{objectFit:'cover', objectPosition:'center top'}}
+            />
+            {/* tmavá maska zleva (plynulé napojení na tmavé pozadí) */}
             <div style={{
-              position:'relative', width:'100%', height:'100%', minHeight:600,
-              background:'radial-gradient(120% 120% at 70% 30%, #ffffff 0%, #f3f6fb 45%, #e9eef7 100%)',
-              borderLeft:`1px solid ${brand.line}`,
+              position:'absolute', inset:0, pointerEvents:'none',
+              background:'linear-gradient(90deg, rgba(11,23,40,0.95) 0%, rgba(11,23,40,0.65) 18%, rgba(11,23,40,0.00) 48%)'
+            }}/>
+            {/* badge v rohu */}
+            <span style={{
+              position:'absolute', left:18, bottom:18,
+              background:brand.gold, color:'#1a1a1a', fontWeight:800,
+              borderRadius:999, padding:'10px 14px', border:`1px solid ${brand.gold}`
             }}>
-              <Image
-                src="/ja-bile-pozadi.jpg"
-                alt="Patrik Svoboda – finanční poradce"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                // celé tělo: contain, zarovnání lehce nahoru kvůli prostoru na boty
-                style={{objectFit:'contain', objectPosition:'center 10%'}}
-              />
-              {/* badge v rohu */}
-              <span style={{
-                position:'absolute', left:18, bottom:18,
-                background:brand.gold, color:'#1a1a1a', fontWeight:800,
-                borderRadius:999, padding:'10px 14px', border:`1px solid ${brand.gold}`
-              }}>
-                EFA · Vysočina & celá ČR
-              </span>
-            </div>
+              EFA · Vysočina & celá ČR
+            </span>
           </div>
         </div>
       </section>
 
-      {/* Další sekce – placeholder (zůstává, ať stránka působí plně) */}
-      <section style={{
-        maxWidth:1280, margin:'0 auto', padding:'10px 20px 60px'
-      }}>
+      {/* Placeholder další sekce */}
+      <section style={{maxWidth:1280, margin:'0 auto', padding:'10px 20px 60px'}}>
         <h2 style={{fontSize:32, fontWeight:800, margin:'0 0 12px'}}>S čím pomáhám</h2>
         <div style={{
           display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))',
@@ -146,16 +141,18 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Animace pro „příjezd“ pravé dlaždice s fotkou */}
+      {/* Animace „příjezd zprava“ */}
       <style jsx>{`
         .heroPhotoTile{
           opacity:0;
-          transform:translateX(28px);
-          animation: slideIn 680ms cubic-bezier(.22,.95,.3,1) 180ms forwards;
+          transform:translateX(44px);
+          animation: slideInRight 720ms cubic-bezier(.22,.95,.3,1) 160ms forwards;
           will-change: transform, opacity;
+          background: transparent;
+          border-left: 1px solid ${brand.line};
         }
-        @keyframes slideIn{
-          from { opacity:0; transform:translateX(28px); }
+        @keyframes slideInRight{
+          from { opacity:0; transform:translateX(44px); }
           to   { opacity:1; transform:translateX(0); }
         }
       `}</style>
