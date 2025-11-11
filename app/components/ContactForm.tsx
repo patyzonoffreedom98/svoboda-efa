@@ -1,109 +1,74 @@
-'use client';
-
-import React, { useState } from 'react';
-
+// app/components/ContactForm.tsx
 export default function ContactForm() {
-  const [sending, setSending] = useState(false);
-  const [ok, setOk] = useState<string | null>(null);
-  const [err, setErr] = useState<string | null>(null);
-
-  // ID z ENV proměnné (musí být nastavena ve Vercelu jako NEXT_PUBLIC_FORMSPREE_ID)
-  const FORMSPREE_ID =
-    process.env.NEXT_PUBLIC_FORMSPREE_ID || ''; // např. "xknlqzye"
-
-  const endpoint = FORMSPREE_ID
-    ? `https://formspree.io/f/${FORMSPREE_ID}`
-    : '';
-
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setOk(null);
-    setErr(null);
-
-    if (!endpoint) {
-      setErr('Chybí ID formuláře (ENV NEXT_PUBLIC_FORMSPREE_ID).');
-      return;
-    }
-
-    const form = e.currentTarget;
-    const data = new FormData(form);
-
-    setSending(true);
-    try {
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: data,
-      });
-
-      if (res.ok) {
-        form.reset();
-        setOk('Děkuji! Zpráva byla odeslána – brzy se ozvu.');
-      } else {
-        setErr('Odeslání se nepovedlo. Zkuste to prosím znovu.');
-      }
-    } catch (_) {
-      setErr('Něco se pokazilo při odeslání. Zkuste to prosím znovu.');
-    } finally {
-      setSending(false);
-    }
-  }
-
   return (
-    <form onSubmit={onSubmit} className="space-y-4 max-w-xl">
-      <div className="grid gap-4 md:grid-cols-2">
-        <div>
-          <label className="block mb-1">Jméno</label>
-          <input
-            name="jmeno"
-            required
-            className="w-full rounded-lg px-3 py-2 bg-[#0f1f2d] border border-[#233447] focus:outline-none"
-            placeholder="Jan"
-          />
-        </div>
-        <div>
-          <label className="block mb-1">Příjmení</label>
-          <input
-            name="prijmeni"
-            required
-            className="w-full rounded-lg px-3 py-2 bg-[#0f1f2d] border border-[#233447] focus:outline-none"
-            placeholder="Novák"
-          />
-        </div>
-      </div>
+    <form
+      action="https://formspree.io/f/xeovqpzd"
+      method="POST"
+      className="space-y-4 max-w-xl"
+    >
+      {/* Předmět – uvidíš v e-mailu */}
+      <input type="hidden" name="_subject" value="Nezávazná konzultace z webu" />
 
       <div>
-        <label className="block mb-1">E-mail</label>
+        <label className="block mb-1">Jméno a příjmení</label>
         <input
-          type="email"
-          name="email"
+          name="name"
+          type="text"
           required
-          className="w-full rounded-lg px-3 py-2 bg-[#0f1f2d] border border-[#233447] focus:outline-none"
-          placeholder="jan.novak@email.cz"
+          className="w-full rounded-md border border-slate-600 bg-transparent px-3 py-2"
+          placeholder="Jan Novák"
         />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label className="block mb-1">E-mail</label>
+          <input
+            name="email"
+            type="email"
+            required
+            className="w-full rounded-md border border-slate-600 bg-transparent px-3 py-2"
+            placeholder="jan.novak@email.cz"
+          />
+        </div>
+        <div>
+          <label className="block mb-1">Telefon</label>
+          <input
+            name="phone"
+            type="tel"
+            className="w-full rounded-md border border-slate-600 bg-transparent px-3 py-2"
+            placeholder="+420 777 000 000"
+          />
+        </div>
       </div>
 
       <div>
         <label className="block mb-1">Zpráva</label>
         <textarea
-          name="zprava"
-          rows={4}
-          className="w-full rounded-lg px-3 py-2 bg-[#0f1f2d] border border-[#233447] focus:outline-none"
+          name="message"
+          rows={5}
+          className="w-full rounded-md border border-slate-600 bg-transparent px-3 py-2"
           placeholder="Dobrý den, rád bych si domluvil úvodní konzultaci…"
-          required
         />
       </div>
 
+      {/* Honeypot proti botům (nevyplňovat) */}
+      <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
+
+      {/* Volitelně – po odeslání přesměrovat na /kontakt?ok=1
+          <input type="hidden" name="_redirect" value="https://svoboda-efa.vercel.app/kontakt?ok=1" />
+      */}
+
       <button
         type="submit"
-        disabled={sending}
-        className="rounded-xl px-5 py-2 font-medium bg-[#f0b728] text-black disabled:opacity-70"
+        className="rounded-md bg-yellow-500 px-5 py-2 font-semibold text-slate-900 hover:bg-yellow-400"
       >
-        {sending ? 'Odesílám…' : 'Odeslat'}
+        Odeslat
       </button>
 
-      {ok && <p className="text-green-400">{ok}</p>}
-      {err && <p className="text-red-400">{err}</p>}
+      <p className="text-sm text-slate-400">
+        Odesláním souhlasíte se zpracováním údajů pro účely zodpovězení dotazu.
+      </p>
     </form>
   );
 }
