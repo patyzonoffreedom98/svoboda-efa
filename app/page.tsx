@@ -1,105 +1,164 @@
-// app/page.tsx
 'use client';
+
 import React from 'react';
+import Image from 'next/image';
 
 const brand = {
-  navy: '#0f1f3a',
-  navyDark: '#0b162b',
-  navyLight: '#102748',
-  accent: '#d4a100',
-  textLight: '#eef2f7',
-  line: 'rgba(255,255,255,.15)'
+  bg:    '#0b1728',   // tmavé pozadí stránky
+  panel: '#0f2238',   // tmavý panel/sekce
+  text:  '#e6edf6',   // světlejší text
+  mute:  '#9fb1c8',   // popisky
+  gold:  '#e7b308',   // akcent (WMF zlatá)
+  line:  'rgba(255,255,255,.08)',
 };
 
-const styles: {[k:string]: React.CSSProperties} = {
-  hero:{
-    display:'grid', gridTemplateColumns:'1.1fr .9fr', alignItems:'stretch',
-    minHeight:560, border:'1px solid ' + brand.line, borderRadius:16, overflow:'hidden'
-  },
-  heroLeft:{padding:'46px 28px'},
-  h1:{fontSize:46, fontWeight:800, margin:'0 0 10px'},
-  lead:{fontSize:18, color:'rgba(255,255,255,.85)'},
-  tags:{display:'flex', flexWrap:'wrap', gap:8, margin:'14px 0 0', padding:0, listStyle:'none'},
-  tag:{padding:'6px 10px', border:'1px solid ' + brand.line, borderRadius:9999, background:'rgba(255,255,255,.06)', fontSize:13},
-  ctaRow:{display:'flex', gap:12, marginTop:18, flexWrap:'wrap'},
-  btnPrimary:{
-    display:'inline-block', padding:'10px 16px', borderRadius:9999, textDecoration:'none',
-    background:brand.accent, color:brand.navyDark, fontWeight:700, border:'1px solid rgba(0,0,0,.08)'
-  },
-  btnOutline:{
-    display:'inline-block', padding:'10px 16px', borderRadius:9999, textDecoration:'none',
-    color:'#fff', border:'1px solid ' + brand.line
-  },
-  heroRight:{position:'relative', background:'linear-gradient(180deg,' + brand.navyLight + ',' + brand.navyDark + ')'},
-  photoWrap:{position:'absolute', inset:0, display:'flex', alignItems:'flex-end', justifyContent:'flex-end'},
-  photoInner:{width:'100%', height:'100%', maxWidth:720, display:'flex', alignItems:'flex-end', justifyContent:'flex-end'},
-  ribbon:{position:'absolute', left:16, bottom:16, background:brand.accent, color:brand.navyDark, padding:'6px 10px', borderRadius:9999, fontSize:12},
-  benefitBox:{marginTop:16, border:'1px solid ' + brand.line, borderRadius:16, padding:16},
-  h2:{fontSize:24, fontWeight:800, margin:'0 0 8px'}
-};
+// jednoduchý „pill“ badge
+const Tag = ({children}:{children: React.ReactNode}) => (
+  <span style={{
+    display:'inline-block', padding:'10px 16px',
+    borderRadius:999, border:`1px solid ${brand.line}`, color:brand.text,
+    marginRight:10, marginBottom:10, fontSize:16, background:'rgba(255,255,255,.03)'
+  }}>{children}</span>
+);
 
-export default function Page(){
-  const email = 'patrik.svoboda@wmfinance.cz';
-  const phone = '774 697 755';
-
+export default function Page() {
   return (
-    <section>
+    <main style={{background:brand.bg, color:brand.text}}>
       {/* HERO */}
-      <div className="hero" style={styles.hero}>
-        <div style={styles.heroLeft}>
-          <h1 style={styles.h1}>Bc. Patrik Svoboda, EFA</h1>
-          <p style={styles.lead}>
-            Finanční plán, který obstojí v číslech i realitě. Kancelář v Jihlavě, spolupráce po celé ČR.
-            Hypotéky, investice a zajištění příjmu – srozumitelně a dlouhodobě.
-          </p>
+      <section style={{
+        maxWidth:1280, margin:'0 auto', padding:'32px 20px 48px',
+      }}>
+        <div style={{
+          display:'grid',
+          gridTemplateColumns:'1.1fr .9fr',
+          gap:24,
+          alignItems:'stretch',
+          borderRadius:20,
+          background:'linear-gradient(180deg, #0d1c2e, #0b1728)',
+          border:`1px solid ${brand.line}`,
+          overflow:'hidden',
+        }}>
+          {/* Levý sloupec – text */}
+          <div style={{padding:'36px 28px 40px 28px'}}>
+            <h1 style={{
+              fontSize:48, lineHeight:1.15, margin:'0 0 16px', fontWeight:800,
+              letterSpacing:.3
+            }}>
+              Bc. Patrik Svoboda, EFA
+            </h1>
 
-          <ul style={styles.tags}>
-            {['Hypotéky a refinancování','Investice a cesta k rentě','Zajištění příjmu','Podnikatelská rizika','Zaměstnanecké benefity','Lidský přístup'].map(t=>(
-              <li key={t} style={styles.tag}>{t}</li>
-            ))}
-          </ul>
+            <p style={{fontSize:20, color:brand.mute, margin:'0 0 22px'}}>
+              Finanční plán, který obstojí v číslech i realitě. Kancelář v Jihlavě, spolupráce po celé ČR.
+              Hypotéky, investice a zajištění příjmu – srozumitelně a dlouhodobě.
+            </p>
 
-          <div style={styles.ctaRow}>
-            <a href="/hypoteky-a-financovani" style={styles.btnPrimary}>Hypotéky</a>
-            <a href="/investice-a-cesta-k-rente" style={styles.btnOutline}>Investice a renta</a>
-            <a href={'mailto:'+email+'?subject=Konzultace'} style={styles.btnOutline}>Napsat · {email}</a>
-            <a href={'tel:+420'+phone.replace(/\s/g,'')} style={styles.btnOutline}>Zavolat · {phone}</a>
-          </div>
-        </div>
+            <div style={{margin:'0 0 18px'}}>
+              {['Hypotéky a refinancování','Investice a cesta k rentě','Zajištění příjmu','Podnikatelská rizika','Zaměstnanecké benefity','Lidský přístup']
+                .map(x => <Tag key={x}>{x}</Tag>)}
+            </div>
 
-        <div style={styles.heroRight}>
-          <div style={{position:'absolute', inset:0, background:'linear-gradient(90deg, rgba(15,31,58,0) 0%, rgba(15,31,58,.25) 40%, rgba(15,31,58,.45) 100%)'}}/>
-          <div style={styles.photoWrap}>
-            <div style={styles.photoInner}>
-              <img
-                src="/ja-bile-pozadi.jpg"
-                alt="Patrik Svoboda – finanční poradce"
-                style={{width:'100%', height:'100%', objectFit:'cover', objectPosition:'bottom right', display:'block'}}
-              />
+            <div style={{display:'flex', gap:14, flexWrap:'wrap', marginTop:10}}>
+              <a href="/sluzby" style={{
+                display:'inline-block', padding:'12px 18px', borderRadius:999,
+                background:brand.gold, color:'#1a1a1a', textDecoration:'none',
+                fontWeight:700, border:`1px solid ${brand.gold}`
+              }}>
+                Hypotéky
+              </a>
+              <a href="/sluzby" style={{
+                display:'inline-block', padding:'12px 18px', borderRadius:999,
+                background:'transparent', color:brand.text, textDecoration:'none',
+                border:`1px solid ${brand.line}`
+              }}>
+                Investice a renta
+              </a>
+              <a href="mailto:patrik.svoboda@wmfinance.cz?subject=Konzultace"
+                 style={{
+                   display:'inline-block', padding:'12px 18px', borderRadius:999,
+                   background:'transparent', color:brand.text, textDecoration:'none',
+                   border:`1px solid ${brand.line}`
+                 }}>
+                Napsat · patrik.svoboda@wmfinance.cz
+              </a>
+              <span style={{
+                display:'inline-block', padding:'12px 18px', borderRadius:999,
+                background:'transparent', color:brand.text,
+                border:`1px solid ${brand.line}`
+              }}>
+                Zavolat · 774 697 755
+              </span>
             </div>
           </div>
-          <div style={styles.ribbon}><strong>EFA</strong> • Vysočina & celá ČR</div>
+
+          {/* Pravý sloupec – FOTO s animací „příjezdu“ a fade-inem */}
+          <div className="heroPhotoTile">
+            <div style={{
+              position:'relative', width:'100%', height:'100%', minHeight:600,
+              background:'radial-gradient(120% 120% at 70% 30%, #ffffff 0%, #f3f6fb 45%, #e9eef7 100%)',
+              borderLeft:`1px solid ${brand.line}`,
+            }}>
+              <Image
+                src="/ja-bile-pozadi.jpg"
+                alt="Patrik Svoboda – finanční poradce"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                // celé tělo: contain, zarovnání lehce nahoru kvůli prostoru na boty
+                style={{objectFit:'contain', objectPosition:'center 10%'}}
+              />
+              {/* badge v rohu */}
+              <span style={{
+                position:'absolute', left:18, bottom:18,
+                background:brand.gold, color:'#1a1a1a', fontWeight:800,
+                borderRadius:999, padding:'10px 14px', border:`1px solid ${brand.gold}`
+              }}>
+                EFA · Vysočina & celá ČR
+              </span>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* BENEFITY (vypíchnutí 5 bodů) */}
-      <div style={styles.benefitBox}>
-        <h2 style={styles.h2}>Proč se potkat</h2>
-        <ul>
-          <li>EFA kvalifikace – odbornost napříč investicemi, úvěry i pojištěním</li>
-          <li>Čísla i realita – plán, který umí obojí</li>
-          <li>Dlouhodobá péče a pravidelný servis</li>
-          <li>Lidský přístup, srozumitelná doporučení</li>
-          <li>Spolupráce v celé ČR, kancelář Jihlava</li>
-        </ul>
-      </div>
+      {/* Další sekce – placeholder (zůstává, ať stránka působí plně) */}
+      <section style={{
+        maxWidth:1280, margin:'0 auto', padding:'10px 20px 60px'
+      }}>
+        <h2 style={{fontSize:32, fontWeight:800, margin:'0 0 12px'}}>S čím pomáhám</h2>
+        <div style={{
+          display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))',
+          gap:16
+        }}>
+          {[
+            ['Hypotéky',['Nákup i refinancování','Fixace a LTV','Kompletní vyřízení']],
+            ['Investice a renta',['ETF / akcie','Plán renty','Pravidelné vklady']],
+            ['Zajištění příjmu a majetku',['Invalidita, PN','Domácnost a nemovitost','Odpovědnost']],
+          ].map(([title, points]) => (
+            <div key={title as string} style={{
+              background:brand.panel, border:`1px solid ${brand.line}`,
+              borderRadius:16, padding:16
+            }}>
+              <h3 style={{margin:'0 0 8px', fontSize:18, fontWeight:700}}>{title as string}</h3>
+              <ul style={{margin:0, paddingLeft:18, color:brand.mute}}>
+                {(points as string[]).map(p => <li key={p}>{p}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
 
-      {/* drobná mobilní úprava layoutu */}
+      {/* Animace pro „příjezd“ pravé dlaždice s fotkou */}
       <style jsx>{`
-        @media (max-width: 980px){
-          .hero { grid-template-columns: 1fr; min-height: 460px; }
+        .heroPhotoTile{
+          opacity:0;
+          transform:translateX(28px);
+          animation: slideIn 680ms cubic-bezier(.22,.95,.3,1) 180ms forwards;
+          will-change: transform, opacity;
+        }
+        @keyframes slideIn{
+          from { opacity:0; transform:translateX(28px); }
+          to   { opacity:1; transform:translateX(0); }
         }
       `}</style>
-    </section>
+    </main>
   );
 }
