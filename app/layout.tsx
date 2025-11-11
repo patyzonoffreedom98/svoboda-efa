@@ -41,28 +41,35 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {/* Sticky top bar */}
-        <header className="site-header">
-          <div className="container" style={{ display: 'flex', alignItems: 'center', height: 64, gap: 12 }}>
-            <a href="/" className="brand" style={{ whiteSpace: 'nowrap' }}>Bc. Patrik Svoboda, EFA</a>
-            <nav style={{ display: 'flex', gap: 4 }}>
-              <a href="/o-mne">O mně</a>
-              <a href="/efa-certifikace">EFA certifikace</a>
+       // uvnitř <body> někde v headeru/načítaném navigačním místě:
+<header className="w-full border-b border-white/10 bg-[#0b1728]">
+  <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between text-white">
+    <a href="/" className="font-semibold">Bc. Patrik Svoboda, EFA</a>
 
-              <div className="has-sub">
-                <a href="/sluzby">Služby ▾</a>
-                <div className="submenu">
-                  <a href="/sluzby#hypoteky">Hypotéky a financování</a>
-                  <a href="/sluzby#investice">Investice a cesta k rentě</a>
-                  <a href="/sluzby#zajištění">Zajištění příjmu a majetku</a>
-                  <a href="/sluzby#podnikatele">Podnikatelská rizika</a>
-                </div>
-              </div>
+    <ul className="flex items-center gap-6">
+      <li><a href="/o-mne" className="hover:underline">O mně</a></li>
+      <li><a href="/efa-certifikace" className="hover:underline">EFA certifikace</a></li>
 
-              <a href="/kontakt">Kontakt</a>
-            </nav>
-            <div style={{ marginLeft: 'auto' }} />
-          </div>
-        </header>
+      {/* Dropdown Služby */}
+      <li className="relative group">
+        <span className="cursor-pointer select-none">Služby</span>
+        <div className="absolute left-0 mt-2 hidden min-w-[260px] rounded-lg border border-white/10 bg-[#0b1728] p-2 shadow-lg group-hover:block">
+          <a href="/sluzby/hypoteky-a-financovani" className="block px-3 py-2 rounded hover:bg-white/10">
+            Hypotéky a financování
+          </a>
+          <a href="/sluzby/investice-a-renta" className="block px-3 py-2 rounded hover:bg-white/10">
+            Investice a renta
+          </a>
+          <a href="/sluzby/zajisteni-prijmu-a-majetku" className="block px-3 py-2 rounded hover:bg-white/10">
+            Zajištění příjmu a majetku
+          </a>
+        </div>
+      </li>
+
+      <li><a href="/kontakt" className="hover:underline">Kontakt</a></li>
+    </ul>
+  </nav>
+</header>
 
         <main>{children}</main>
 
