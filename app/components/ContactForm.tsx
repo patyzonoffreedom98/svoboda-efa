@@ -1,102 +1,105 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-export default function ContactForm() {
-  const [status, setStatus] = useState<'idle'|'sending'|'ok'|'error'>('idle');
-  const [msg, setMsg] = useState<string>('');
+type ContactFormProps = {
+  title?: string;
+  defaultMessage?: string;
+};
 
-  const endpointId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
-  const endpoint = endpointId ? `https://formspree.io/f/${endpointId}` : '';
+export default function ContactForm({
+  title = 'Chci si domluvit konzultaci',
+  defaultMessage = 'Dobrý den, rád(a) bych si domluvil(a) úvodní konzultaci. Děkuji.',
+}: ContactFormProps) {
+  // Formspree ID načteme z proměnné prostředí
+  const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
+  const action = formId ? `https://formspree.io/f/${formId}` : undefined;
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (!endpoint) {
-      setStatus('error');
-      setMsg('Chybí Formspree ID (NEXT_PUBLIC_FORMSPREE_ID).');
-      return;
-    }
-    setStatus('sending');
-    setMsg('');
-
-    try {
-      const form = e.currentTarget;
-      const data = new FormData(form);
-
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        // DŮLEŽITÉ: u FormData nenasazuj Content-Type – nastaví se sám (boundary).
-        headers: { Accept: 'application/json' },
-        body: data,
-      });
-
-      if (res.ok) {
-        setStatus('ok');
-        setMsg('Děkuji! Ozvu se co nejdřív.');
-        form.reset();
-      } else {
-        const json = await res.json().catch(() => null);
-        const err = json?.errors?.[0]?.message || 'Odeslání se nepovedlo.';
-        setStatus('error');
-        setMsg(err);
-      }
-    } catch (err) {
-      setStatus('error');
-      setMsg('Něco se pokazilo při odesílání.');
-    }
-  }
+  const [sent, setSent] = useState(false);
 
   return (
-    <div className="max-w-xl rounded-2xl p-6 bg-white/5 border border-white/10">
-      <h3 className="text-xl font-semibold mb-2">Nezávazná konzultace zdarma</h3>
-      <p className="text-sm opacity-80 mb-4">
-        Napište mi pár slov – ozvu se a domluvíme si termín.
-      </p>
+    <section className="max-w-xl w-full">
+      {title && (
+        <h3 className="text-xl font-semibold mb-4">{title}</h3>
+      )}
 
-      <form onSubmit={onSubmit}>
-        {/* Honeypot proti spamu */}
-        <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
+      <form
+        method="POST"
+        action={action}
+        onSubmit={(e) => {
+          if (!action) {
+            e.preventDefault();
+            alert('Chybí Formspree ID (NEXT_PUBLIC_FORMSPREE_ID). Zkontroluj nastavení ve Vercelu.');
+          } else {
+            setSent(true);
+          }
+        }}
+        className="space-y-3"
+      >
+        {/* předmět e-mailu */}
+        <input type="hidden" name="_subject" value="Zpráva z webu – svoboda-efa.cz" />
 
-        <div className="grid gap-3">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="grid gap-3 md:grid-cols-2">
+          <div className="flex flex-col gap-1">
+            <label className="text-sm">Jméno</label>
             <input
-              className="w-full rounded-lg bg-white/5 border border-white/10 px-3 py-2 outline-none"
-              type="text" name="jmeno" placeholder="Jméno" required
-            />
-            <input
-              className="w-full rounded-lg bg-white/5 border border-white/10 px-3 py-2 outline-none"
-              type="text" name="prijmeni" placeholder="Příjmení" required
+              type="text"
+              name="firstName"
+              required
+              placeholder="Jan"
+              className="rounded-md border px-3 py-2 bg-white/90"
             />
           </div>
-
-          <input
-            className="w-full rounded-lg bg-white/5 border border-white/10 px-3 py-2 outline-none"
-            type="email" name="email" placeholder="E-mail" required
-          />
-
-          <textarea
-            className="w-full rounded-lg bg-white/5 border border-white/10 px-3 py-2 outline-none min-h-[110px]"
-            name="zprava"
-            placeholder="Dobrý den, rád bych si domluvil úvodní konzultaci."
-            required
-          />
-
-          <button
-            type="submit"
-            disabled={status === 'sending'}
-            className="rounded-lg px-4 py-2 bg-[#0b1728] text-white disabled:opacity-60"
-          >
-            {status === 'sending' ? 'Odesílám…' : 'Odeslat'}
-          </button>
-
-          {status === 'ok' && (
-            <p className="text-sm text-emerald-400">{msg}</p>
-          )}
-          {status === 'error' && (
-            <p className="text-sm text-rose-400">{msg}</p>
-          )}
+          <div className="flex flex-col gap-1">
+            <label className="text-sm">Příjmení</label>
+            <input
+              type="text"
+              name="lastName"
+              required
+              placeholder="Novák"
+              className="rounded-md border px-3 py-2 bg-white/90"
+            />
+          </div>
         </div>
+
+        <div className="flex flex-col gap-1">
+          <label className="text-sm">E-mail</label>
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="jan.novak@email.cz"
+            className="rounded-md border px-3 py-2 bg-white/90 w-full"
+          />
+        </div>
+
+        <div className="flex flex-col gap-1">
+          <label className="text-sm">Zpráva</label>
+          <textarea
+            name="message"
+            rows={5}
+            defaultValue={defaultMessage}
+            className="rounded-md border px-3 py-2 bg-white/90 w-full"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="rounded-md px-4 py-2 font-semibold border bg-[#0b1728] text-white hover:opacity-90"
+        >
+          Odeslat
+        </button>
+
+        {!action && (
+          <p className="text-sm text-red-500">
+            Formulář nelze odeslat: chybí <code>NEXT_PUBLIC_FORMSPREE_ID</code> ve Vercelu.
+          </p>
+        )}
+
+        {sent && action && (
+          <p className="text-sm text-green-600">Odesílám… pokud nepřijde e-mail, napiš mi, mrknu na to.</p>
+        )}
       </form>
-    </div>
+    </section>
   );
 }
