@@ -1,87 +1,79 @@
 'use client';
+// app/components/ContactForm.tsx
+import React, { useState } from 'react';
 
-import { useState } from 'react';
+type Props = {
+  title?: string;
+  defaultMessage?: string;
+};
 
-export default function ContactForm() {
-  // můžeš sem kdykoli dát svůj Formspree/Getform endpoint
-  const FORMS_ACTION = 'https://formspree.io/f/your-id'; // ← nahraď, až budeš mít
-
+export default function ContactForm({
+  title = 'Napište mi zprávu',
+  defaultMessage = '',
+}: Props) {
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  // TODO: nahraď svoji Formspree/Getform adresou:
+  const FORMSPREE = 'https://formspree.io/f/your-id';
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    try {
+      const res = await fetch(FORMSPREE, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+      if (res.ok) setSent(true);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  if (sent) {
+    return (
+      <div style={card}>
+        <h3>Děkuji, zpráva byla odeslána ✅</h3>
+        <p>Ozvu se co nejdříve.</p>
+      </div>
+    );
+  }
 
   return (
-    <form
-      method="POST"
-      action={FORMS_ACTION}
-      onSubmit={() => setSent(true)}
-      style={{
-        display: 'grid',
-        gap: 12,
-        maxWidth: 560,
-        width: '100%',
-      }}
-    >
-      <label style={{ display: 'grid', gap: 6 }}>
-        Jméno a příjmení
-        <input
-          name="name"
-          required
-          placeholder="Jan Novák"
-          style={inputStyle}
-        />
-      </label>
+    <form onSubmit={onSubmit} style={card}>
+      <h3 style={{ marginTop: 0 }}>{title}</h3>
+      <label style={lbl}>Jméno</label>
+      <input name="name" required placeholder="Jméno a příjmení" style={inp} />
 
-      <label style={{ display: 'grid', gap: 6 }}>
-        E-mail
-        <input
-          type="email"
-          name="email"
-          required
-          placeholder="jan.novak@email.cz"
-          style={inputStyle}
-        />
-      </label>
+      <label style={lbl}>E-mail</label>
+      <input name="email" type="email" required placeholder="vase@adresa.cz" style={inp} />
 
-      <label style={{ display: 'grid', gap: 6 }}>
-        Zpráva
-        <textarea
-          name="message"
-          required
-          placeholder="Krátce mi napište, s čím potřebujete pomoci…"
-          rows={5}
-          style={inputStyle}
-        />
-      </label>
+      <label style={lbl}>Zpráva</label>
+      <textarea name="message" required rows={5} defaultValue={defaultMessage} style={txt} />
 
-      <button
-        type="submit"
-        style={{
-          border: 'none',
-          cursor: 'pointer',
-          padding: '12px 16px',
-          borderRadius: 10,
-          fontWeight: 700,
-          color: '#0b1728',
-          background: '#ffc531',
-        }}
-      >
-        Odeslat zprávu
+      <button disabled={loading} type="submit" style={btn}>
+        {loading ? 'Odesílám…' : 'Odeslat'}
       </button>
-
-      {sent && (
-        <p style={{ opacity: 0.8 }}>
-          Odesláno – pokud nepřijde potvrzení, napište prosím přímo na
-          patrik.svoboda@wmfinance.cz
-        </p>
-      )}
     </form>
   );
 }
 
-const inputStyle: React.CSSProperties = {
-  borderRadius: 10,
-  border: '1px solid rgba(255,255,255,0.15)',
-  background: 'rgba(255,255,255,0.02)',
-  color: 'inherit',
-  padding: '10px 12px',
-  outline: 'none',
+const card: React.CSSProperties = {
+  background: '#0f1d31',
+  border: '1px solid rgba(255,255,255,.08)',
+  borderRadius: 16,
+  padding: 20,
+  color: '#e6edf6',
+  maxWidth: 560,
+};
+
+const lbl: React.CSSProperties = { display: 'block', margin: '10px 0 6px', color: '#9fb0c8', fontSize: 14 };
+const inp: React.CSSProperties = {
+  width: '100%', padding: '12px 14px', borderRadius: 12, border: '1px solid rgba(255,255,255,.08)',
+  background: '#0b1728', color: '#e6edf6', outline: 'none',
+};
+const txt = inp;
+const btn: React.CSSProperties = {
+  marginTop: 14, background: '#f0c941', color: '#0b1728', border: 'none',
+  borderRadius: 12, padding: '12px 16px', fontWeight: 700, cursor: 'pointer',
 };
