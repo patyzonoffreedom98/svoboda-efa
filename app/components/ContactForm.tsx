@@ -1,79 +1,109 @@
 'use client';
-// app/components/ContactForm.tsx
+
 import React, { useState } from 'react';
 
-type Props = {
-  title?: string;
-  defaultMessage?: string;
-};
+export default function ContactForm() {
+  const [sending, setSending] = useState(false);
+  const [ok, setOk] = useState<string | null>(null);
+  const [err, setErr] = useState<string | null>(null);
 
-export default function ContactForm({
-  title = 'Napište mi zprávu',
-  defaultMessage = '',
-}: Props) {
-  const [sent, setSent] = useState(false);
-  const [loading, setLoading] = useState(false);
+  // ID z ENV proměnné (musí být nastavena ve Vercelu jako NEXT_PUBLIC_FORMSPREE_ID)
+  const FORMSPREE_ID =
+    process.env.NEXT_PUBLIC_FORMSPREE_ID || ''; // např. "xknlqzye"
 
-  // TODO: nahraď svoji Formspree/Getform adresou:
-  const FORMSPREE = 'https://formspree.io/f/your-id';
+  const endpoint = FORMSPREE_ID
+    ? `https://formspree.io/f/${FORMSPREE_ID}`
+    : '';
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setLoading(true);
+    setOk(null);
+    setErr(null);
+
+    if (!endpoint) {
+      setErr('Chybí ID formuláře (ENV NEXT_PUBLIC_FORMSPREE_ID).');
+      return;
+    }
+
     const form = e.currentTarget;
     const data = new FormData(form);
+
+    setSending(true);
     try {
-      const res = await fetch(FORMSPREE, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
-      if (res.ok) setSent(true);
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: data,
+      });
+
+      if (res.ok) {
+        form.reset();
+        setOk('Děkuji! Zpráva byla odeslána – brzy se ozvu.');
+      } else {
+        setErr('Odeslání se nepovedlo. Zkuste to prosím znovu.');
+      }
+    } catch (_) {
+      setErr('Něco se pokazilo při odeslání. Zkuste to prosím znovu.');
     } finally {
-      setLoading(false);
+      setSending(false);
     }
   }
 
-  if (sent) {
-    return (
-      <div style={card}>
-        <h3>Děkuji, zpráva byla odeslána ✅</h3>
-        <p>Ozvu se co nejdříve.</p>
-      </div>
-    );
-  }
-
   return (
-    <form onSubmit={onSubmit} style={card}>
-      <h3 style={{ marginTop: 0 }}>{title}</h3>
-      <label style={lbl}>Jméno</label>
-      <input name="name" required placeholder="Jméno a příjmení" style={inp} />
+    <form onSubmit={onSubmit} className="space-y-4 max-w-xl">
+      <div className="grid gap-4 md:grid-cols-2">
+        <div>
+          <label className="block mb-1">Jméno</label>
+          <input
+            name="jmeno"
+            required
+            className="w-full rounded-lg px-3 py-2 bg-[#0f1f2d] border border-[#233447] focus:outline-none"
+            placeholder="Jan"
+          />
+        </div>
+        <div>
+          <label className="block mb-1">Příjmení</label>
+          <input
+            name="prijmeni"
+            required
+            className="w-full rounded-lg px-3 py-2 bg-[#0f1f2d] border border-[#233447] focus:outline-none"
+            placeholder="Novák"
+          />
+        </div>
+      </div>
 
-      <label style={lbl}>E-mail</label>
-      <input name="email" type="email" required placeholder="vase@adresa.cz" style={inp} />
+      <div>
+        <label className="block mb-1">E-mail</label>
+        <input
+          type="email"
+          name="email"
+          required
+          className="w-full rounded-lg px-3 py-2 bg-[#0f1f2d] border border-[#233447] focus:outline-none"
+          placeholder="jan.novak@email.cz"
+        />
+      </div>
 
-      <label style={lbl}>Zpráva</label>
-      <textarea name="message" required rows={5} defaultValue={defaultMessage} style={txt} />
+      <div>
+        <label className="block mb-1">Zpráva</label>
+        <textarea
+          name="zprava"
+          rows={4}
+          className="w-full rounded-lg px-3 py-2 bg-[#0f1f2d] border border-[#233447] focus:outline-none"
+          placeholder="Dobrý den, rád bych si domluvil úvodní konzultaci…"
+          required
+        />
+      </div>
 
-      <button disabled={loading} type="submit" style={btn}>
-        {loading ? 'Odesílám…' : 'Odeslat'}
+      <button
+        type="submit"
+        disabled={sending}
+        className="rounded-xl px-5 py-2 font-medium bg-[#f0b728] text-black disabled:opacity-70"
+      >
+        {sending ? 'Odesílám…' : 'Odeslat'}
       </button>
+
+      {ok && <p className="text-green-400">{ok}</p>}
+      {err && <p className="text-red-400">{err}</p>}
     </form>
   );
 }
-
-const card: React.CSSProperties = {
-  background: '#0f1d31',
-  border: '1px solid rgba(255,255,255,.08)',
-  borderRadius: 16,
-  padding: 20,
-  color: '#e6edf6',
-  maxWidth: 560,
-};
-
-const lbl: React.CSSProperties = { display: 'block', margin: '10px 0 6px', color: '#9fb0c8', fontSize: 14 };
-const inp: React.CSSProperties = {
-  width: '100%', padding: '12px 14px', borderRadius: 12, border: '1px solid rgba(255,255,255,.08)',
-  background: '#0b1728', color: '#e6edf6', outline: 'none',
-};
-const txt = inp;
-const btn: React.CSSProperties = {
-  marginTop: 14, background: '#f0c941', color: '#0b1728', border: 'none',
-  borderRadius: 12, padding: '12px 16px', fontWeight: 700, cursor: 'pointer',
-};
