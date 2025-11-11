@@ -1,8 +1,22 @@
 'use client';
 import React, { useMemo, useState } from 'react';
+import Image from 'next/image';
+
+/** ─────────── Brand (barvy a rychlé ladění) ─────────── */
+const brand = {
+  navy: '#0f1f3a',        // primární tmavě námořní
+  navyDark: '#0b162b',
+  navyLight: '#102748',
+  accent: '#d4a100',      // zlatá akcent
+  bgSoft: '#f5f7fb',      // jemné pozadí sekcí
+  text: '#0f172a',
+  textMuted: '#334155',
+  border: '#e2e8f0',
+  white: '#ffffff',
+};
 
 const fmt = (v:number)=> new Intl.NumberFormat('cs-CZ', {style:'currency',currency:'CZK',maximumFractionDigits:0}).format(isFinite(v)?v:0);
-const num = (s:string)=>{const x = Number(String(s).replace(/\s| |,/g,'.')); return isFinite(x)?x:0;};
+const num = (s:string)=>{const x = Number(String(s).replace(/\s| |,/g,'.')); return isFinite(x)?x:0};
 
 // FV měsíčních vkladů
 function fvMonthly(initial:number, monthly:number, years:number, rate:number){
@@ -65,22 +79,45 @@ export default function Page(){
 
   return (
     <main style={styles.wrap}>
+      {/* ───────── Hero s fotkou ───────── */}
       <section style={styles.hero}>
-        <div style={styles.heroText}>
-          <h1 style={styles.h1}>Bc. Patrik Svoboda, EFA</h1>
-          <p style={styles.lead}>Finanční plán, který obstojí v číslech i realitě. Spolupracuji s klienty po celé ČR, hlavní kancelář mám v Jihlavě ({address}).</p>
-          <ul style={styles.tags}>
-            {['Hypotéky a refinancování','Investice a cesta k rentě','Zajištění příjmu','Podnikatelská rizika','Zaměstnanecké benefity','Lidský přístup'].map(t=>(
-              <li key={t} style={styles.tag}>{t}</li>
-            ))}
-          </ul>
-          <div style={{display:'flex',gap:12, marginTop:16}}>
-            <a href="#kalk" style={styles.btnPrimary}>Vyzkoušet kalkulačky</a>
-            <a href={`mailto:${email}?subject=Konzultace`} style={styles.btn}>Domluvit konzultaci · {phone}</a>
+        <div style={styles.heroGrid}>
+          <div style={styles.heroText}>
+            <h1 style={styles.h1}>Bc. Patrik Svoboda, EFA</h1>
+            <p style={styles.lead}>
+              Finanční plán, který obstojí v číslech i realitě. Spolupracuji s klienty po celé ČR, 
+              hlavní kancelář mám v Jihlavě ({address}).
+            </p>
+            <ul style={styles.tags}>
+              {['Hypotéky a refinancování','Investice a cesta k rentě','Zajištění příjmu','Podnikatelská rizika','Zaměstnanecké benefity','Lidský přístup'].map(t=>(
+                <li key={t} style={styles.tag}>{t}</li>
+              ))}
+            </ul>
+            <div style={{display:'flex',gap:12, marginTop:18}}>
+              <a href="#kalk" style={styles.btnPrimary}>Vyzkoušet kalkulačky</a>
+              <a href={`mailto:${email}?subject=Konzultace`} style={styles.btnOutline}>Domluvit konzultaci · {phone}</a>
+            </div>
+          </div>
+
+          <div style={styles.heroPhotoWrap}>
+            <div style={styles.photoCard}>
+              <Image
+                src="/ja-bile-pozadi.jpg"
+                alt="Patrik Svoboda – finanční poradce"
+                width={520}
+                height={640}
+                priority
+                style={{width:'100%',height:'auto',display:'block', borderRadius:12}}
+              />
+              <div style={styles.ribbon}>
+                <span style={{fontWeight:700}}>EFA</span> • Vysočina & celá ČR
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* ───────── Služby ───────── */}
       <section id="sluzby" style={styles.section}>
         <h2 style={styles.h2}>S čím pomáhám</h2>
         <div style={styles.cols3}>
@@ -94,6 +131,7 @@ export default function Page(){
         </div>
       </section>
 
+      {/* ───────── Kalkulačky ───────── */}
       <section id="kalk" style={styles.section}>
         <h2 style={styles.h2}>Interaktivní kalkulačky</h2>
 
@@ -160,6 +198,7 @@ export default function Page(){
         </div>
       </section>
 
+      {/* ───────── O mně ───────── */}
       <section id="o-mne" style={styles.section}>
         <h2 style={styles.h2}>O mně</h2>
         <p>Jsem <strong>Bc. Patrik Svoboda</strong>, certifikovaný <strong>European Financial Advisor (EFA)</strong>. Spolupracuji s klienty po celé ČR; hlavní kancelář mám v <strong>Jihlavě (Žižkova 13)</strong>. Pomáhám s investicemi, hypotékami a ochranou příjmu a majetku.</p>
@@ -173,6 +212,7 @@ export default function Page(){
         <p style={styles.note}>EFA v ČR drží přibližně 1 % poradců; na Vysočině je jich aktuálně zhruba 8. Certifikace potvrzuje odbornost napříč investicemi, úvěry, pojištěním i orientaci v právních a daňových souvislostech.</p>
       </section>
 
+      {/* ───────── FAQ ───────── */}
       <section id="faq" style={styles.section}>
         <h2 style={styles.h2}>FAQ (otázky)</h2>
         <ol>
@@ -182,72 +222,88 @@ export default function Page(){
         </ol>
       </section>
 
-      <section id="kontakt" style={{...styles.section, background:'#0f172a', color:'#fff', borderRadius:16}}>
-        <h2 style={{...styles.h2, color:'#fff'}}>Kontakt</h2>
+      {/* ───────── Kontakt ───────── */}
+      <section id="kontakt" style={{...styles.section, background:brand.navy, color:brand.white, borderRadius:16}}>
+        <h2 style={{...styles.h2, color:brand.white}}>Kontakt</h2>
         <p>Osobně na Vysočině nebo online po celé ČR. Kancelář: {address}</p>
         <p><strong>Tel.:</strong> {phone} &nbsp; • &nbsp; <strong>E-mail:</strong> {email}</p>
-        <p><a href={`mailto:${email}?subject=Poptávka z webu`} style={styles.btnPrimaryLight}>Odeslat poptávku e-mailem</a></p>
-        <p style={{fontSize:12, opacity:.8}}>IČO: 09910263 • Pracovní doba: Po–Pá 8:00–18:00</p>
+        <p><a href={`mailto:${email}?subject=Poptávka z webu`} style={styles.btnLight}>Odeslat poptávku e-mailem</a></p>
+        <p style={{fontSize:12, opacity:.85}}>IČO: 09910263 • Pracovní doba: Po–Pá 8:00–18:00</p>
       </section>
 
+      {/* ───────── Paticka ───────── */}
       <footer style={{textAlign:'center', color:'#64748b', fontSize:12, margin:'40px 0'}}>
         © {new Date().getFullYear()} Bc. Patrik Svoboda, EFA • {address}
       </footer>
-      <style jsx>{`
-        *{box-sizing:border-box}
-      `}</style>
+
+      <style jsx>{`*{box-sizing:border-box}`}</style>
     </main>
   );
 }
 
+/** ─────────── Styly ─────────── */
 const styles: {[k:string]: React.CSSProperties} = {
-  wrap:{fontFamily:'ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial', color:'#0f172a', lineHeight:1.5},
-  hero:{padding:'56px 20px', background:'linear-gradient(180deg,#f8fafc, #ffffff)'},
-  heroText:{maxWidth:980, margin:'0 auto'},
-  h1:{fontSize:42, margin:'0 0 8px', fontWeight:800},
-  h2:{fontSize:28, margin:'0 0 16px', fontWeight:800},
-  h3:{fontSize:18, margin:'0 0 8px', fontWeight:700},
-  lead:{fontSize:18, color:'#334155'},
+  wrap:{fontFamily:'ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial', color:brand.text, lineHeight:1.5, background:brand.white},
+
+  hero:{
+    padding:'56px 20px',
+    background:`linear-gradient(180deg, ${brand.bgSoft}, ${brand.white})`,
+    borderBottom:`1px solid ${brand.border}`
+  },
+  heroGrid:{
+    maxWidth:1140, margin:'0 auto',
+    display:'grid', gap:24,
+    gridTemplateColumns:'1.2fr .8fr',
+    alignItems:'center'
+  },
+  heroText:{},
+  heroPhotoWrap:{display:'flex', justifyContent:'flex-end'},
+  photoCard:{
+    position:'relative',
+    maxWidth:460,
+    background:brand.white,
+    border:`1px solid ${brand.border}`,
+    borderRadius:16,
+    padding:12,
+    boxShadow:'0 12px 28px rgba(16,23,42,.08)'
+  },
+  ribbon:{
+    position:'absolute', left:16, bottom:16,
+    background:brand.accent, color:brand.navyDark,
+    padding:'6px 10px', borderRadius:9999, fontSize:12
+  },
+
+  h1:{fontSize:44, margin:'0 0 10px', fontWeight:800, color:brand.navy},
+  h2:{fontSize:28, margin:'0 0 16px', fontWeight:800, color:brand.navy},
+  h3:{fontSize:18, margin:'0 0 8px', fontWeight:700, color:brand.navyLight},
+  lead:{fontSize:18, color:brand.textMuted},
+
   tags:{display:'flex', flexWrap:'wrap', gap:8, margin:'12px 0 0', padding:0, listStyle:'none'},
-  tag:{padding:'6px 10px', border:'1px solid #e2e8f0', borderRadius:9999, background:'#fff', fontSize:13},
-  btnPrimary:{display:'inline-block', padding:'10px 14px', borderRadius:9999, background:'#0f172a', color:'#fff', textDecoration:'none', fontSize:14},
-  btn:{display:'inline-block', padding:'10px 14px', borderRadius:9999, border:'1px solid #0f172a', color:'#0f172a', textDecoration:'none', fontSize:14},
-  btnPrimaryLight:{display:'inline-block', padding:'10px 14px', borderRadius:9999, background:'#fff', color:'#0f172a', textDecoration:'none', fontSize:14},
-  section:{maxWidth:980, margin:'0 auto', padding:'32px 20px'},
-  cols3:{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(220px,1fr))', gap:16},
+  tag:{padding:'6px 10px', border:`1px solid ${brand.border}`, borderRadius:9999, background:brand.white, fontSize:13},
+
+  btnPrimary:{
+    display:'inline-block', padding:'10px 14px', borderRadius:9999,
+    background:brand.accent, color:brand.navyDark, textDecoration:'none', fontWeight:700
+  },
+  btnOutline:{
+    display:'inline-block', padding:'10px 14px', borderRadius:9999,
+    border:`1px solid ${brand.navy}`, color:brand.navy, textDecoration:'none'
+  },
+  btnLight:{
+    display:'inline-block', padding:'10px 14px', borderRadius:9999,
+    background:brand.white, color:brand.navyDark, textDecoration:'none', fontWeight:700
+  },
+
+  section:{maxWidth:1140, margin:'0 auto', padding:'32px 20px'},
+  cols3:{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(240px,1fr))', gap:16},
   cols2:{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))', gap:16, marginTop:16},
-  card:{border:'1px solid #e2e8f0', borderRadius:16, padding:16, background:'#fff'},
+  card:{border:`1px solid ${brand.border}`, borderRadius:16, padding:16, background:brand.white},
   grid2:{display:'grid', gridTemplateColumns:'1fr 1fr', gap:12},
-  input:{width:'100%', padding:'8px 10px', border:'1px solid #e2e8f0', borderRadius:10},
+  input:{width:'100%', padding:'8px 10px', border:`1px solid ${brand.border}`, borderRadius:10},
   note:{fontSize:12, color:'#475569', marginTop:8}
 };
 
 function field(label:string, value:string, onChange:(v:string)=>void){
   return (
     <label style={{display:'grid', gap:6, fontSize:13}}>
-      <span>{label}</span>
-      <input value={value} onChange={e=>onChange(e.target.value)} inputMode="decimal" style={styles.input}/>
-    </label>
-  );
-}
-function summary(rows:[string, string|number][]){
-  return (
-    <div style={{background:'#f8fafc', border:'1px solid #e2e8f0', borderRadius:12, padding:12, marginTop:12, fontSize:14}}>
-      {rows.map(([k,v])=>(
-        <div key={k} style={{display:'flex', justifyContent:'space-between', padding:'4px 0'}}>
-          <span>{k}</span><strong>{v}</strong>
-        </div>
-      ))}
-    </div>
-  );
-}
-function card(title:string, points:string[]){
-  return (
-    <div style={styles.card}>
-      <h3 style={styles.h3}>{title}</h3>
-      <ul style={{margin:0, paddingLeft:16}}>
-        {points.map(p=> <li key={p}>{p}</li>)}
-      </ul>
-    </div>
-  );
-}
+      <span
