@@ -1,78 +1,82 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 
-const key = 'cookie-consent-v1'; // localStorage key
+type Consent = 'all' | 'necessary';
 
-function loadGA(measurementId: string){
-  // už načteno?
-  // @ts-ignore
-  if (window.gtag) return;
-
-  // gtag.js
-  const s = document.createElement('script');
-  s.async = true;
-  s.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
-  document.head.appendChild(s);
-
-  // init
-  // @ts-ignore
-  window.dataLayer = window.dataLayer || [];
-  // @ts-ignore
-  function gtag(){ window.dataLayer.push(arguments); }
-  // @ts-ignore
-  window.gtag = gtag;
-  // @ts-ignore
-  window.gtag('js', new Date());
-  // @ts-ignore
-  window.gtag('config', measurementId, { anonymize_ip: true });
+function getConsent(): Consent | null {
+  if (typeof document === 'undefined') return null;
+  const m = document.cookie.match(/ps-consent=(all|necessary)/);
+  return m ? (m[1] as Consent) : null;
 }
 
-export default function CookieConsent(){
-  const [consent, setConsent] = useState<'unknown'|'granted'|'denied'>('unknown');
-  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+function setConsent(c: Consent) {
+  const expires = new Date(Date.now() + 180 * 24 * 3600 * 1000).toUTCString(); // 180 dní
+  document.cookie = `ps-consent=${c}; Path=/; Expires=${expires}; SameSite=Lax`;
+  try {
+    // volitelně: po změně můžeš poslat event do GA
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({ event: 'consent_update', consent: c });
+  } catch (_) {}
+}
 
-  useEffect(()=>{
-    const saved = typeof window !== 'undefined' ? localStorage.getItem(key) : null;
-    if (saved === 'granted') {
-      setConsent('granted');
-      if (gaId) loadGA(gaId);
-    } else if (saved === 'denied') {
-      setConsent('denied');
-    } else {
-      setConsent('unknown');
-    }
-  }, [gaId]);
+export default function CookieConsent() {
+  const [open, setOpen] = useState(false);
 
-  if (consent !== 'unknown') return null;
+  useEffect(() => {
+    if (!getConsent()) setOpen(true);
+  }, []);
+
+  if (!open) return null;
 
   return (
-    <div style={{
-      position:'fixed', left:20, right:20, bottom:20, zIndex:10000,
-      background:'rgba(13,28,46,.95)', color:'#e6edf6', padding:16,
-      border:'1px solid rgba(255,255,255,.12)', borderRadius:12
-    }}>
-      <div style={{display:'grid', gap:10}}>
-        <div><strong>Cookies na měření návštěvnosti</strong></div>
-        <div style={{opacity:.85}}>
-          Rád bych používal anonymizované měření (GA4), abych věděl, co na webu funguje. Souhlas je dobrovolný —
-          bez něj poběží jen nezbytné cookies.
-        </div>
-        <div style={{display:'flex', gap:10, flexWrap:'wrap'}}>
-          <button onClick={()=>{
-            localStorage.setItem(key,'granted');
-            setConsent('granted');
-            if (gaId) loadGA(gaId);
-          }} style={{
-            padding:'10px 14px', borderRadius:999, background:'#e7b308', color:'#1a1a1a',
-            border:'1px solid #e7b308', fontWeight:700
-          }}>Přijmout analytiku</button>
-          <button onClick={()=>{
-            localStorage.setItem(key,'denied');
-            setConsent('denied');
-          }} style={{
-            padding:'10px 14px', borderRadius:999, background:'transparent', color:'#e6edf6',
-            border:'1px solid rgba(255,255,255,.2)'
-          }}>Pouze nezbytné</button>
+    <div
+      style={{
+        position: 'fixed',
+        zIndex: 50,
+        left: 16,
+        right: 16,
+        bottom: 16,
+        background: '#0f172a',
+        color: '#fff',
+        padding: '14px 16px',
+        borderRadius: 14,
+        boxShadow: '0 10px 30px rgba(0,0,0,.35)',
+        border: '1px solid rgba(255,255,255,.08)',
+      }}
+    >
+      <div style={{ display: 'grid', gap: 8 }}>
+        <strong>Cookies</strong>
+        <span style={{ opacity: .85 }}>
+          Používáme pouze nutné soubory cookies a (volitelně) anonymní analytiku pro vylepšení webu.
+        </span>
+        <div style={{ display: 'flex', gap: 8, marginTop: 4, flexWrap: 'wrap' }}>
+          <button
+            onClick={() => { setConsent('necessary'); setOpen(false); }}
+            style={{
+              padding: '10px 14px',
+              borderRadius: 9999,
+              border: '1px solid rgba(255,255,255,.25)',
+              background: 'transparent',
+              color: '#fff',
+              cursor: 'pointer'
+            }}
+          >
+            Pouze nezbytné
+          </button>
+          <button
+            onClick={() => { setConsent('all'); setOpen(false); }}
+            style={{
+              padding: '10px 14px',
+              borderRadius: 9999,
+              background: '#e8b407',
+              color: '#0f172a',
+              border: 'none',
+              fontWeight: 700,
+              cursor: 'pointer'
+            }}
+          >
+            Povolit vše
+          </button>
         </div>
       </div>
     </div>
