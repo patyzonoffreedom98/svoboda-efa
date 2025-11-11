@@ -4,11 +4,11 @@ import React from 'react';
 import Image from 'next/image';
 
 const brand = {
-  bg:    '#0b1728',   // tmavé pozadí stránky
-  panel: '#0d1c2e',   // tmavý panel/sekce
-  text:  '#e6edf6',   // světlejší text
-  mute:  '#9fb1c8',   // popisky
-  gold:  '#e7b308',   // akcent (WMF zlatá)
+  bg:    '#0b1728',
+  panel: '#0d1c2e',
+  text:  '#e6edf6',
+  mute:  '#9fb1c8',
+  gold:  '#e7b308',
   line:  'rgba(255,255,255,.08)',
 };
 
@@ -49,20 +49,20 @@ export default function Page() {
               Hypotéky, investice a zajištění příjmu – srozumitelně a dlouhodobě.
             </p>
 
+            {/* >>> NOVÉ BENEFITY <<< */}
             <div style={{margin:'0 0 18px'}}>
-              {['Hypotéky a refinancování','Investice a cesta k rentě','Zajištění příjmu','Podnikatelská rizika','Zaměstnanecké benefity','Lidský přístup']
-                .map(x => <Tag key={x}>{x}</Tag>)}
+              {['Profesionalita','Odbornost','Ochota','Dlouhodobost'].map(x => <Tag key={x}>{x}</Tag>)}
             </div>
 
             <div style={{display:'flex', gap:14, flexWrap:'wrap', marginTop:10}}>
-              <a href="/sluzby" style={{
+              <a href="/sluzby#hypoteky" style={{
                 display:'inline-block', padding:'12px 18px', borderRadius:999,
                 background:brand.gold, color:'#1a1a1a', textDecoration:'none',
                 fontWeight:700, border:`1px solid ${brand.gold}`
               }}>
                 Hypotéky
               </a>
-              <a href="/sluzby" style={{
+              <a href="/sluzby#investice" style={{
                 display:'inline-block', padding:'12px 18px', borderRadius:999,
                 background:'transparent', color:brand.text, textDecoration:'none',
                 border:`1px solid ${brand.line}`
@@ -87,24 +87,20 @@ export default function Page() {
             </div>
           </div>
 
-          {/* Pravý sloupec – FOTO bez bílých okrajů + příjezd zprava */}
+          {/* Pravý sloupec – FOTO s příjezdem + bez bílých okrajů */}
           <div className="heroPhotoTile" style={{position:'relative', minHeight:620, overflow:'hidden'}}>
-            {/* samotná fotka přes celou dlaždici */}
             <Image
               src="/ja-bile-pozadi.jpg"
               alt="Patrik Svoboda – finanční poradce"
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
-              // vyplní celý panel – bez okrajů; raději zachováme hlavu (posun k top)
               style={{objectFit:'cover', objectPosition:'center top'}}
             />
-            {/* tmavá maska zleva (plynulé napojení na tmavé pozadí) */}
             <div style={{
               position:'absolute', inset:0, pointerEvents:'none',
               background:'linear-gradient(90deg, rgba(11,23,40,0.95) 0%, rgba(11,23,40,0.65) 18%, rgba(11,23,40,0.00) 48%)'
             }}/>
-            {/* badge v rohu */}
             <span style={{
               position:'absolute', left:18, bottom:18,
               background:brand.gold, color:'#1a1a1a', fontWeight:800,
@@ -116,32 +112,8 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Placeholder další sekce */}
-      <section style={{maxWidth:1280, margin:'0 auto', padding:'10px 20px 60px'}}>
-        <h2 style={{fontSize:32, fontWeight:800, margin:'0 0 12px'}}>S čím pomáhám</h2>
-        <div style={{
-          display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))',
-          gap:16
-        }}>
-          {[
-            ['Hypotéky',['Nákup i refinancování','Fixace a LTV','Kompletní vyřízení']],
-            ['Investice a renta',['ETF / akcie','Plán renty','Pravidelné vklady']],
-            ['Zajištění příjmu a majetku',['Invalidita, PN','Domácnost a nemovitost','Odpovědnost']],
-          ].map(([title, points]) => (
-            <div key={title as string} style={{
-              background:brand.panel, border:`1px solid ${brand.line}`,
-              borderRadius:16, padding:16
-            }}>
-              <h3 style={{margin:'0 0 8px', fontSize:18, fontWeight:700}}>{title as string}</h3>
-              <ul style={{margin:0, paddingLeft:18, color:brand.mute}}>
-                {(points as string[]).map(p => <li key={p}>{p}</li>)}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* Místo pro další obsah (služby atd.) – může zůstat jak je, nebo doladíme později */}
 
-      {/* Animace „příjezd zprava“ */}
       <style jsx>{`
         .heroPhotoTile{
           opacity:0;
