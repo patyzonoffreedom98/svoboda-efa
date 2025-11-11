@@ -1,6 +1,7 @@
-// app/layout.tsx  — MINIMAL, BEZ CookieConsent (zatím)
+// app/layout.tsx
 import './globals.css';
 import type { Metadata } from 'next';
+import CookieConsent from './app/components/CookieConsent';
 
 export const metadata: Metadata = {
   title: 'Bc. Patrik Svoboda, EFA',
@@ -9,10 +10,18 @@ export const metadata: Metadata = {
   icons: { icon: '/favicon.ico' },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="cs">
-      <body>{children}</body>
+      <body>
+        {children}
+        {/* Cookie lišta – client komponenta */}
+        <CookieConsent />
+      </body>
     </html>
   );
 }
