@@ -49,26 +49,13 @@ export default function Page() {
               Hypotéky, investice a zajištění příjmu – srozumitelně a dlouhodobě.
             </p>
 
-            {/* >>> NOVÉ BENEFITY <<< */}
+            {/* Benefity */}
             <div style={{margin:'0 0 18px'}}>
               {['Profesionalita','Odbornost','Ochota','Dlouhodobost'].map(x => <Tag key={x}>{x}</Tag>)}
             </div>
 
+            {/* Jen kontaktní čipy (bez „Hypotéky / Investice“ v této oblasti) */}
             <div style={{display:'flex', gap:14, flexWrap:'wrap', marginTop:10}}>
-              <a href="/sluzby#hypoteky" style={{
-                display:'inline-block', padding:'12px 18px', borderRadius:999,
-                background:brand.gold, color:'#1a1a1a', textDecoration:'none',
-                fontWeight:700, border:`1px solid ${brand.gold}`
-              }}>
-                Hypotéky
-              </a>
-              <a href="/sluzby#investice" style={{
-                display:'inline-block', padding:'12px 18px', borderRadius:999,
-                background:'transparent', color:brand.text, textDecoration:'none',
-                border:`1px solid ${brand.line}`
-              }}>
-                Investice a renta
-              </a>
               <a href="mailto:patrik.svoboda@wmfinance.cz?subject=Konzultace"
                  style={{
                    display:'inline-block', padding:'12px 18px', borderRadius:999,
@@ -87,7 +74,7 @@ export default function Page() {
             </div>
           </div>
 
-          {/* Pravý sloupec – FOTO s příjezdem + bez bílých okrajů */}
+          {/* Pravý sloupec – FOTO (bez bílých okrajů) + příjezd */}
           <div className="heroPhotoTile" style={{position:'relative', minHeight:620, overflow:'hidden'}}>
             <Image
               src="/ja-bile-pozadi.jpg"
@@ -112,7 +99,27 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Místo pro další obsah (služby atd.) – může zůstat jak je, nebo doladíme později */}
+      {/* NOVÁ sekce: Proč řešit finance s odborníkem */}
+      <section style={{maxWidth:980, margin:'0 auto', padding:'0 20px 40px'}}>
+        <h2 style={{fontSize:28, fontWeight:800, margin:'0 0 14px'}}>Proč řešit finance s&nbsp;odborníkem</h2>
+        <div style={{
+          border:`1px solid ${brand.line}`, borderRadius:16, padding:18,
+          background:brand.panel, color:brand.text, lineHeight:1.6
+        }}>
+          <p style={{margin:'0 0 10px', color:brand.mute}}>
+            Svět financí se dynamicky mění – sazby, inflace, regulace i nabídky bank a pojišťoven. Zároveň se objevují
+            nové nástroje a technologie (včetně AI), které mohou proces zrychlit, ale bez znalosti kontextu snadno vedou
+            k&nbsp;chybným závěrům.
+          </p>
+          <p style={{margin:'0 0 10px', color:brand.mute}}>
+            Mým cílem je převést komplexní možnosti na srozumitelný plán: pomoci s hypotékou, dlouhodobým investováním
+            i ochranou příjmu a majetku. Vysvětluji principy, čísla i rizika – abyste se rozhodovali klidně a informovaně.
+          </p>
+          <p style={{margin:0, color:brand.mute}}>
+            Dlouhodobě spolu držíme směr, pravidelně plán upravujeme a hlídáme, aby dával smysl v číslech i v realitě.
+          </p>
+        </div>
+      </section>
 
       <style jsx>{`
         .heroPhotoTile{
