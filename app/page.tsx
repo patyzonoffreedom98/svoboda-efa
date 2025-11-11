@@ -267,3 +267,4 @@ const styles: {[k:string]: React.CSSProperties} = {
     background:brand.white,
     border:`1px solid ${brand.border}`,
     bord
+}
