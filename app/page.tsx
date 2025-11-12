@@ -162,12 +162,14 @@ export default function Page() {
             caption="Jak se určuje úroková sazba u hypoték?"
             aspect="1 / 1"
             maxWidth={420}
+            profileUrl="https://www.instagram.com/patrik.svoboda_efa/"
           />
           <InstagramEmbed
             url="https://www.instagram.com/p/DO_gbreDMox/"
             caption="Investice denominované v cizí měně"
             aspect="1 / 1"
             maxWidth={420}
+            profileUrl="https://www.instagram.com/patrik.svoboda_efa/"
           />
         </div>
       </section>
