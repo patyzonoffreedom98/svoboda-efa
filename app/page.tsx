@@ -75,14 +75,39 @@ export default async function Page() {
               </Link>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Fotka vpravo */}
-          <div className="card" style={{ textAlign: "center" }}>
+      {/* DVOJITÝ BLOK: vlevo důvody, vpravo menší fotka */}
+      <section className="container" style={{ marginTop: 12 }}>
+        <div
+          className="grid"
+          style={{
+            gap: 16,
+            // na větších displejích dvě kolony: mírně větší levá část + užší fotka
+            gridTemplateColumns: "1fr",
+          }}
+        >
+          {/* LEVÁ STRANA – „Proč s odborníkem“ */}
+          <div className="card" style={{ order: 1 }}>
+            <h2 className="section-title">Proč řešit finance s odborníkem</h2>
+            <ul style={{ margin: 0, paddingLeft: 18, lineHeight: 1.7 }}>
+              <li>Vyhneš se drahým chybám u hypotéky i investic</li>
+              <li>Plán na míru – cíl (bydlení/renta) a vhodné riziko</li>
+              <li>Průběžná péče: úpravy podle života i trhu</li>
+              <li>Jasná čísla, poplatky i očekávání</li>
+            </ul>
+          </div>
+
+          {/* PRAVÁ STRANA – PORTRÉT MENŠÍ */}
+          <div className="card" style={{ textAlign: "center", order: 2 }}>
             <div
               style={{
                 position: "relative",
                 width: "100%",
-                aspectRatio: "1 / 1",
+                maxWidth: 520,           // menší než dřív
+                margin: "0 auto",
+                aspectRatio: "3 / 4",    // vyšší portrét (méně řeže hlavu)
                 borderRadius: 12,
                 overflow: "hidden",
                 background: "#1b1b20",
@@ -93,8 +118,11 @@ export default async function Page() {
                 alt="Patrik Svoboda, EFA"
                 fill
                 priority
-                sizes="(max-width: 900px) 100vw, 50vw"
-                style={{ objectFit: "cover" }}
+                sizes="(max-width: 900px) 100vw, 40vw"
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "top center", // drží hlavu v záběru
+                }}
               />
             </div>
             <div style={{ marginTop: 12, color: "var(--muted)" }}>
@@ -102,22 +130,18 @@ export default async function Page() {
             </div>
           </div>
         </div>
+
+        {/* dvousloupcové rozložení jen od širších šířek */}
+        <style jsx>{`
+          @media (min-width: 980px) {
+            section.container > div.grid {
+              grid-template-columns: 1.15fr 0.85fr;
+            }
+          }
+        `}</style>
       </section>
 
-      {/* Proč s odborníkem */}
-      <section className="container" style={{ marginTop: 24 }}>
-        <div className="card">
-          <h2 className="section-title">Proč řešit finance s odborníkem</h2>
-          <ul style={{ margin: 0, paddingLeft: 18, lineHeight: 1.7 }}>
-            <li>Vyhneš se drahým chybám u hypotéky i investic</li>
-            <li>Plán na míru – cíl (bydlení/renta) a vhodné riziko</li>
-            <li>Průběžná péče: úpravy podle života i trhu</li>
-            <li>Jasná čísla, poplatky i očekávání</li>
-          </ul>
-        </div>
-      </section>
-
-      {/* CTA sekce na kalkulačky */}
+      {/* CTA rozcestník kalkulaček */}
       <section className="container" style={{ marginTop: 24 }}>
         <div
           className="card"
@@ -150,12 +174,3 @@ export default async function Page() {
               Zanechte na sebe kontakt – ozvu se a domluvíme termín.
             </p>
             <ContactForm />
-          </div>
-
-          <InstagramEmbed url="https://www.instagram.com/reel/XXXXXXXX/" />
-          {/* ↑ nahraď svou URL na konkrétní Reels/Post */}
-        </div>
-      </section>
-    </>
-  );
-}
