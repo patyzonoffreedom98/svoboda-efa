@@ -4,16 +4,18 @@ import { useMemo } from "react";
 import Link from "next/link";
 
 type Props = {
-  /** URL na příspěvek: https://www.instagram.com/reel/XXXX/ nebo https://www.instagram.com/p/XXXX/ */
+  /** URL na příspěvek: https://www.instagram.com/reel/... nebo https://www.instagram.com/p/... */
   url: string;
   /** Volitelný popisek pod náhledem */
   caption?: string;
-  /** Poměr stran (CSS aspect-ratio), např. "1 / 1", "4 / 5", "9 / 16" */
+  /** Poměr stran (CSS aspect-ratio) – např. "1 / 1", "4 / 5", "9 / 16" */
   aspect?: string;
   /** Max šířka embedu v px (jen kosmetika) */
   maxWidth?: number;
-  /** Odkaz na TVŮJ profil pro tlačítko "Zobrazit profil" */
+  /** Odkaz na TVŮJ profil (pro tlačítko „Zobrazit profil“) */
   profileUrl?: string;
+  /** Schovat horní lištu uvnitř IG embedu překrytím (maskou) */
+  hideHeader?: boolean;
 };
 
 export default function InstagramEmbed({
@@ -22,11 +24,11 @@ export default function InstagramEmbed({
   aspect = "1 / 1",
   maxWidth,
   profileUrl,
+  hideHeader = true,
 }: Props) {
   const embedUrl = useMemo(() => {
     try {
       const u = new URL(url);
-      // Instagram akceptuje /embed na konci (funguje pro /reel/ i /p/)
       if (!/\/embed\/?$/.test(u.pathname)) {
         u.pathname = u.pathname.replace(/\/$/, "") + "/embed";
       }
@@ -48,6 +50,9 @@ export default function InstagramEmbed({
     );
   }
 
+  // Výška horní lišty embedu (px) – vizuálně se pohybuje kolem 44–56 px.
+  const headerHeight = 56;
+
   return (
     <div className="card" style={{ padding: 0, maxWidth }}>
       <div
@@ -60,6 +65,7 @@ export default function InstagramEmbed({
           background: "#0f0f13",
         }}
       >
+        {/* Vlastní embed */}
         <iframe
           key={embedUrl}
           src={embedUrl}
@@ -70,6 +76,24 @@ export default function InstagramEmbed({
           allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
           referrerPolicy="no-referrer-when-downgrade"
         />
+
+        {/* Maska, která „odřízne“ horní pruh s profilem / tlačítkem */}
+        {hideHeader && (
+          <div
+            aria-hidden
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              top: 0,
+              height: headerHeight,
+              background: "#0f0f13", // stejné jako pozadí wrapperu
+              borderTopLeftRadius: 12,
+              borderTopRightRadius: 12,
+              pointerEvents: "none",
+            }}
+          />
+        )}
       </div>
 
       {/* Popisek + tlačítko na TVŮJ profil */}
