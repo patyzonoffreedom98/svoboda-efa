@@ -151,23 +151,23 @@ export default function Page() {
         </div>
       </section>
 
-      {/* === IG BLOK (dva vedle sebe) === */}
+      {/* === IG BLOK (dva vedle sebe, ČTVEREC) === */}
       <section className="container" style={{ marginTop: 24 }}>
         <div
           className="grid"
-          style={{ gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 12 }}
+          style={{ gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 12 }}
         >
           <InstagramEmbed
             url="https://www.instagram.com/p/DPjUX2NDNKg/"
             caption="Jak se určuje úroková sazba u hypoték?"
-            aspect="4 / 5"
-            maxWidth={520}
+            aspect="1 / 1"
+            maxWidth={420}
           />
           <InstagramEmbed
             url="https://www.instagram.com/p/DO_gbreDMox/"
             caption="Investice denominované v cizí měně"
-            aspect="4 / 5"
-            maxWidth={520}
+            aspect="1 / 1"
+            maxWidth={420}
           />
         </div>
       </section>
