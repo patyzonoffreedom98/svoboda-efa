@@ -1,25 +1,27 @@
-{/* Konzultace + Instagram (2 embedy vpravo) */}
-<section className="container" style={{ marginTop: 24 }}>
-  <div className="grid grid-2">
-    {/* Levý sloupec – formulář */}
-    <div className="card">
-      <h2 className="section-title">Nezávazná konzultace zdarma</h2>
-      <p className="small" style={{ marginTop: 0 }}>
-        Zanechte na sebe kontakt – ozvu se a domluvíme termín.
-      </p>
-      <ContactForm />
-    </div>
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import ContactForm from "@/components/ContactForm";
+import InstagramEmbed from "@/components/InstagramEmbed";
 
-    {/* Pravý sloupec – dva IG embedy (stack na mobilu, vedle sebe na desktopu podle šířky kontejneru) */}
-    <div className="grid" style={{ gridTemplateColumns: "1fr", gap: 12 }}>
-      <InstagramEmbed
-        url="https://www.instagram.com/p/DPjUX2NDNKg/"
-        caption="Tipy z praxe – hypotéky, investice, renta."
-      />
-      <InstagramEmbed
-        url="https://www.instagram.com/p/DO_gbreDMox/"
-        caption="Další krátký vhled k financím."
-      />
-    </div>
-  </div>
-</section>
+export const metadata: Metadata = {
+  title: "Svoboda EFA – Hypotéky, Investice, Renta",
+  description:
+    "Plán, který obstojí v číslech i realitě. Hypotéka, investice i zajištění bez nátlaku, srozumitelně. Vysočina a celá ČR.",
+};
+
+export default function Page() {
+  return (
+    <>
+      {/* HERO */}
+      <section className="container" style={{ paddingTop: 28 }}>
+        <div
+          style={{
+            display: "grid",
+            gap: 16,
+            alignItems: "center",
+            gridTemplateColumns: "1fr",
+          }}
+        >
+          {/* Textový sloupec */}
+          <div style={{ display: "grid", gap: 16 }}>
