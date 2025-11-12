@@ -78,18 +78,11 @@ export default async function Page() {
         </div>
       </section>
 
-      {/* DVOJITÝ BLOK: vlevo důvody, vpravo menší fotka */}
+      {/* DVOJICE: vlevo důvody, vpravo menší fotka */}
       <section className="container" style={{ marginTop: 12 }}>
-        <div
-          className="grid"
-          style={{
-            gap: 16,
-            // na větších displejích dvě kolony: mírně větší levá část + užší fotka
-            gridTemplateColumns: "1fr",
-          }}
-        >
+        <div className="grid grid-2" style={{ alignItems: "start", gap: 16 }}>
           {/* LEVÁ STRANA – „Proč s odborníkem“ */}
-          <div className="card" style={{ order: 1 }}>
+          <div className="card">
             <h2 className="section-title">Proč řešit finance s odborníkem</h2>
             <ul style={{ margin: 0, paddingLeft: 18, lineHeight: 1.7 }}>
               <li>Vyhneš se drahým chybám u hypotéky i investic</li>
@@ -100,14 +93,14 @@ export default async function Page() {
           </div>
 
           {/* PRAVÁ STRANA – PORTRÉT MENŠÍ */}
-          <div className="card" style={{ textAlign: "center", order: 2 }}>
+          <div className="card" style={{ textAlign: "center" }}>
             <div
               style={{
                 position: "relative",
                 width: "100%",
-                maxWidth: 520,           // menší než dřív
+                maxWidth: 480,          // menší šířka
                 margin: "0 auto",
-                aspectRatio: "3 / 4",    // vyšší portrét (méně řeže hlavu)
+                aspectRatio: "3 / 4",   // vyšší portrét
                 borderRadius: 12,
                 overflow: "hidden",
                 background: "#1b1b20",
@@ -130,15 +123,6 @@ export default async function Page() {
             </div>
           </div>
         </div>
-
-        {/* dvousloupcové rozložení jen od širších šířek */}
-        <style jsx>{`
-          @media (min-width: 980px) {
-            section.container > div.grid {
-              grid-template-columns: 1.15fr 0.85fr;
-            }
-          }
-        `}</style>
       </section>
 
       {/* CTA rozcestník kalkulaček */}
@@ -174,3 +158,12 @@ export default async function Page() {
               Zanechte na sebe kontakt – ozvu se a domluvíme termín.
             </p>
             <ContactForm />
+          </div>
+
+          <InstagramEmbed url="https://www.instagram.com/reel/XXXXXXXX/" />
+          {/* ↑ nahraď svou URL na konkrétní Reels/Post */}
+        </div>
+      </section>
+    </>
+  );
+}
