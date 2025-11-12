@@ -17,9 +17,10 @@ export default async function Page() {
     <section className="container" style={{ paddingTop: 16 }}>
       <h1 className="section-title">Kontakt</h1>
       <p className="small" style={{ marginTop: 0, marginBottom: 16 }}>
-        Hlavní kancelář: {jihlava}. Osobní schůzky po domluvě. Působíme také ve{" "}
-        <strong>Světlé nad Sázavou</strong>, <strong>Žďáru nad Sázavou</strong> a{" "}
-        <strong>Havlíčkově Brodě</strong> – případně online po celé ČR.
+        <strong>Hlavní kancelář:</strong> {jihlava}. Osobní schůzky po domluvě. Naše
+        další kanceláře na Vysočině máme ve <strong>Světlé nad Sázavou</strong>,{" "}
+        <strong>Žďáru nad Sázavou</strong> a <strong>Havlíčkově Brodě</strong> – působím
+        však po celé ČR, případně je možnost dohodnout konzultaci i online.
       </p>
 
       <div className="grid grid-2" style={{ gap: 16, alignItems: "start" }}>
@@ -80,7 +81,6 @@ export default async function Page() {
               border: "1px solid var(--border)",
             }}
           >
-            {/* Embed na hlavní adresu – jednoduché a bez API klíče */}
             <iframe
               title="Mapa kanceláře Jihlava"
               src={`https://www.google.com/maps?q=${encodeURIComponent(
@@ -103,7 +103,7 @@ export default async function Page() {
           {/* Rychlé odkazy na další města */}
           <div style={{ marginTop: 12 }}>
             <div className="small" style={{ marginBottom: 8 }}>
-              Další místa schůzek:
+              <strong>Další kanceláře na Vysočině</strong>
             </div>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
               <Link
