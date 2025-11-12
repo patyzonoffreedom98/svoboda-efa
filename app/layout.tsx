@@ -1,10 +1,10 @@
 import "./globals.css";
 import Link from "next/link";
+import PreFooter from "@/components/PreFooter";
 
 export const metadata = {
   title: "Svoboda EFA",
-  description:
-    "Hypotéky, investice a renta. Kalkulačky a konzultace s certifikovaným poradcem EFA.",
+  description: "Hypotéky, investice a renta. Kalkulačky a konzultace s certifikovaným poradcem EFA.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -22,7 +22,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/omne" className="nav-link">O mně</Link>
               <Link href="/efa" className="nav-link">EFA</Link>
 
-              {/* Dropdown Služby (CSS-only :hover) */}
               <div className="dropdown">
                 <span className="nav-link">Služby ▾</span>
                 <div className="dropdown-menu">
@@ -39,6 +38,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <main>{children}</main>
 
+        {/* PRE-FOOTER */}
+        <PreFooter />
+
+        {/* FOOTER */}
         <footer className="site-footer">
           <div className="container footer-inner">
             <span>© {new Date().getFullYear()} Patrik Svoboda, EFA</span>
