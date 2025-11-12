@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import ContactForm from "@/components/ContactForm";
+import InstagramEmbed from "@/components/InstagramEmbed";
 
 export const metadata = { title: "Svoboda EFA – Hypotéky, Investice, Renta" };
 
@@ -128,6 +130,22 @@ export default async function Page() {
           <Link href="/kalkulacky" className="btn">
             Otevřít kalkulačky
           </Link>
+        </div>
+      </section>
+
+      {/* Konzultace + Instagram */}
+      <section className="container" style={{ marginTop: 24 }}>
+        <div className="grid grid-2">
+          <div className="card">
+            <h2 className="section-title">Nezávazná konzultace zdarma</h2>
+            <p className="small" style={{ marginTop: 0 }}>
+              Zanechte na sebe kontakt – ozvu se a domluvíme termín.
+            </p>
+            <ContactForm />
+          </div>
+
+          <InstagramEmbed url="https://www.instagram.com/reel/XXXXXXXX/" />
+          {/* ↑ Nahraď svou URL na konkrétní Reels/Post (permalink z IG). */}
         </div>
       </section>
     </>
