@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
 import InstagramEmbed from "@/components/InstagramEmbed";
+import FadeInOnScroll from "@/components/FadeInOnScroll";
 
 export const metadata: Metadata = {
   title: "Svoboda EFA – Hypotéky, Investice, Renta",
@@ -83,7 +84,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* DVOJICE: vlevo důvody, vpravo menší fotka */}
+      {/* DVOJICE: vlevo důvody, vpravo menší fotka s animací při scrollu */}
       <section className="container" style={{ marginTop: 12 }}>
         <div className="grid grid-2" style={{ alignItems: "start", gap: 16 }}>
           {/* LEVÁ STRANA – Proč s odborníkem */}
@@ -97,33 +98,35 @@ export default function Page() {
             </ul>
           </div>
 
-          {/* PRAVÁ STRANA – Portrét */}
-          <div className="card" style={{ textAlign: "center" }}>
-            <div
-              style={{
-                position: "relative",
-                width: "100%",
-                maxWidth: 480,
-                margin: "0 auto",
-                aspectRatio: "3 / 4",
-                borderRadius: 12,
-                overflow: "hidden",
-                background: "#1b1b20",
-              }}
-            >
-              <Image
-                src="/ja-bile-pozadi.jpg"
-                alt="Patrik Svoboda, EFA"
-                fill
-                priority
-                sizes="(max-width: 900px) 100vw, 40vw"
-                style={{ objectFit: "cover", objectPosition: "top center" }}
-              />
+          {/* PRAVÁ STRANA – Portrét s animací (přiletí zprava) */}
+          <FadeInOnScroll direction="right" distance={48} duration={650} once>
+            <div className="card" style={{ textAlign: "center" }}>
+              <div
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  maxWidth: 480,
+                  margin: "0 auto",
+                  aspectRatio: "3 / 4",
+                  borderRadius: 12,
+                  overflow: "hidden",
+                  background: "#1b1b20",
+                }}
+              >
+                <Image
+                  src="/ja-bile-pozadi.jpg"
+                  alt="Patrik Svoboda, EFA"
+                  fill
+                  priority
+                  sizes="(max-width: 900px) 100vw, 40vw"
+                  style={{ objectFit: "cover", objectPosition: "top center" }}
+                />
+              </div>
+              <div style={{ marginTop: 12, color: "var(--muted)" }}>
+                Bc. Patrik Svoboda, EFA
+              </div>
             </div>
-            <div style={{ marginTop: 12, color: "var(--muted)" }}>
-              Bc. Patrik Svoboda, EFA
-            </div>
-          </div>
+          </FadeInOnScroll>
         </div>
       </section>
 
@@ -151,7 +154,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* === IG BLOK (dva vedle sebe, ČTVEREC) === */}
+      {/* === IG BLOK (dva vedle sebe, ČTVEREC, skrytá horní lišta) === */}
       <section className="container" style={{ marginTop: 24 }}>
         <div
           className="grid"
@@ -163,6 +166,7 @@ export default function Page() {
             aspect="1 / 1"
             maxWidth={420}
             profileUrl="https://www.instagram.com/patrik.svoboda_efa/"
+            hideHeader
           />
           <InstagramEmbed
             url="https://www.instagram.com/p/DO_gbreDMox/"
@@ -170,6 +174,7 @@ export default function Page() {
             aspect="1 / 1"
             maxWidth={420}
             profileUrl="https://www.instagram.com/patrik.svoboda_efa/"
+            hideHeader
           />
         </div>
       </section>
