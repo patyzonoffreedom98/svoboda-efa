@@ -51,6 +51,7 @@ a:hover{opacity:.9}
 .nav{display:flex;align-items:center;gap:16px}
 .nav-link{padding:8px 10px;border-radius:8px}
 .nav-link:hover{background:rgba(255,255,255,.06)}
+.nav-link.active{color:var(--gold)}
 .dropdown{position:relative}
 .dropdown-menu{
   position:absolute;top:100%;left:0;margin-top:8px;min-width:220px;
@@ -60,6 +61,7 @@ a:hover{opacity:.9}
 .dropdown:hover .dropdown-menu{display:block}
 .dropdown-item{display:block;padding:10px 12px;border-radius:8px;color:var(--fg)}
 .dropdown-item:hover{background:rgba(255,255,255,.06)}
+.dropdown-item.active{background:rgba(212,175,55,.12);border:1px solid #3a3220}
 
 /* Footer */
 .site-footer{border-top:1px solid var(--border);margin-top:40px}
