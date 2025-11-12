@@ -1,59 +1,53 @@
-'use client';
+import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 
-import React from 'react';
-
-// ⬇️ správná RELATIVNÍ cesta z app/sluzby/hypoteky-a-financovani/ do app/components/
-import HypoCalc from '../../components/HypoCalc';
-
-export const metadata = {
+// 1) Metadata (povoleno jen u server komponenty – proto NEDÁVAT "use client")
+export const metadata: Metadata = {
   title: 'Hypotéky a financování | Bc. Patrik Svoboda, EFA',
   description:
-    'Nezávislé srovnání hypoték, nastavení fixace a LTV, pomoc s financováním a administrativou. Vyzkoušejte hypoteční kalkulačku a ozvěte se.',
+    'Nezávislé srovnání hypoték, nastavení fixace a LTV, pomoc s financováním a administrativou. Vyzkoušejte hypoteční kalkulačku a zjistěte orientační splátku.',
 };
+
+// 2) Hypo kalkulačku načteme dynamicky jen na klientu (některé widgety nemají rády SSR)
+const HypoCalc = dynamic(() => import('@/app/components/HypoCalc'), {
+  ssr: false,
+  loading: () => <p>Načítám kalkulačku…</p>,
+});
 
 export default function HypotekyPage() {
   return (
-    <main className="max-w-5xl mx-auto px-4 py-10">
-      <header className="mb-10">
-        <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
+    <section className="max-w-5xl mx-auto px-4 py-12">
+      <header className="mb-8">
+        <h1 className="text-3xl md:text-4xl font-semibold">
           Hypotéky a financování
         </h1>
-        <p className="mt-4 text-lg text-gray-300">
-          Pomohu vám projít celým procesem – od výběru banky, přes ocenění,
-          pojištění a administrativu až po čerpání. Níže si orientačně spočítejte
-          výši splátky a rámcovou dostupnost financování.
+        <p className="mt-3 text-lg text-gray-300">
+          Srovnám nabídky bank, pohlídám podmínky a provedu vás celým procesem až
+          k čerpání. Začněte orientačním výpočtem splátky.
         </p>
       </header>
 
-      {/* Hypoteční kalkulačka */}
-      <section className="mb-12">
+      {/* Kalkulačka */}
+      <div className="rounded-2xl border border-white/10 p-4 md:p-6 bg-white/5">
         <HypoCalc />
-        <p className="mt-3 text-sm text-gray-400">
-          Upozornění: Jde o orientační výpočet. Konkrétní nabídka závisí na
-          posouzení banky, příjmech, LTV, fixaci, pojištění a dalších parametrech.
-        </p>
-      </section>
+      </div>
 
-      {/* CTA blok */}
-      <section className="rounded-xl border border-white/10 p-6 bg-white/5">
-        <h2 className="text-2xl font-semibold">Chcete nejlepší podmínky pro svůj záměr?</h2>
-        <p className="mt-3 text-gray-200">
-          Zjistíme, která banka vám dá nejvýhodnější sazbu, zvládne váš případ
-          bez komplikací a jak nastavit fixaci i LTV, aby dávaly smysl.
+      {/* Callout pod kalkulačkou */}
+      <div className="mt-10 rounded-xl border border-white/10 p-5 bg-white/5">
+        <h2 className="text-xl font-medium">Chcete nezávislé srovnání bank?</h2>
+        <p className="mt-2 text-gray-300">
+          Zjistíme, která banka vám nabídne nejvýhodnější podmínky a bez problému
+          zafinancuje váš záměr. Ozvěte se mi – domluvíme si nezávaznou konzultaci.
         </p>
-        <ul className="mt-4 list-disc pl-5 text-gray-300">
-          <li>Porovnání bank a sazeb, reálné náklady v čase</li>
-          <li>Nastavení vhodné fixace, LTV a pojištění</li>
-          <li>Pomoc s administrativou a čerpáním</li>
-        </ul>
-
-        <a
-          href="/kontakt"
-          className="inline-block mt-6 rounded-lg px-5 py-3 bg-white text-black font-medium hover:bg-gray-200 transition"
-        >
-          Ozvěte se mi
-        </a>
-      </section>
-    </main>
+        <div className="mt-4">
+          <a
+            href="/kontakt"
+            className="inline-block rounded-lg border border-white/20 px-4 py-2 hover:bg-white/10"
+          >
+            Domluvit konzultaci zdarma
+          </a>
+        </div>
+      </div>
+    </section>
   );
 }
