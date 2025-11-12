@@ -1,34 +1,67 @@
 "use client";
-import { useEffect, useRef } from "react";
 
-export default function InstagramEmbed({ url }: { url: string }) {
-  const ref = useRef<HTMLDivElement>(null);
+import { useMemo } from "react";
 
-  useEffect(() => {
-    if (document.getElementById("ig-embed-script")) {
-      // @ts-ignore
-      window.instgrm?.Embeds?.process();
-      return;
+type Props = {
+  /** URL na příspěvek: např. https://www.instagram.com/reel/XXXX/ nebo https://www.instagram.com/p/XXXX/ */
+  url: string;
+  /** Volitelný popisek pod náhledem */
+  caption?: string;
+};
+
+export default function InstagramEmbed({ url, caption }: Props) {
+  const embedUrl = useMemo(() => {
+    try {
+      const u = new URL(url);
+      // Instagram akceptuje /embed na konci (funguje pro /reel/ i /p/)
+      if (!/\/embed\/?$/.test(u.pathname)) {
+        u.pathname = u.pathname.replace(/\/$/, "") + "/embed";
+      }
+      return u.toString();
+    } catch {
+      return "";
     }
-    const s = document.createElement("script");
-    s.id = "ig-embed-script";
-    s.async = true;
-    s.src = "https://www.instagram.com/embed.js";
-    document.body.appendChild(s);
-    s.onload = () => {
-      // @ts-ignore
-      window.instgrm?.Embeds?.process();
-    };
-  }, []);
+  }, [url]);
+
+  if (!embedUrl) {
+    return (
+      <div className="card">
+        <p className="small" style={{ margin: 0 }}>
+          Neplatná URL. Zadejte např.{" "}
+          <code>https://www.instagram.com/reel/XXXXXXXX/</code> nebo{" "}
+          <code>https://www.instagram.com/p/XXXXXXXX/</code>.
+        </p>
+      </div>
+    );
+  }
 
   return (
-    <div ref={ref} className="card" style={{ padding: 0, overflow: "hidden" }}>
-      <blockquote
-        className="instagram-media"
-        data-instgrm-permalink={url}
-        data-instgrm-version="14"
-        style={{ margin: 0, border: 0, width: "100%" }}
-      />
+    <div className="card" style={{ padding: 0 }}>
+      <div
+        style={{
+          position: "relative",
+          width: "100%",
+          aspectRatio: "9 / 16", // mobilní poměr (funguje i pro /p/)
+          overflow: "hidden",
+          borderRadius: 12,
+          background: "#0f0f13",
+        }}
+      >
+        <iframe
+          key={embedUrl}
+          src={embedUrl}
+          width="100%"
+          height="100%"
+          style={{ border: 0, position: "absolute", inset: 0 }}
+          loading="lazy"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </div>
+
+      {caption && (
+        <div className="small" style={{ padding: 12 }}>{caption}</div>
+      )}
     </div>
   );
 }
