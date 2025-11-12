@@ -3,17 +3,28 @@
 import { useMemo } from "react";
 
 type Props = {
-  /** URL na příspěvek: např. https://www.instagram.com/reel/XXXX/ nebo https://www.instagram.com/p/XXXX/ */
+  /** URL na příspěvek: https://www.instagram.com/reel/XXXX/ nebo https://www.instagram.com/p/XXXX/ */
   url: string;
   /** Volitelný popisek pod náhledem */
   caption?: string;
+  /**
+   * Poměr stran (CSS aspect-ratio). Např. "4 / 5" (post/reel příjemně menší),
+   * "1 / 1" (čtverec) nebo "9 / 16" (dlouhé Reels).
+   */
+  aspect?: string;
+  /** Max šířka embedu v px (jen kosmetika) */
+  maxWidth?: number;
 };
 
-export default function InstagramEmbed({ url, caption }: Props) {
+export default function InstagramEmbed({
+  url,
+  caption,
+  aspect = "4 / 5",
+  maxWidth,
+}: Props) {
   const embedUrl = useMemo(() => {
     try {
       const u = new URL(url);
-      // Instagram akceptuje /embed na konci (funguje pro /reel/ i /p/)
       if (!/\/embed\/?$/.test(u.pathname)) {
         u.pathname = u.pathname.replace(/\/$/, "") + "/embed";
       }
@@ -36,12 +47,12 @@ export default function InstagramEmbed({ url, caption }: Props) {
   }
 
   return (
-    <div className="card" style={{ padding: 0 }}>
+    <div className="card" style={{ padding: 0, maxWidth }}>
       <div
         style={{
           position: "relative",
           width: "100%",
-          aspectRatio: "9 / 16", // mobilní poměr (funguje i pro /p/)
+          aspectRatio: aspect,
           overflow: "hidden",
           borderRadius: 12,
           background: "#0f0f13",
