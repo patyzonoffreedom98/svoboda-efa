@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-
-// relativní importy
 import EfaPyramid from "../../components/EfaPyramid";
 import InstagramEmbed from "../../components/InstagramEmbed";
 
@@ -72,13 +69,13 @@ export default function EfaPage() {
         </div>
       </section>
 
-      {/* IG náhled – certifikát */}
+      {/* IG – certifikát */}
       <section className="container" style={{ marginTop: 16 }}>
         <div className="card">
           <h2 className="section-title" style={{ marginBottom: 8 }}>
             Můj certifikát EFA
           </h2>
-          <p className="small" style={{ marginTop: 0 }}>
+        <p className="small" style={{ marginTop: 0 }}>
             Krátký příspěvek k&nbsp;získání certifikace:
           </p>
 
@@ -108,24 +105,24 @@ export default function EfaPage() {
           <div className="card" style={{ padding: 8, marginTop: 8 }}>
             <div
               style={{
-                position: "relative",
                 width: "100%",
                 maxWidth: 960,
                 margin: "0 auto",
                 borderRadius: 12,
                 overflow: "hidden",
                 border: "1px solid var(--border)",
+                background: "rgba(255,255,255,0.02)",
               }}
             >
-              <Image
+              {/* Použijeme obyčejné <img>, aby se to zobrazilo za všech okolností */}
+              <img
                 src="/efa-registr.png"
                 alt="Vyhledávání poradců v registru EFPA – příklad"
-                width={1920}
-                height={1080}
-                sizes="100vw"
-                style={{ width: "100%", height: "auto", display: "block" }}
+                style={{ display: "block", width: "100%", height: "auto" }}
+                loading="eager"
               />
             </div>
+
             <p className="small" style={{ textAlign: "center", marginTop: 8 }}>
               Ilustrační náhled registru EFPA (doporučuji vyhledat jméno a region).
             </p>
@@ -177,7 +174,6 @@ export default function EfaPage() {
           <h2 className="section-title" style={{ marginBottom: 8 }}>
             Co od certifikovaného poradce EFA očekávat
           </h2>
-
           <ul style={{ margin: 0, paddingLeft: 18, lineHeight: 1.7 }}>
             <li>
               <strong>Odbornost a metodika:</strong> analýza cílů, rizika a cash-flow,
