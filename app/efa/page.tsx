@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 
-// POZOR: relativní cesty (žádné "@/...")
+// Relativní importy (ze složky app/efa/ o 2 úrovně výš)
 import EfaPyramid from "../../components/EfaPyramid";
 import InstagramEmbed from "../../components/InstagramEmbed";
 
@@ -22,7 +22,6 @@ export default function EfaPage() {
             EFA – Evropský finanční poradce
           </h1>
 
-          {/* upravený text */}
           <div className="small" style={{ display: "grid", gap: 8, marginTop: 0 }}>
             <p>
               Certifikace <strong>EFA (European Financial Advisor)</strong> je
@@ -71,6 +70,8 @@ export default function EfaPage() {
           <p className="small" style={{ marginTop: 0 }}>
             Prestižní evropské certifikáty pro odborníky na finančním trhu.
           </p>
+
+          {/* držíme si fixní maxWidth a žádné natahování */}
           <div style={{ maxWidth: 720, margin: "16px auto 0" }}>
             <EfaPyramid />
           </div>
@@ -110,7 +111,7 @@ export default function EfaPage() {
             Ověřte si poradce v registru EFPA
           </h2>
 
-          {/* screenshot registru – soubor musí být v /public/efa-registr.png */}
+        {/* Screenshot registru – soubor musí být v /public/efa-registr.png */}
           <div className="card" style={{ padding: 8, marginTop: 8 }}>
             <div
               style={{
@@ -179,26 +180,4 @@ export default function EfaPage() {
 
       {/* Pro klienty – co od EFA čekat */}
       <section className="container" style={{ marginTop: 16 }}>
-        <div className="card">
-          <h2 className="section-title" style={{ marginBottom: 8 }}>
-            Co od certifikovaného poradce EFA očekávat
-          </h2>
-          <ul style={{ margin: 0, paddingLeft: 18, lineHeight: 1.7 }}>
-            <li>
-              <strong>Odbornost a metodika:</strong> analýza cílů, rizika a cash-flow,
-              návaznost hypotéky, investic a zajištění.
-            </li>
-            <li>
-              <strong>Etický kodex a nezávislost:</strong> doporučení obhajitelná čísly a
-              transparentní spolupráce.
-            </li>
-            <li>
-              <strong>Dlouhodobá péče:</strong> průběžné úpravy plánu podle trhu i života
-              klienta.
-            </li>
-          </ul>
-        </div>
-      </section>
-    </>
-  );
-}
+        <div classN
