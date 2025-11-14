@@ -72,7 +72,6 @@ export default function EfaPage() {
               background: "rgba(255,255,255,0.02)",
             }}
           >
-            {/* přímo <img> – nedeformuje se a vždy se vykreslí */}
             <img
               src="/efa-pyramida.png"
               alt="EFPA pyramida – PFP, EFA a EFP"
@@ -83,7 +82,7 @@ export default function EfaPage() {
         </div>
       </section>
 
-      {/* IG – certifikát */}
+      {/* IG – certifikát (s viditelnou hlavičkou) */}
       <section className="container" style={{ marginTop: 16 }}>
         <div className="card">
           <h2 className="section-title" style={{ marginBottom: 8 }}>
@@ -106,7 +105,7 @@ export default function EfaPage() {
               aspect="1 / 1"
               maxWidth={520}
               profileUrl="https://www.instagram.com/patrik.svoboda_efa/"
-              hideHeader
+              /* NEschováváme hlavičku – zobrazí se tlačítko 'Zobrazit profil' apod. */
             />
           </div>
         </div>
@@ -164,6 +163,7 @@ export default function EfaPage() {
             >
               Otevřít web EFPA ČR
             </Link>
+
             <Link
               href="https://efpa.cz/kdo-je-efpa/registr-poradcu"
               target="_blank"
@@ -172,14 +172,7 @@ export default function EfaPage() {
             >
               Registr poradců EFPA
             </Link>
-            <Link
-              href="https://efpa.cz/kdo-je-efpa/registr-poradcu?name=Patrik%20Svoboda&region=Vysocina"
-              target="_blank"
-              className="btn"
-              style={{ textAlign: "center" }}
-            >
-              Najít: Patrik Svoboda, EFA
-            </Link>
+            {/* 3. dlaždice (přímé vyhledání Patrika) byla na přání odstraněna */}
           </div>
 
           <p className="small" style={{ marginTop: 12 }}>
