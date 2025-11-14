@@ -1,60 +1,94 @@
+// components/InstagramEmbed.tsx
 "use client";
 
-import { useMemo } from "react";
-import Link from "next/link";
+import React from "react";
 
 type Props = {
-  /** URL na příspěvek: https://www.instagram.com/reel/... nebo https://www.instagram.com/p/... */
-  url: string;
-  /** Volitelný popisek pod náhledem */
+  url: string;                 // např. https://www.instagram.com/p/XXXXXX/
   caption?: string;
-  /** Poměr stran (CSS aspect-ratio) – např. "1 / 1", "4 / 5", "9 / 16" */
-  aspect?: string;
-  /** Max šířka embedu v px (jen kosmetika) */
-  maxWidth?: number;
-  /** Odkaz na TVŮJ profil (pro tlačítko „Zobrazit profil“) */
-  profileUrl?: string;
-  /** Schovat horní lištu uvnitř IG embedu překrytím (maskou) */
-  hideHeader?: boolean;
+  maxWidth?: number;           // max šířka embedu
+  aspect?: string;             // použije se jen když skrýváme hlavičku
+  profileUrl?: string;         // nepovinné, odkaz na profil
+  showHeader?: boolean;        // <- když true, necháváme originální hlavičku IG
 };
 
 export default function InstagramEmbed({
   url,
   caption,
+  maxWidth = 560,
   aspect = "1 / 1",
-  maxWidth,
   profileUrl,
-  hideHeader = true,
+  showHeader = false,
 }: Props) {
-  const embedUrl = useMemo(() => {
+  // normalize URL (odstraníme query/fragments a zajistíme trailing slash)
+  const normalized = (() => {
     try {
       const u = new URL(url);
-      if (!/\/embed\/?$/.test(u.pathname)) {
-        u.pathname = u.pathname.replace(/\/$/, "") + "/embed";
-      }
+      u.hash = "";
+      u.search = "";
+      if (!u.pathname.endsWith("/")) u.pathname += "/";
       return u.toString();
     } catch {
-      return "";
+      return url.endsWith("/") ? url : url + "/";
     }
-  }, [url]);
+  })();
 
-  if (!embedUrl) {
+  // IG embed endpoint
+  const embedUrl = `${normalized}embed`;
+
+  // Varianta A: chceme VIDITELNOU HLAVIČKU → bez ořezu, fixní auto výška
+  if (showHeader) {
     return (
-      <div className="card">
-        <p className="small" style={{ margin: 0 }}>
-          Neplatná URL. Zadejte např.{" "}
-          <code>https://www.instagram.com/reel/XXXXXXXX/</code> nebo{" "}
-          <code>https://www.instagram.com/p/XXXXXXXX/</code>.
-        </p>
-      </div>
+      <figure
+        style={{
+          width: "100%",
+          maxWidth,
+          margin: 0,
+        }}
+      >
+        <iframe
+          src={embedUrl}
+          allowTransparency
+          scrolling="no"
+          frameBorder={0}
+          style={{
+            width: "100%",
+            height: 680, // dost prostoru pro hlavičku i fotku; IG si výšku doroluje
+            border: 0,
+            background: "transparent",
+            overflow: "hidden",
+          }}
+        />
+        {caption ? (
+          <figcaption
+            style={{
+              marginTop: 8,
+              fontSize: 14,
+              opacity: 0.8,
+              textAlign: "center",
+            }}
+          >
+            {caption}{" "}
+            {profileUrl ? (
+              <a href={profileUrl} target="_blank" rel="noreferrer">
+                @{profileUrl.replace(/^https?:\/\/(www\.)?instagram\.com\//, "").replace(/\/$/, "")}
+              </a>
+            ) : null}
+          </figcaption>
+        ) : null}
+      </figure>
     );
   }
 
-  // Výška horní lišty embedu (px) – vizuálně se pohybuje kolem 44–56 px.
-  const headerHeight = 56;
-
+  // Varianta B: skrýváme hlavičku → responsivní čtverec (domovská stránka)
   return (
-    <div className="card" style={{ padding: 0, maxWidth }}>
+    <figure
+      style={{
+        width: "100%",
+        maxWidth,
+        margin: 0,
+      }}
+    >
       <div
         style={{
           position: "relative",
@@ -62,58 +96,35 @@ export default function InstagramEmbed({
           aspectRatio: aspect,
           overflow: "hidden",
           borderRadius: 12,
-          background: "#0f0f13",
         }}
       >
-        {/* Vlastní embed */}
         <iframe
-          key={embedUrl}
           src={embedUrl}
-          width="100%"
-          height="100%"
-          style={{ border: 0, position: "absolute", inset: 0 }}
-          loading="lazy"
-          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-          referrerPolicy="no-referrer-when-downgrade"
+          allowTransparency
+          scrolling="no"
+          frameBorder={0}
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            border: 0,
+            background: "transparent",
+          }}
         />
-
-        {/* Maska, která „odřízne“ horní pruh s profilem / tlačítkem */}
-        {hideHeader && (
-          <div
-            aria-hidden
-            style={{
-              position: "absolute",
-              left: 0,
-              right: 0,
-              top: 0,
-              height: headerHeight,
-              background: "#0f0f13", // stejné jako pozadí wrapperu
-              borderTopLeftRadius: 12,
-              borderTopRightRadius: 12,
-              pointerEvents: "none",
-            }}
-          />
-        )}
       </div>
-
-      {/* Popisek + tlačítko na TVŮJ profil */}
-      <div
-        style={{
-          display: "flex",
-          gap: 8,
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: 12,
-          flexWrap: "wrap",
-        }}
-      >
-        {caption && <div className="small">{caption}</div>}
-        {profileUrl && (
-          <Link href={profileUrl} target="_blank" className="btn btn-outline">
-            Zobrazit profil
-          </Link>
-        )}
-      </div>
-    </div>
+      {caption ? (
+        <figcaption
+          style={{
+            marginTop: 8,
+            fontSize: 14,
+            opacity: 0.8,
+            textAlign: "center",
+          }}
+        >
+          {caption}
+        </figcaption>
+      ) : null}
+    </figure>
   );
 }
