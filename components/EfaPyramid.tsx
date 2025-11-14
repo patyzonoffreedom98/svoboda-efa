@@ -1,49 +1,49 @@
 export default function EfaPyramid() {
-  // Čisté responzivní SVG s pevnou viewBox a správným zachováním poměru stran.
+  // Kompaktní a stabilní SVG – žádné mezery, žádná deformace, hezké škálování.
   return (
     <svg
-      viewBox="0 0 800 600"
+      viewBox="0 0 800 480"
+      style={{ width: "100%", height: "auto", display: "block" }}
       role="img"
       aria-label="EFPA pyramida: základ Penze/Úvěry/Investice/Pojistky, nad tím PFP, EFA a EFP"
-      style={{ width: "100%", height: "auto" }}
       preserveAspectRatio="xMidYMid meet"
     >
       <defs>
         <style>
           {`
-            .label { fill: #fff; font-weight: 700; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; }
+            .label { fill:#fff; font-weight:700; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial }
           `}
         </style>
       </defs>
 
-      {/* ZÁKLAD – Penze | Úvěry | Investice | Pojistky */}
+      {/* ZÁKLAD */}
       <g>
-        <polygon points="70,520 730,520 760,580 40,580" fill="#77a66a" />
-        <text x="400" y="555" textAnchor="middle" fontSize="28" className="label">
+        <polygon points="70,420 730,420 760,470 40,470" fill="#77a66a" />
+        <text x="400" y="450" textAnchor="middle" fontSize="26" className="label">
           Penze | Úvěry | Investice | Pojistky
         </text>
       </g>
 
       {/* PFP */}
       <g>
-        <polygon points="110,450 690,450 720,520 80,520" fill="#4ec0d4" />
-        <text x="400" y="430" textAnchor="middle" fontSize="44" className="label">
+        <polygon points="120,340 680,340 710,420 90,420" fill="#4ec0d4" />
+        <text x="400" y="320" textAnchor="middle" fontSize="40" className="label">
           PFP
         </text>
       </g>
 
       {/* EFA */}
       <g>
-        <polygon points="160,360 640,360 670,450 130,450" fill="#496f97" />
-        <text x="400" y="340" textAnchor="middle" fontSize="44" className="label">
+        <polygon points="180,250 620,250 645,340 155,340" fill="#496f97" />
+        <text x="400" y="230" textAnchor="middle" fontSize="40" className="label">
           EFA
         </text>
       </g>
 
       {/* EFP */}
       <g>
-        <polygon points="230,250 570,250 595,310 205,310" fill="#d4a21a" />
-        <text x="400" y="235" textAnchor="middle" fontSize="44" className="label">
+        <polygon points="260,165 540,165 560,215 240,215" fill="#d4a21a" />
+        <text x="400" y="150" textAnchor="middle" fontSize="40" className="label">
           EFP
         </text>
       </g>
