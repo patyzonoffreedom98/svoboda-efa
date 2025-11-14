@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import EfaPyramid from "../../components/EfaPyramid";
 import InstagramEmbed from "../../components/InstagramEmbed";
 
 export const metadata: Metadata = {
@@ -53,7 +52,7 @@ export default function EfaPage() {
         </div>
       </section>
 
-      {/* PYRAMIDA */}
+      {/* PYRAMIDA – obrázek z /public */}
       <section className="container" style={{ marginTop: 16 }}>
         <div className="card" style={{ textAlign: "center" }}>
           <h2 className="section-title" style={{ marginBottom: 8 }}>
@@ -63,8 +62,23 @@ export default function EfaPage() {
             Prestižní evropské certifikáty pro odborníky na finančním trhu.
           </p>
 
-          <div style={{ maxWidth: 720, margin: "16px auto 0" }}>
-            <EfaPyramid />
+          <div
+            style={{
+              maxWidth: 920,
+              margin: "16px auto 0",
+              borderRadius: 12,
+              overflow: "hidden",
+              border: "1px solid var(--border)",
+              background: "rgba(255,255,255,0.02)",
+            }}
+          >
+            {/* přímo <img> – nedeformuje se a vždy se vykreslí */}
+            <img
+              src="/efa-pyramida.png"
+              alt="EFPA pyramida – PFP, EFA a EFP"
+              style={{ display: "block", width: "100%", height: "auto" }}
+              loading="eager"
+            />
           </div>
         </div>
       </section>
@@ -75,13 +89,16 @@ export default function EfaPage() {
           <h2 className="section-title" style={{ marginBottom: 8 }}>
             Můj certifikát EFA
           </h2>
-        <p className="small" style={{ marginTop: 0 }}>
+          <p className="small" style={{ marginTop: 0 }}>
             Krátký příspěvek k&nbsp;získání certifikace:
           </p>
 
           <div
             className="grid"
-            style={{ gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 12 }}
+            style={{
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+              gap: 12,
+            }}
           >
             <InstagramEmbed
               url="https://www.instagram.com/p/DKht9GQsRfL/"
@@ -114,7 +131,6 @@ export default function EfaPage() {
                 background: "rgba(255,255,255,0.02)",
               }}
             >
-              {/* Použijeme obyčejné <img>, aby se to zobrazilo za všech okolností */}
               <img
                 src="/efa-registr.png"
                 alt="Vyhledávání poradců v registru EFPA – příklad"
@@ -140,7 +156,12 @@ export default function EfaPage() {
               marginTop: 8,
             }}
           >
-            <Link href="https://efpa.cz/" target="_blank" className="btn" style={{ textAlign: "center" }}>
+            <Link
+              href="https://efpa.cz/"
+              target="_blank"
+              className="btn"
+              style={{ textAlign: "center" }}
+            >
               Otevřít web EFPA ČR
             </Link>
             <Link
