@@ -1,155 +1,122 @@
-import Image from "next/image";
+import type { Metadata } from "next";
 import Link from "next/link";
+import EfaPyramid from "@/components/EfaPyramid";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "EFA – Evropský finanční poradce | Svoboda EFA",
   description:
-    "Co znamená certifikace EFA, jaký je systém EFPA (PFP → EFA → EFP) a kde si ověřit platnost certifikace poradce.",
+    "Co znamená certifikace EFA, jak navazuje na PFP a EFP a kde si ověřit poradce v registru EFPA ČR.",
 };
 
-export default async function Page() {
+export default function EfaPage() {
   return (
-    <section className="container" style={{ paddingTop: 16 }}>
-      <h1 className="section-title">EFA – Evropský finanční poradce</h1>
-      <p className="small" style={{ marginTop: 0 }}>
-        Certifikace <strong>EFA</strong> (European Financial Advisor) je mezinárodně uznávaný
-        standard odbornosti a etiky pro finanční poradce zastřešený organizací{" "}
-        <a href="https://efpa.cz" target="_blank" rel="noreferrer">
-          EFPA Česká republika
-        </a>
-        . Navazuje na stupeň <strong>PFP</strong> a předchází nejvyšší úrovni{" "}
-        <strong>EFP</strong>.
-      </p>
-
-      {/* Pyramida vzdělávání */}
-      <div className="card" style={{ marginTop: 12 }}>
-        <h2 className="section-title" style={{ marginTop: 0 }}>
-          Pyramida vzdělávání EFPA
-        </h2>
-        <div
-          style={{
-            position: "relative",
-            width: "100%",
-            maxWidth: 900,
-            margin: "0 auto",
-            aspectRatio: "16 / 10",
-            borderRadius: 12,
-            overflow: "hidden",
-            background: "#0f0f13",
-            border: "1px solid var(--border)",
-          }}
-        >
-          <Image
-            src="/efa-pyramida.png"
-            alt="Pyramida vzdělávání EFPA (PFP → EFA → EFP)"
-            fill
-            priority
-            sizes="(max-width: 1000px) 100vw, 900px"
-            style={{ objectFit: "contain" }}
-          />
+    <>
+      {/* HERO */}
+      <section className="container" style={{ paddingTop: 24 }}>
+        <div className="card">
+          <h1 className="section-title" style={{ marginBottom: 8 }}>
+            EFA – Evropský finanční poradce
+          </h1>
+          <p className="small" style={{ marginTop: 0 }}>
+            Certifikace <strong>EFA (European Financial Advisor)</strong> je
+            mezinárodně uznávaný standard odbornosti a etiky ve finančním
+            poradenství. Navazuje na vstupní úroveň <strong>PFP</strong> a je
+            předstupněm <strong>EFP</strong>. Uděluje ji asociace{" "}
+            <a href="https://efpa.cz/" target="_blank" rel="noreferrer">
+              EFPA Česká republika
+            </a>
+            .
+          </p>
         </div>
-        <p className="small" style={{ marginTop: 10 }}>
-          Ilustrace: postup od základního stupně <strong>PFP</strong> přes{" "}
-          <strong>EFA</strong> až po <strong>EFP</strong>. Certifikace vyžadují složení
-          náročné zkoušky a průběžné vzdělávání.
-        </p>
-      </div>
+      </section>
+
+      {/* PYRAMIDA */}
+      <section className="container" style={{ marginTop: 16 }}>
+        <div className="card" style={{ textAlign: "center" }}>
+          <h2 className="section-title" style={{ marginBottom: 8 }}>
+            Zkoušky a příprava (EFPA pyramida)
+          </h2>
+          <p className="small" style={{ marginTop: 0 }}>
+            Prestižní evropské certifikáty pro odborníky na finančním trhu.
+          </p>
+          <div style={{ maxWidth: 720, margin: "16px auto 0" }}>
+            <EfaPyramid />
+          </div>
+        </div>
+      </section>
 
       {/* Ověření poradce */}
-      <div className="grid grid-2" style={{ marginTop: 16, gap: 16, alignItems: "start" }}>
+      <section className="container" style={{ marginTop: 16 }}>
         <div className="card">
-          <h2 className="section-title" style={{ marginTop: 0 }}>
-            Jak si ověřit poradce v registru EFPA
+          <h2 className="section-title" style={{ marginBottom: 8 }}>
+            Ověřte si poradce v registru EFPA
           </h2>
-          <ol style={{ margin: 0, paddingLeft: 18, lineHeight: 1.7 }}>
-            <li>
-              Otevřete web{" "}
-              <a href="https://efpa.cz/" target="_blank" rel="noreferrer">
-                efpa.cz
-              </a>
-              .
-            </li>
-            <li>
-              V části <em>„Najděte svého špičkového poradce“</em> zvolte certifikaci{" "}
-              <strong>EFA</strong> (příp. jiný stupeň) a zadejte jméno poradce.
-            </li>
-            <li>Registry zobrazí, zda je certifikace aktivní a kde poradce působí.</li>
-          </ol>
+          <p className="small" style={{ marginTop: 0 }}>
+            V oficiálním registru najdete platnost certifikace, úroveň (PFP, EFA,
+            EFP) i region působení. Níže jsou rychlé odkazy:
+          </p>
 
-          <div style={{ marginTop: 12, display: "flex", gap: 8, flexWrap: "wrap" }}>
+          <div
+            className="grid"
+            style={{ gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", marginTop: 8 }}
+          >
             <Link
-              className="btn"
               href="https://efpa.cz/"
               target="_blank"
+              className="btn"
+              style={{ textAlign: "center" }}
             >
-              Otevřít efpa.cz
+              Otevřít web EFPA ČR
             </Link>
+
             <Link
-              className="btn btn-outline"
-              href="https://efpa.cz/poradci"
+              href="https://efpa.cz/kdo-je-efpa/registr-poradcu"
               target="_blank"
+              className="btn"
+              style={{ textAlign: "center" }}
             >
-              Přejít rovnou na vyhledávání poradců
+              Registr poradců EFPA
+            </Link>
+
+            <Link
+              href="https://efpa.cz/kdo-je-efpa/registr-poradcu?name=Patrik%20Svoboda&region=Vysocina"
+              target="_blank"
+              className="btn"
+              style={{ textAlign: "center" }}
+            >
+              Najít: Patrik Svoboda, EFA
             </Link>
           </div>
 
           <p className="small" style={{ marginTop: 12 }}>
-            Tip: V registru si můžete ověřit i mě – <strong>Patrik Svoboda, EFA</strong>.
+            Tip: ve filtru registru můžete zadat <em>jméno</em>, případně zvolit
+            <em> region</em> a <em>úroveň</em> – např. „EFA“.
           </p>
         </div>
+      </section>
 
+      {/* Pro klienty – co od EFA čekat */}
+      <section className="container" style={{ marginTop: 16 }}>
         <div className="card">
-          <h3 style={{ marginTop: 0 }}>Ukázka vyhledávání na efpa.cz</h3>
-          <div
-            style={{
-              position: "relative",
-              width: "100%",
-              aspectRatio: "16 / 9",
-              borderRadius: 12,
-              overflow: "hidden",
-              background: "#0f0f13",
-              border: "1px solid var(--border)",
-            }}
-          >
-            <Image
-              src="/efpa-overeni.png"
-              alt="Ověření poradce – ukázka vyhledávání na efpa.cz"
-              fill
-              sizes="(max-width: 1000px) 100vw, 50vw"
-              style={{ objectFit: "cover" }}
-            />
-          </div>
-          <p className="small" style={{ marginTop: 10 }}>
-            Screenshot: vyhledání poradce dle jména nebo regionu, volba úrovně certifikace
-            (PFP / EFA / EFP).
-          </p>
+          <h2 className="section-title" style={{ marginBottom: 8 }}>
+            Co od certifikovaného poradce EFA očekávat
+          </h2>
+          <ul style={{ margin: 0, paddingLeft: 18, lineHeight: 1.7 }}>
+            <li>
+              <strong>Odbornost a metodika:</strong> analýza cílů, rizika a cash-flow,
+              návaznost hypotéky, investic a zajištění.
+            </li>
+            <li>
+              <strong>Etický kodex a nezávislost:</strong> doporučení obhajitelná čísly a
+              transparentní spolupráce.
+            </li>
+            <li>
+              <strong>Dlouhodobá péče:</strong> průběžné úpravy plánu podle trhu i života
+              klienta.
+            </li>
+          </ul>
         </div>
-      </div>
-
-      {/* CTA */}
-      <div className="card" style={{ marginTop: 16 }}>
-        <div
-          style={{
-            display: "flex",
-            gap: 12,
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-          }}
-        >
-          <div>
-            <div className="section-title" style={{ margin: 0 }}>
-              Zajímá vás, co pro vás přináší EFA v praxi?
-            </div>
-            <div className="small">
-              Projdeme váš záměr (hypotéka, investice, renta) a připravím plán v číslech.
-            </div>
-          </div>
-          <Link href="/kontakt" className="btn">
-            Nezávazná konzultace
-          </Link>
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
