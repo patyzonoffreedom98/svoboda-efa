@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import EfaPyramid from "@/components/EfaPyramid";
-import InstagramEmbed from "@/components/InstagramEmbed";
+
+// POZOR: relativní cesty (žádné "@/...")
+import EfaPyramid from "../../components/EfaPyramid";
+import InstagramEmbed from "../../components/InstagramEmbed";
 
 export const metadata: Metadata = {
   title: "EFA – Evropský finanční poradce | Svoboda EFA",
@@ -20,7 +22,7 @@ export default function EfaPage() {
             EFA – Evropský finanční poradce
           </h1>
 
-          {/* TVŮJ UPRAVENÝ TEXT */}
+          {/* upravený text */}
           <div className="small" style={{ display: "grid", gap: 8, marginTop: 0 }}>
             <p>
               Certifikace <strong>EFA (European Financial Advisor)</strong> je
@@ -108,7 +110,7 @@ export default function EfaPage() {
             Ověřte si poradce v registru EFPA
           </h2>
 
-          {/* Screenshot registru – ULOŽ do /public/efa-registr.png */}
+          {/* screenshot registru – soubor musí být v /public/efa-registr.png */}
           <div className="card" style={{ padding: 8, marginTop: 8 }}>
             <div
               style={{
@@ -128,7 +130,6 @@ export default function EfaPage() {
                 height={1080}
                 sizes="100vw"
                 style={{ width: "100%", height: "auto", display: "block" }}
-                priority={false}
               />
             </div>
             <p className="small" style={{ textAlign: "center", marginTop: 8 }}>
@@ -151,7 +152,6 @@ export default function EfaPage() {
             <Link href="https://efpa.cz/" target="_blank" className="btn" style={{ textAlign: "center" }}>
               Otevřít web EFPA ČR
             </Link>
-
             <Link
               href="https://efpa.cz/kdo-je-efpa/registr-poradcu"
               target="_blank"
@@ -160,7 +160,6 @@ export default function EfaPage() {
             >
               Registr poradců EFPA
             </Link>
-
             <Link
               href="https://efpa.cz/kdo-je-efpa/registr-poradcu?name=Patrik%20Svoboda&region=Vysocina"
               target="_blank"
