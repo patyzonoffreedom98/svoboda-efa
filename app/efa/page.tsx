@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 
-// Relativní importy (ze složky app/efa/ o 2 úrovně výš)
+// relativní importy
 import EfaPyramid from "../../components/EfaPyramid";
 import InstagramEmbed from "../../components/InstagramEmbed";
 
@@ -28,34 +28,29 @@ export default function EfaPage() {
               mezinárodně uznávaným finančně-poradenským titulem v rámci odbornosti
               a etiky pro finanční poradce. Navazuje na stupeň <strong>PFP</strong>.
               Další možností je finančně-poradenský titul <strong>EFP</strong>, který
-              se však zaměřuje již především na korporátní problematiku.{" "}
+              se zaměřuje především na korporátní problematiku.{" "}
               <strong>EFPA Česká republika</strong>, organizace, která tyto
               certifikace zastřešuje, je nejprestižnější certifikační organizací
               v tomto oboru.
             </p>
 
             <p>
-              Složení zkoušky se skládá z písemné části, kde musí každý účastník
-              prokázat hloubkové znalosti z oblastí investic, financování, zajištění,
-              ale i práva ve financích či daňové problematiky. Certifikace klade
-              velký důraz na <strong>etiku</strong> s myšlenkou, že prioritou musí
-              být vždy dobré řešení pro klienta. Samotné zkoušce předcházel téměř
-              roční přípravný kurz, kde v jednotlivých blocích předávali teoretické
-              znalosti i praktické zkušenosti odborníci z jednotlivých odvětví.
+              Zkouška má písemnou část, kde musí účastník prokázat hloubkové
+              znalosti z oblastí investic, financování, zajištění, ale i práva
+              ve financích či daňové problematiky. Certifikace klade důraz na
+              <strong> etiku</strong> – prioritou je vždy dobré řešení pro klienta.
+              Předchází jí téměř roční přípravný kurz s odborníky z praxe.
             </p>
 
             <p>
-              Poradci v České republice musí pro výkon této profese splnit „základní“
-              certifikace od České národní banky na jednotlivé sekce trhu (investice,
-              úvěry, pojištění, penze). Titul <strong>EFA</strong> je dobrovolným
-              vyšším stupněm vzdělávání, který je relativně nákladný jak finančně,
-              tak časově.
+              Poradci v ČR musí pro výkon profese splnit „základní“ certifikace
+              od ČNB (investice, úvěry, pojištění, penze). Titul <strong>EFA</strong>
+              je dobrovolný vyšší stupeň vzdělávání, náročný finančně i časově.
             </p>
 
             <p>
-              EFA titulem proto disponuje pouhé zhruba <strong>1&nbsp;%</strong> všech
-              poradců u nás. Na Vysočině je to v tuto chvíli celkem pouze{" "}
-              <strong>8 poradců</strong>.
+              EFA titulem disponuje zhruba <strong>1&nbsp;%</strong> poradců u nás.
+              Na Vysočině je to aktuálně pouze <strong>8 poradců</strong>.
             </p>
           </div>
         </div>
@@ -71,14 +66,13 @@ export default function EfaPage() {
             Prestižní evropské certifikáty pro odborníky na finančním trhu.
           </p>
 
-          {/* držíme si fixní maxWidth a žádné natahování */}
           <div style={{ maxWidth: 720, margin: "16px auto 0" }}>
             <EfaPyramid />
           </div>
         </div>
       </section>
 
-      {/* IG náhled – tvůj certifikát */}
+      {/* IG náhled – certifikát */}
       <section className="container" style={{ marginTop: 16 }}>
         <div className="card">
           <h2 className="section-title" style={{ marginBottom: 8 }}>
@@ -111,7 +105,6 @@ export default function EfaPage() {
             Ověřte si poradce v registru EFPA
           </h2>
 
-        {/* Screenshot registru – soubor musí být v /public/efa-registr.png */}
           <div className="card" style={{ padding: 8, marginTop: 8 }}>
             <div
               style={{
@@ -180,4 +173,27 @@ export default function EfaPage() {
 
       {/* Pro klienty – co od EFA čekat */}
       <section className="container" style={{ marginTop: 16 }}>
-        <div classN
+        <div className="card">
+          <h2 className="section-title" style={{ marginBottom: 8 }}>
+            Co od certifikovaného poradce EFA očekávat
+          </h2>
+
+          <ul style={{ margin: 0, paddingLeft: 18, lineHeight: 1.7 }}>
+            <li>
+              <strong>Odbornost a metodika:</strong> analýza cílů, rizika a cash-flow,
+              návaznost hypotéky, investic a zajištění.
+            </li>
+            <li>
+              <strong>Etický kodex a nezávislost:</strong> doporučení obhajitelná čísly a
+              transparentní spolupráce.
+            </li>
+            <li>
+              <strong>Dlouhodobá péče:</strong> průběžné úpravy plánu podle trhu i života
+              klienta.
+            </li>
+          </ul>
+        </div>
+      </section>
+    </>
+  );
+}
