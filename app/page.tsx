@@ -7,18 +7,23 @@ import ContactForm from "@/components/ContactForm";
 export default function HomePage() {
   return (
     <main className="bg-neutral-950 text-white">
-      {/* HERO */}
-      <section className="container mx-auto flex flex-col-reverse gap-10 pt-28 pb-16 lg:flex-row lg:items-center">
+      {/* HERO – claim + fotka + kalkulačky */}
+      <section className="container mx-auto flex flex-col-reverse gap-10 px-4 pt-28 pb-16 lg:flex-row lg:items-center">
         {/* Text vlevo */}
         <div className="lg:w-1/2">
-          <h1 className="mb-6 text-3xl font-semibold text-gold sm:text-4xl lg:text-5xl">
+          <h1
+            className="mb-6 text-3xl font-semibold sm:text-4xl lg:text-5xl"
+            style={{ color: "var(--gold)" }}
+          >
             Plán, který obstojí v číslech i realitě
           </h1>
+
           <p className="mb-4 max-w-xl text-lg text-slate-100">
             Hypotéka, investice i zajištění – bez nátlaku, srozumitelně a s
             důrazem na dlouhodobý plán. Postarám se o to, aby vaše rozhodnutí
             dávala smysl v číslech i ve vašem životě.
           </p>
+
           <ul className="mb-8 space-y-2 text-base text-slate-100">
             <li>• Dlouhodobý plán a osobní péče, ne „rychlý prodej“.</li>
             <li>
@@ -29,23 +34,26 @@ export default function HomePage() {
             <li>• Transparentně a s respektem k vašemu rozpočtu.</li>
           </ul>
 
-          {/* CTA tlačítka */}
-          <div className="flex flex-col gap-3 sm:flex-row">
+          {/* 3 CTA tlačítka – menší, oddělená */}
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link
               href="/sluzby/hypoteky-a-financovani"
-              className="flex-1 rounded-full bg-gold px-6 py-3 text-center text-base font-semibold text-neutral-950 transition hover:bg-gold/90"
+              className="flex-1 rounded-full px-6 py-3 text-center text-base font-semibold text-neutral-950 transition hover:opacity-90"
+              style={{ backgroundColor: "var(--gold)" }}
             >
               Spočítat hypotéku
             </Link>
             <Link
               href="/sluzby/investice-a-renta"
-              className="flex-1 rounded-full bg-gold px-6 py-3 text-center text-base font-semibold text-neutral-950 transition hover:bg-gold/90"
+              className="flex-1 rounded-full px-6 py-3 text-center text-base font-semibold text-neutral-950 transition hover:opacity-90"
+              style={{ backgroundColor: "var(--gold)" }}
             >
               Investiční kalkulačka
             </Link>
             <Link
               href="/sluzby/renta"
-              className="flex-1 rounded-full bg-gold px-6 py-3 text-center text-base font-semibold text-neutral-950 transition hover:bg-gold/90"
+              className="flex-1 rounded-full px-6 py-3 text-center text-base font-semibold text-neutral-950 transition hover:opacity-90"
+              style={{ backgroundColor: "var(--gold)" }}
             >
               Spočítat rentu
             </Link>
@@ -68,13 +76,14 @@ export default function HomePage() {
       </section>
 
       {/* PROČ ŘEŠIT FINANCE S ODBORNÍKEM */}
-      <section className="container mx-auto pb-12">
-        <h2 className="mb-8 text-2xl font-semibold text-white sm:text-3xl">
+      <section className="container mx-auto px-4 pb-12">
+        <h2 className="mb-8 text-2xl font-semibold sm:text-3xl">
           Proč řešit finance s odborníkem
         </h2>
 
+        {/* 4 benefitní dlaždice */}
         <div className="mb-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-2xl border border-gold/70 bg-slate-950 p-5">
+          <div className="rounded-2xl border border-[color:var(--gold)] bg-slate-950 p-5">
             <h3 className="mb-2 text-lg font-semibold text-white">
               Dlouhodobý plán
             </h3>
@@ -83,7 +92,7 @@ export default function HomePage() {
               nesourodých produktů od různých institucí.
             </p>
           </div>
-          <div className="rounded-2xl border border-gold/70 bg-slate-950 p-5">
+          <div className="rounded-2xl border border-[color:var(--gold)] bg-slate-950 p-5">
             <h3 className="mb-2 text-lg font-semibold text-white">
               Srozumitelná čísla
             </h3>
@@ -92,7 +101,7 @@ export default function HomePage() {
               „výnosem“ nebo tlakem na rychlé uzavření smlouvy.
             </p>
           </div>
-          <div className="rounded-2xl border border-gold/70 bg-slate-950 p-5">
+          <div className="rounded-2xl border border-[color:var(--gold)] bg-slate-950 p-5">
             <h3 className="mb-2 text-lg font-semibold text-white">
               Vysočina a celá ČR
             </h3>
@@ -101,7 +110,7 @@ export default function HomePage() {
               času i preferovanému způsobu komunikace.
             </p>
           </div>
-          <div className="rounded-2xl border border-gold/70 bg-slate-950 p-5">
+          <div className="rounded-2xl border border-[color:var(--gold)] bg-slate-950 p-5">
             <h3 className="mb-2 text-lg font-semibold text-white">
               EFA certifikace
             </h3>
@@ -112,7 +121,8 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="space-y-3 text-sm text-slate-100">
+        {/* navazující text */}
+        <div className="space-y-3 text-sm text-slate-100 max-w-4xl">
           <p>
             Kvalitní finanční plán není o jedné schůzce ani o jednom produktu.
             Jde o to, aby na sebe jednotlivé kroky navazovaly – od rezervy, přes
@@ -136,8 +146,8 @@ export default function HomePage() {
       </section>
 
       {/* INSTAGRAM – REELS */}
-      <section className="container mx-auto pb-12">
-        <h2 className="mb-6 text-2xl font-semibold text-white sm:text-3xl">
+      <section className="container mx-auto px-4 pb-12">
+        <h2 className="mb-6 text-2xl font-semibold sm:text-3xl">
           Krátká videa a vysvětlení v praxi (Instagram)
         </h2>
         <div className="grid gap-6 md:grid-cols-2">
@@ -153,8 +163,8 @@ export default function HomePage() {
       </section>
 
       {/* KONTAKTNÍ FORMULÁŘ */}
-      <section className="container mx-auto pb-16">
-        <h2 className="mb-4 text-2xl font-semibold text-white sm:text-3xl">
+      <section className="container mx-auto px-4 pb-16">
+        <h2 className="mb-4 text-2xl font-semibold sm:text-3xl">
           Nezávazná konzultace zdarma
         </h2>
         <p className="mb-6 max-w-2xl text-sm text-slate-100">
