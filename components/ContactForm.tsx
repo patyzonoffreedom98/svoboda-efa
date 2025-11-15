@@ -5,7 +5,7 @@ import { useState } from "react";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-export function ContactForm() {
+function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
 
@@ -32,7 +32,7 @@ export function ContactForm() {
       try {
         data = await res.json();
       } catch {
-        // odpověď nebyla JSON – necháme data = null
+        // odpověď nebyla JSON – ignorujeme
       }
 
       if (!res.ok || !data?.ok) {
@@ -127,3 +127,9 @@ export function ContactForm() {
     </form>
   );
 }
+
+// default export – aby fungovalo: import ContactForm from "@/components/ContactForm";
+export default ContactForm;
+
+// pojmenovaný export – kdyby někde bylo: import { ContactForm } from ...
+export { ContactForm };
