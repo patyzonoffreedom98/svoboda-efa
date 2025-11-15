@@ -6,7 +6,6 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    // Ošetření vstupů z formuláře (aby to nepadalo, i kdyby se pole jmenovala trochu jinak)
     const name = typeof body.name === "string" ? body.name.trim() : "";
     const email = typeof body.email === "string" ? body.email.trim() : "";
     const phone = typeof body.phone === "string" ? body.phone.trim() : "";
@@ -26,7 +25,9 @@ export async function POST(request: Request) {
     const to = process.env.CONTACT_TO;
 
     if (!apiKey || !from || !to) {
-      console.error("Kontakt API: chybí RESEND_API_KEY / CONTACT_FROM / CONTACT_TO");
+      console.error(
+        "Kontakt API: chybí RESEND_API_KEY / CONTACT_FROM / CONTACT_TO"
+      );
       return NextResponse.json(
         { ok: false, error: "Server není správně nastavený." },
         { status: 500 }
@@ -76,20 +77,36 @@ ${JSON.stringify(body, null, 2)}
         subject,
         text,
         html,
-        // aby odpovědi šly přímo na e-mail klienta
         reply_to: email || undefined,
       }),
     });
 
     if (!resendResponse.ok) {
-      const errorText = await resendResponse.text();
+      let errorDetail = "";
+
+      try {
+        // Resend většinou vrací JSON s chybou
+        const errorData = await resendResponse.json();
+        errorDetail = JSON.stringify(errorData);
+      } catch {
+        // kdyby to nebyl JSON, vezmeme prostý text
+        errorDetail = await resendResponse.text();
+      }
+
       console.error(
         "Resend API error",
         resendResponse.status,
-        errorText
+        errorDetail
       );
+
       return NextResponse.json(
-        { ok: false, error: "Nepodařilo se odeslat e-mail." },
+        {
+          ok: false,
+          error: `Resend error ${resendResponse.status}: ${errorDetail.slice(
+            0,
+            200
+          )}`,
+        },
         { status: 500 }
       );
     }
@@ -100,7 +117,7 @@ ${JSON.stringify(body, null, 2)}
     return NextResponse.json(
       {
         ok: false,
-        error: "Něco se pokazilo. Zkuste to prosím znovu.",
+        error: "Něco se pokazilo na serveru.",
       },
       { status: 500 }
     );
