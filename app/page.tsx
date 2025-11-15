@@ -15,7 +15,7 @@ export default function HomePage() {
   return (
     <main className="bg-neutral-950">
       {/* HERO – vlevo text, vpravo fotka */}
-      <section className="py-12 md:py-16">
+      <section className="pt-20 pb-12 md:pt-24 md:pb-16">
         <div className="container hero-layout">
           {/* Levá půlka – claim a text */}
           <div className="hero-left space-y-6">
@@ -29,47 +29,48 @@ export default function HomePage() {
               dávala smysl v číslech i ve vašem životě.
             </p>
 
-            <ul className="space-y-1.5 text-sm text-gray-200 md:text-base">
-              <li>• Dlouhodobý plán a osobní péče, ne „rychlý prodej“.</li>
-              <li>• Hypotéka, investice a zajištění jsou navzájem provázané.</li>
-              <li>• Vysočina a celá ČR, osobně i online.</li>
-              <li>• Transparentně a s respektem k vašemu rozpočtu.</li>
+            {/* čisté odrážky bez zdvojených teček */}
+            <ul className="mt-2 ml-5 list-disc space-y-1.5 text-sm text-gray-200 md:text-base">
+              <li>Dlouhodobý plán a osobní péče, ne „rychlý prodej“.</li>
+              <li>Hypotéka, investice a zajištění jsou navzájem provázané.</li>
+              <li>Vysočina a celá ČR, osobně i online.</li>
+              <li>Transparentně a s respektem k vašemu rozpočtu.</li>
             </ul>
 
-            {/* Tři tlačítka – menší, vedle sebe, nepřekrývají se */}
+            {/* Tři tlačítka – menší, oddělená, přehledná */}
             <div className="mt-4 flex flex-wrap gap-3">
               <Link
                 href="/sluzby/hypoteky-a-financovani"
-                className="btn min-w-[11rem] text-center"
+                className="btn btn-hero min-w-[9.5rem] text-center"
               >
                 Spočítat hypotéku
               </Link>
               <Link
                 href="/sluzby/investice-a-renta"
-                className="btn min-w-[11rem] text-center"
+                className="btn btn-hero min-w-[9.5rem] text-center"
               >
                 Investiční kalkulačka
               </Link>
               <Link
                 href="/sluzby/renta"
-                className="btn min-w-[11rem] text-center"
+                className="btn btn-hero min-w-[9.5rem] text-center"
               >
                 Spočítat rentu
               </Link>
             </div>
           </div>
 
-          {/* Pravá půlka – fotka */}
+          {/* Pravá půlka – menší fotka s animací „příletu“ */}
           <div className="hero-right flex items-end justify-center lg:justify-end">
-            <div className="relative w-full max-w-sm">
+            <div className="relative w-full max-w-xs hero-photo">
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-gold/20 to-transparent blur-2xl" />
               <div className="relative overflow-hidden rounded-3xl border border-neutral-800 bg-neutral-900 p-4">
                 <Image
                   src="/ja-bile-pozadi.jpg"
                   alt="Bc. Patrik Svoboda, EFA"
-                  width={480}
-                  height={640}
-                  className="mx-auto h-auto w-full max-w-xs object-contain"
+                  width={420}
+                  height={560}
+                  className="mx-auto h-auto w-full max-w-[260px] object-contain"
                   priority
                 />
               </div>
@@ -85,9 +86,9 @@ export default function HomePage() {
             <h2 className="section-title">Proč řešit finance s odborníkem</h2>
           </div>
 
-          {/* Čtyři benefity – menší dlaždice vedle sebe, zlatý okraj */}
+          {/* Čtyři benefity – se zlatým okrajem a větším odsazením */}
           <div className="benefits-grid">
-            <div className="card card-benefit p-5">
+            <div className="card card-benefit">
               <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
                 Dlouhodobý plán
               </h3>
@@ -97,7 +98,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="card card-benefit p-5">
+            <div className="card card-benefit">
               <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
                 Srozumitelná čísla
               </h3>
@@ -107,7 +108,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="card card-benefit p-5">
+            <div className="card card-benefit">
               <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
                 Vysočina a celá ČR
               </h3>
@@ -117,7 +118,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="card card-benefit p-5">
+            <div className="card card-benefit">
               <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
                 EFA certifikace
               </h3>
