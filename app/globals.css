@@ -2,18 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ----- ZÁKLADNÍ NASTAVENÍ ----- */
+/* ---- ZÁKLADNÍ NASTAVENÍ ---- */
 
 :root {
   --gold: #d9b24c;
+  --bg-dark: #020617;
 }
 
 body {
-  background-color: #020617; /* něco jako neutral-950 */
+  background-color: var(--bg-dark);
   color: #ffffff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
 }
 
-/* Reusable třídy */
+/* Kontejner – šířka stránky */
 
 .container {
   width: 100%;
@@ -24,12 +27,72 @@ body {
   padding-right: 1.25rem;
 }
 
+/* ---- HERO (název + fotka vedle sebe) ---- */
+
+.hero-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.hero-left,
+.hero-right {
+  width: 100%;
+}
+
+@media (min-width: 960px) {
+  .hero-layout {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .hero-left,
+  .hero-right {
+    flex: 1;
+  }
+}
+
+/* ---- BENEFITY: 4 dlaždice vedle sebe na velké obrazovce ---- */
+
+.benefits-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  /* dvě vedle sebe na menších displejích */
+  .benefits-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1120px) {
+  /* čtyři vedle sebe na desktopu */
+  .benefits-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ---- INSTAGRAM: dva náhledy vedle sebe ---- */
+
+.ig-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.ig-item {
+  width: 100%;
+  max-width: 280px;
+}
+
+/* ---- KARTY A TLAČÍTKA ---- */
+
 .card {
   border-radius: 1.5rem;
-  border-width: 1px;
-  border-style: solid;
-  border-color: rgb(38 38 38); /* neutral-800 */
-  background-color: rgb(15 15 15); /* tmavé pozadí */
+  border: 1px solid rgb(38 38 38); /* neutral-800 */
+  background-color: rgb(15 15 15); /* velmi tmavá šedá */
 }
 
 .btn {
@@ -50,6 +113,8 @@ body {
   filter: brightness(1.05);
 }
 
+/* ---- NADPISY SEKČÍ ---- */
+
 .section-title {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -63,7 +128,7 @@ body {
   }
 }
 
-/* pomocné */
+/* Pomocné třídy */
 
 .text-gold {
   color: var(--gold);
