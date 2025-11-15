@@ -1,5 +1,4 @@
 // app/page.tsx
-import Image from "next/image";
 import Link from "next/link";
 import InstagramEmbed from "@/components/InstagramEmbed";
 import ContactForm from "@/components/ContactForm";
@@ -8,126 +7,105 @@ export default function HomePage() {
   return (
     <main className="bg-neutral-950 text-white">
       {/* HERO – claim + fotka + kalkulačky */}
-      <section className="container mx-auto flex flex-col-reverse gap-10 px-4 pt-28 pb-16 lg:flex-row lg:items-center">
+      <section className="container mx-auto px-4 pt-28 pb-20 lg:pt-32 lg:pb-24 flex flex-col-reverse lg:flex-row items-center gap-12">
         {/* Text vlevo */}
         <div className="lg:w-1/2">
-          <h1
-            className="mb-6 text-3xl font-semibold sm:text-4xl lg:text-5xl"
-            style={{ color: "var(--gold)" }}
-          >
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold mb-6 text-[var(--gold)]">
             Plán, který obstojí v číslech i realitě
           </h1>
-
-          <p className="mb-4 max-w-xl text-lg text-slate-100">
+          <p className="text-lg sm:text-xl text-neutral-100">
             Hypotéka, investice i zajištění – bez nátlaku, srozumitelně a s
             důrazem na dlouhodobý plán. Postarám se o to, aby vaše rozhodnutí
             dávala smysl v číslech i ve vašem životě.
           </p>
 
-          <ul className="mb-8 space-y-2 text-base text-slate-100">
-            <li>• Dlouhodobý plán a osobní péče, ne „rychlý prodej“.</li>
-            <li>
-              • Hypotéka, investice a zajištění jsou navzájem provázané – řeším
-              je společně.
-            </li>
-            <li>• Vysočina a celá ČR, osobně i online.</li>
-            <li>• Transparentně a s respektem k vašemu rozpočtu.</li>
+          <ul className="mt-6 space-y-2 text-lg text-neutral-100">
+            <li>Dlouhodobý plán a osobní péče, ne „rychlý prodej“.</li>
+            <li>Hypotéka, investice a zajištění jsou navzájem provázané.</li>
+            <li>Vysočina a celá ČR, osobně i online.</li>
+            <li>Transparentně a s respektem k vašemu rozpočtu.</li>
           </ul>
 
-          {/* 3 CTA tlačítka – menší, oddělená */}
-          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          {/* Tlačítka na kalkulačky – menší, oddělená */}
+          <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/sluzby/hypoteky-a-financovani"
-              className="flex-1 rounded-full px-6 py-3 text-center text-base font-semibold text-neutral-950 transition hover:opacity-90"
-              style={{ backgroundColor: "var(--gold)" }}
+              className="inline-flex items-center justify-center rounded-full bg-[var(--gold)] px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-yellow-400 transition"
             >
               Spočítat hypotéku
             </Link>
             <Link
               href="/sluzby/investice-a-renta"
-              className="flex-1 rounded-full px-6 py-3 text-center text-base font-semibold text-neutral-950 transition hover:opacity-90"
-              style={{ backgroundColor: "var(--gold)" }}
+              className="inline-flex items-center justify-center rounded-full bg-[var(--gold)] px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-yellow-400 transition"
             >
               Investiční kalkulačka
             </Link>
             <Link
               href="/sluzby/renta"
-              className="flex-1 rounded-full px-6 py-3 text-center text-base font-semibold text-neutral-950 transition hover:opacity-90"
-              style={{ backgroundColor: "var(--gold)" }}
+              className="inline-flex items-center justify-center rounded-full bg-[var(--gold)] px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-yellow-400 transition"
             >
               Spočítat rentu
             </Link>
           </div>
         </div>
 
-        {/* Fotka vpravo */}
-        <div className="flex justify-center lg:w-1/2">
-          <div className="relative w-full max-w-md">
-            <Image
+        {/* Fotka vpravo – menší, bez bílého rámečku */}
+        <div className="lg:w-1/2 flex justify-center">
+          <div className="max-w-md w-full">
+            <img
               src="/ja-bile-pozadi.jpg"
               alt="Bc. Patrik Svoboda, EFA"
-              width={800}
-              height={1000}
-              className="w-full rounded-3xl object-contain shadow-xl"
-              priority
+              className="w-full h-auto rounded-3xl object-cover shadow-2xl animate-[fadeInUp_0.8s_ease-out]"
             />
           </div>
         </div>
       </section>
 
-      {/* PROČ ŘEŠIT FINANCE S ODBORNÍKEM */}
-      <section className="container mx-auto px-4 pb-12">
-        <h2 className="mb-8 text-2xl font-semibold sm:text-3xl">
+      {/* Proč řešit finance s odborníkem */}
+      <section className="container mx-auto px-4 pb-16">
+        <h2 className="text-3xl sm:text-4xl font-semibold mb-8">
           Proč řešit finance s odborníkem
         </h2>
 
-        {/* 4 benefitní dlaždice */}
-        <div className="mb-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-2xl border border-[color:var(--gold)] bg-slate-950 p-5">
-            <h3 className="mb-2 text-lg font-semibold text-white">
-              Dlouhodobý plán
-            </h3>
-            <p className="text-sm text-slate-200">
+        {/* 4 benefitní dlaždice se zlatým ohraničením */}
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4 mb-10">
+          <div className="rounded-3xl bg-neutral-900/80 border border-[var(--gold)] p-6">
+            <h3 className="text-xl font-semibold mb-3">Dlouhodobý plán</h3>
+            <p className="text-sm text-neutral-200">
               Hypotéka, investice i zajištění v jedné strategii místo
               nesourodých produktů od různých institucí.
             </p>
           </div>
-          <div className="rounded-2xl border border-[color:var(--gold)] bg-slate-950 p-5">
-            <h3 className="mb-2 text-lg font-semibold text-white">
-              Srozumitelná čísla
-            </h3>
-            <p className="text-sm text-slate-200">
+          <div className="rounded-3xl bg-neutral-900/80 border border-[var(--gold)] p-6">
+            <h3 className="text-xl font-semibold mb-3">Srozumitelná čísla</h3>
+            <p className="text-sm text-neutral-200">
               Rozhodnutí podložená čísly, scénáři a riziky – ne jen slíbeným
               „výnosem“ nebo tlakem na rychlé uzavření smlouvy.
             </p>
           </div>
-          <div className="rounded-2xl border border-[color:var(--gold)] bg-slate-950 p-5">
-            <h3 className="mb-2 text-lg font-semibold text-white">
-              Vysočina a celá ČR
-            </h3>
-            <p className="text-sm text-slate-200">
+          <div className="rounded-3xl bg-neutral-900/80 border border-[var(--gold)] p-6">
+            <h3 className="text-xl font-semibold mb-3">Vysočina a celá ČR</h3>
+            <p className="text-sm text-neutral-200">
               Schůzky osobně na Vysočině nebo online. Přizpůsobíme se vašemu
               času i preferovanému způsobu komunikace.
             </p>
           </div>
-          <div className="rounded-2xl border border-[color:var(--gold)] bg-slate-950 p-5">
-            <h3 className="mb-2 text-lg font-semibold text-white">
-              EFA certifikace
-            </h3>
-            <p className="text-sm text-slate-200">
+          <div className="rounded-3xl bg-neutral-900/80 border border-[var(--gold)] p-6">
+            <h3 className="text-xl font-semibold mb-3">EFA certifikace</h3>
+            <p className="text-sm text-neutral-200">
               Evropský standard odbornosti a etiky (EFPA). Pravidelné
               vzdělávání a dohled nad kvalitou poradenství.
             </p>
           </div>
         </div>
 
-        {/* navazující text */}
-        <div className="space-y-3 text-sm text-slate-100 max-w-4xl">
+        {/* Text pod benefitními dlaždicemi */}
+        <div className="space-y-4 text-neutral-100 max-w-4xl">
           <p>
             Kvalitní finanční plán není o jedné schůzce ani o jednom produktu.
             Jde o to, aby na sebe jednotlivé kroky navazovaly – od rezervy, přes
-            pojištění a hypotéku až po budoucí rentu. Když se vše řeší
-            odděleně, často vznikají zbytečná rizika nebo slepá místa.
+            pojištění a hypotéku až po budoucí rentu. Když se vše řeší odděleně,
+            často vznikají zbytečná rizika nebo slepá místa.
           </p>
           <p>
             Společně proto nejprve pojmenujeme vaše cíle a možnosti a teprve
@@ -139,42 +117,41 @@ export default function HomePage() {
           <p>
             Cílem není mít „co nejvíc produktů“, ale takové nastavení, které vás
             podrží, když se něco pokazí, a zároveň vás posune blíž k finanční
-            nezávislosti. Vy rozhodujete o tempu, já se starám o to, aby tomu
-            odpovídala strategie a konkrétní kroky.
+            nezávislosti.
           </p>
         </div>
       </section>
 
-      {/* INSTAGRAM – REELS */}
-      <section className="container mx-auto px-4 pb-12">
-        <h2 className="mb-6 text-2xl font-semibold sm:text-3xl">
+      {/* Instagram – 2 náhledy vedle sebe */}
+      <section className="container mx-auto px-4 pb-16">
+        <h2 className="text-3xl sm:text-4xl font-semibold mb-6">
           Krátká videa a vysvětlení v praxi (Instagram)
         </h2>
         <div className="grid gap-6 md:grid-cols-2">
           <InstagramEmbed
             url="https://www.instagram.com/p/DPjUX2NDNKg/"
             showHeader={false}
+            maxWidth={500}
           />
           <InstagramEmbed
             url="https://www.instagram.com/p/DO_gbreDMox/"
             showHeader={false}
+            maxWidth={500}
           />
         </div>
       </section>
 
-      {/* KONTAKTNÍ FORMULÁŘ */}
-      <section className="container mx-auto px-4 pb-16">
-        <h2 className="mb-4 text-2xl font-semibold sm:text-3xl">
+      {/* Nezávazná konzultace zdarma */}
+      <section className="container mx-auto px-4 pb-20">
+        <h2 className="text-3xl sm:text-4xl font-semibold mb-4">
           Nezávazná konzultace zdarma
         </h2>
-        <p className="mb-6 max-w-2xl text-sm text-slate-100">
-          Zajímá vás, jak by mohl vypadat váš konkrétní finanční plán? Napište
-          mi, jaká je vaše situace – zda řešíte hypotéku, investice nebo rentu –
-          a domluvíme se na krátké konzultaci online nebo osobně.
+        <p className="text-neutral-100 mb-6 max-w-2xl">
+          Zajímá vás, jak vypadá konkrétně váš finanční plán? Napište, jaká je
+          vaše situace – a ozvu se vám domluvit, zda se potkáme osobně nebo
+          online.
         </p>
-        <div className="max-w-2xl">
-          <ContactForm />
-        </div>
+        <ContactForm />
       </section>
     </main>
   );
