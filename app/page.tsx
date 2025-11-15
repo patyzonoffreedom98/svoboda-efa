@@ -36,21 +36,24 @@ export default function HomePage() {
               <li>• Transparentně a s respektem k vašemu rozpočtu.</li>
             </ul>
 
-            {/* Tři tlačítka – všechny vedou na kalkulačky */}
-            <div className="mt-4 grid gap-3 sm:grid-cols-3">
+            {/* Tři tlačítka – menší, vedle sebe, nepřekrývají se */}
+            <div className="mt-4 flex flex-wrap gap-3">
               <Link
                 href="/sluzby/hypoteky-a-financovani"
-                className="btn w-full text-center"
+                className="btn min-w-[11rem] text-center"
               >
                 Spočítat hypotéku
               </Link>
               <Link
                 href="/sluzby/investice-a-renta"
-                className="btn w-full text-center"
+                className="btn min-w-[11rem] text-center"
               >
                 Investiční kalkulačka
               </Link>
-              <Link href="/sluzby/renta" className="btn w-full text-center">
+              <Link
+                href="/sluzby/renta"
+                className="btn min-w-[11rem] text-center"
+              >
                 Spočítat rentu
               </Link>
             </div>
@@ -78,11 +81,13 @@ export default function HomePage() {
       {/* PROČ ŘEŠIT FINANCE S ODBORNÍKEM */}
       <section className="py-12 md:py-16">
         <div className="container space-y-8">
-          <h2 className="section-title">Proč řešit finance s odborníkem</h2>
+          <div className="section-title-wrapper">
+            <h2 className="section-title">Proč řešit finance s odborníkem</h2>
+          </div>
 
-          {/* Čtyři benefity – menší dlaždice vedle sebe */}
+          {/* Čtyři benefity – menší dlaždice vedle sebe, zlatý okraj */}
           <div className="benefits-grid">
-            <div className="card p-5">
+            <div className="card card-benefit p-5">
               <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
                 Dlouhodobý plán
               </h3>
@@ -92,7 +97,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="card p-5">
+            <div className="card card-benefit p-5">
               <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
                 Srozumitelná čísla
               </h3>
@@ -102,7 +107,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="card p-5">
+            <div className="card card-benefit p-5">
               <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
                 Vysočina a celá ČR
               </h3>
@@ -112,7 +117,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="card p-5">
+            <div className="card card-benefit p-5">
               <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
                 EFA certifikace
               </h3>
@@ -123,7 +128,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Text navazující na benefity (to, co jsi chtěl doplnit) */}
+          {/* Text navazující na benefity */}
           <div className="max-w-3xl space-y-3 text-sm text-gray-300 md:text-base">
             <p>
               Kvalitní finanční plán není o jedné schůzce ani o jednom produktu.
@@ -151,9 +156,11 @@ export default function HomePage() {
       {/* INSTAGRAM – dva náhledy menší, vedle sebe */}
       <section className="pb-12 md:pb-16">
         <div className="container space-y-6">
-          <h2 className="section-title">
-            Krátká videa a vysvětlení v praxi (Instagram)
-          </h2>
+          <div className="section-title-wrapper">
+            <h2 className="section-title">
+              Krátká videa a vysvětlení v praxi (Instagram)
+            </h2>
+          </div>
 
           <div className="ig-row">
             <div className="ig-item">
@@ -178,7 +185,9 @@ export default function HomePage() {
       <section className="pb-20">
         <div className="container grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-start">
           <div className="space-y-4">
-            <h2 className="section-title">Nezávazná konzultace zdarma</h2>
+            <div className="section-title-wrapper">
+              <h2 className="section-title">Nezávazná konzultace zdarma</h2>
+            </div>
             <p className="text-sm text-gray-300 md:text-base">
               Zajímá vás, jak by mohl vypadat váš konkrétní finanční plán?
               Napište, jaká je vaše situace – ozvu se vám a domluvíme se, zda
