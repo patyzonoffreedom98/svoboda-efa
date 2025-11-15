@@ -14,7 +14,7 @@ export const metadata = {
 export default function HomePage() {
   return (
     <main className="bg-neutral-950">
-      {/* HERO – vlevo claim, vpravo fotka */}
+      {/* HERO – vlevo text, vpravo fotka */}
       <section>
         <div className="container grid gap-10 py-16 lg:grid-cols-2 lg:items-center">
           {/* Text vlevo */}
@@ -148,7 +148,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* INSTAGRAM – menší a skutečně vedle sebe */}
+      {/* INSTAGRAM – dvě menší karty vedle sebe */}
       <section className="pb-16">
         <div className="container space-y-6">
           <h2 className="section-title">
