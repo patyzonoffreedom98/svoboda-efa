@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 
 const RESEND_API_URL = "https://api.resend.com/emails";
 
+// tady natvrdo tvůj gmail, který má Resend povolený v test režimu
+const TO_EMAIL = "patyzon.of.freedom98@gmail.com";
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -22,11 +25,10 @@ export async function POST(request: Request) {
 
     const apiKey = process.env.RESEND_API_KEY;
     const from = process.env.CONTACT_FROM;
-    const to = process.env.CONTACT_TO;
 
-    if (!apiKey || !from || !to) {
+    if (!apiKey || !from) {
       console.error(
-        "Kontakt API: chybí RESEND_API_KEY / CONTACT_FROM / CONTACT_TO"
+        "Kontakt API: chybí RESEND_API_KEY / CONTACT_FROM"
       );
       return NextResponse.json(
         { ok: false, error: "Server není správně nastavený." },
@@ -73,7 +75,7 @@ ${JSON.stringify(body, null, 2)}
       },
       body: JSON.stringify({
         from,
-        to: [to],
+        to: [TO_EMAIL], // tady JISTĚ posíláme na patyzon.of.freedom98@gmail.com
         subject,
         text,
         html,
@@ -85,11 +87,9 @@ ${JSON.stringify(body, null, 2)}
       let errorDetail = "";
 
       try {
-        // Resend většinou vrací JSON s chybou
         const errorData = await resendResponse.json();
         errorDetail = JSON.stringify(errorData);
       } catch {
-        // kdyby to nebyl JSON, vezmeme prostý text
         errorDetail = await resendResponse.text();
       }
 
