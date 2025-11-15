@@ -1,168 +1,171 @@
+// app/page.tsx
 import Image from "next/image";
 import Link from "next/link";
-import type { Metadata } from "next";
 import InstagramEmbed from "@/components/InstagramEmbed";
 import ContactForm from "@/components/ContactForm";
-import PreFooter from "@/components/PreFooter";
-
-export const metadata: Metadata = {
-  title: "Bc. Patrik Svoboda, EFA – finanční plán",
-  description:
-    "Hypotéky, investice a zajištění – bez nátlaku, srozumitelně a s důrazem na dlouhodobý plán, který obstojí v číslech i realitě.",
-};
 
 export default function HomePage() {
   return (
-    <main>
-      {/* HERO – úvod */}
-      <section id="o-mne" className="hero">
-        <div className="hero-text">
-          <p className="hero-eyebrow">Hypotéky · Investice · Zajištění</p>
-          <h1 className="hero-title">
+    <main className="bg-neutral-950 text-white">
+      {/* HERO */}
+      <section className="container mx-auto flex flex-col-reverse gap-10 pt-28 pb-16 lg:flex-row lg:items-center">
+        {/* Text vlevo */}
+        <div className="lg:w-1/2">
+          <h1 className="mb-6 text-3xl font-semibold text-gold sm:text-4xl lg:text-5xl">
             Plán, který obstojí v číslech i realitě
           </h1>
-
-          <p className="hero-lead">
+          <p className="mb-4 max-w-xl text-lg text-slate-100">
             Hypotéka, investice i zajištění – bez nátlaku, srozumitelně a s
             důrazem na dlouhodobý plán. Postarám se o to, aby vaše rozhodnutí
             dávala smysl v číslech i ve vašem životě.
           </p>
-
-          <ul className="hero-list">
-            <li>Dlouhodobý plán a osobní péče, ne „rychlý prodej“.</li>
-            <li>Hypotéka, investice a zajištění jsou navzájem provázané.</li>
-            <li>Vysočina a celá ČR – osobně i online.</li>
-            <li>Transparentně a s respektem k vašemu rozpočtu.</li>
+          <ul className="mb-8 space-y-2 text-base text-slate-100">
+            <li>• Dlouhodobý plán a osobní péče, ne „rychlý prodej“.</li>
+            <li>
+              • Hypotéka, investice a zajištění jsou navzájem provázané – řeším
+              je společně.
+            </li>
+            <li>• Vysočina a celá ČR, osobně i online.</li>
+            <li>• Transparentně a s respektem k vašemu rozpočtu.</li>
           </ul>
 
-          <div className="hero-ctas">
+          {/* CTA tlačítka */}
+          <div className="flex flex-col gap-3 sm:flex-row">
             <Link
               href="/sluzby/hypoteky-a-financovani"
-              className="btn-primary"
+              className="flex-1 rounded-full bg-gold px-6 py-3 text-center text-base font-semibold text-neutral-950 transition hover:bg-gold/90"
             >
               Spočítat hypotéku
             </Link>
             <Link
               href="/sluzby/investice-a-renta"
-              className="btn-secondary"
+              className="flex-1 rounded-full bg-gold px-6 py-3 text-center text-base font-semibold text-neutral-950 transition hover:bg-gold/90"
             >
               Investiční kalkulačka
             </Link>
-            <Link href="/sluzby/renta" className="btn-tertiary">
+            <Link
+              href="/sluzby/renta"
+              className="flex-1 rounded-full bg-gold px-6 py-3 text-center text-base font-semibold text-neutral-950 transition hover:bg-gold/90"
+            >
               Spočítat rentu
             </Link>
           </div>
         </div>
 
-        <div className="hero-photo-wrapper hero-photo-animate">
-          <Image
-            src="/ja-bile-pozadi.jpg"
-            alt="Bc. Patrik Svoboda, EFA"
-            width={520}
-            height={680}
-            className="hero-photo"
-            priority
-          />
+        {/* Fotka vpravo */}
+        <div className="flex justify-center lg:w-1/2">
+          <div className="relative w-full max-w-md">
+            <Image
+              src="/ja-bile-pozadi.jpg"
+              alt="Bc. Patrik Svoboda, EFA"
+              width={800}
+              height={1000}
+              className="w-full rounded-3xl object-contain shadow-xl"
+              priority
+            />
+          </div>
         </div>
       </section>
 
       {/* PROČ ŘEŠIT FINANCE S ODBORNÍKEM */}
-      <section className="section">
-        <div className="container">
-          <h2 className="section-title">Proč řešit finance s odborníkem</h2>
+      <section className="container mx-auto pb-12">
+        <h2 className="mb-8 text-2xl font-semibold text-white sm:text-3xl">
+          Proč řešit finance s odborníkem
+        </h2>
 
-          <div className="benefits-grid">
-            <div className="benefit-card">
-              <h3>Dlouhodobý plán</h3>
-              <p>
-                Hypotéka, investice i zajištění v jedné strategii místo
-                nesourodých produktů od různých institucí.
-              </p>
-            </div>
-            <div className="benefit-card">
-              <h3>Srozumitelná čísla</h3>
-              <p>
-                Rozhodnutí podložená čísly, scénáři a riziky – ne jen slibovaným
-                „výnosem“ nebo tlakem na rychlé uzavření smlouvy.
-              </p>
-            </div>
-            <div className="benefit-card">
-              <h3>Vysočina a celá ČR</h3>
-              <p>
-                Schůzky osobně na Vysočině nebo online. Přizpůsobíme se vašemu
-                času i preferovanému způsobu komunikace.
-              </p>
-            </div>
-            <div className="benefit-card">
-              <h3>EFA certifikace</h3>
-              <p>
-                Evropský standard odbornosti a etiky (EFPA). Pravidelné
-                vzdělávání a dohled nad kvalitou poradenství.
-              </p>
-            </div>
+        <div className="mb-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <div className="rounded-2xl border border-gold/70 bg-slate-950 p-5">
+            <h3 className="mb-2 text-lg font-semibold text-white">
+              Dlouhodobý plán
+            </h3>
+            <p className="text-sm text-slate-200">
+              Hypotéka, investice i zajištění v jedné strategii místo
+              nesourodých produktů od různých institucí.
+            </p>
           </div>
-
-          <div className="section-text">
-            <p>
-              Kvalitní finanční plán není o jedné schůzce ani o jednom produktu.
-              Jde o to, aby na sebe jednotlivé kroky navazovaly – od rezervy,
-              přes pojištění a hypotéku až po budoucí rentu. Když se vše řeší
-              odděleně, často vznikají zbytečná rizika nebo slepá místa.
+          <div className="rounded-2xl border border-gold/70 bg-slate-950 p-5">
+            <h3 className="mb-2 text-lg font-semibold text-white">
+              Srozumitelná čísla
+            </h3>
+            <p className="text-sm text-slate-200">
+              Rozhodnutí podložená čísly, scénáři a riziky – ne jen slíbeným
+              „výnosem“ nebo tlakem na rychlé uzavření smlouvy.
             </p>
-            <p>
-              Společně proto nejprve pojmenujeme vaše cíle a možnosti a teprve
-              potom hledáme konkrétní řešení. Dáváme dohromady čísla, která
-              odpovídají vaší životní situaci, a nastavujeme plán tak, aby byl
-              dlouhodobě udržitelný – i v období vyšších sazeb, inflace nebo
-              výpadku příjmů.
+          </div>
+          <div className="rounded-2xl border border-gold/70 bg-slate-950 p-5">
+            <h3 className="mb-2 text-lg font-semibold text-white">
+              Vysočina a celá ČR
+            </h3>
+            <p className="text-sm text-slate-200">
+              Schůzky osobně na Vysočině nebo online. Přizpůsobíme se vašemu
+              času i preferovanému způsobu komunikace.
             </p>
-            <p>
-              Cílem není mít „co nejvíc produktů“, ale takové nastavení, které
-              vás podrží, když se něco pokazí, a zároveň vás posune blíž k
-              finanční nezávislosti. Vy rozhodujete o tempu, já se starám o to,
-              aby tomu odpovídala strategie a konkrétní kroky.
+          </div>
+          <div className="rounded-2xl border border-gold/70 bg-slate-950 p-5">
+            <h3 className="mb-2 text-lg font-semibold text-white">
+              EFA certifikace
+            </h3>
+            <p className="text-sm text-slate-200">
+              Evropský standard odbornosti a etiky (EFPA). Pravidelné
+              vzdělávání a dohled nad kvalitou poradenství.
             </p>
           </div>
         </div>
+
+        <div className="space-y-3 text-sm text-slate-100">
+          <p>
+            Kvalitní finanční plán není o jedné schůzce ani o jednom produktu.
+            Jde o to, aby na sebe jednotlivé kroky navazovaly – od rezervy, přes
+            pojištění a hypotéku až po budoucí rentu. Když se vše řeší
+            odděleně, často vznikají zbytečná rizika nebo slepá místa.
+          </p>
+          <p>
+            Společně proto nejprve pojmenujeme vaše cíle a možnosti a teprve
+            potom hledáme konkrétní řešení. Dáváme dohromady čísla, která
+            odpovídají vaší životní situaci, a nastavujeme plán tak, aby byl
+            dlouhodobě udržitelný – i v období vyšších sazeb, inflace nebo
+            výpadku příjmů.
+          </p>
+          <p>
+            Cílem není mít „co nejvíc produktů“, ale takové nastavení, které vás
+            podrží, když se něco pokazí, a zároveň vás posune blíž k finanční
+            nezávislosti. Vy rozhodujete o tempu, já se starám o to, aby tomu
+            odpovídala strategie a konkrétní kroky.
+          </p>
+        </div>
       </section>
 
-      {/* INSTAGRAM REELS – DVA MALÉ NÁHLEDY VEDLE SEBE */}
-      <section className="section">
-        <div className="container">
-          <h2 className="section-title">
-            Krátká videa a vysvětlení v praxi (Instagram)
-          </h2>
-
-          <div className="ig-grid">
-            <InstagramEmbed
-              url="https://www.instagram.com/p/DPjUX2NDNKg/"
-              showHeader={false}
-              maxWidth={360}
-            />
-            <InstagramEmbed
-              url="https://www.instagram.com/p/DO_gbreDMox/"
-              showHeader={false}
-              maxWidth={360}
-            />
-          </div>
+      {/* INSTAGRAM – REELS */}
+      <section className="container mx-auto pb-12">
+        <h2 className="mb-6 text-2xl font-semibold text-white sm:text-3xl">
+          Krátká videa a vysvětlení v praxi (Instagram)
+        </h2>
+        <div className="grid gap-6 md:grid-cols-2">
+          <InstagramEmbed
+            url="https://www.instagram.com/p/DPjUX2NDNKg/"
+            showHeader={false}
+          />
+          <InstagramEmbed
+            url="https://www.instagram.com/p/DO_gbreDMox/"
+            showHeader={false}
+          />
         </div>
       </section>
 
       {/* KONTAKTNÍ FORMULÁŘ */}
-      <section className="section">
-        <div className="container">
-          <h2 className="section-title">Nezávazná konzultace zdarma</h2>
-          <p className="section-lead">
-            Zajímá vás, jak by mohl vypadat váš vlastní finanční plán? Napište
-            mi pár vět o vaší situaci – ozvu se vám co nejdříve a domluvíme se,
-            jak nejlépe pokračovat.
-          </p>
-
+      <section className="container mx-auto pb-16">
+        <h2 className="mb-4 text-2xl font-semibold text-white sm:text-3xl">
+          Nezávazná konzultace zdarma
+        </h2>
+        <p className="mb-6 max-w-2xl text-sm text-slate-100">
+          Zajímá vás, jak by mohl vypadat váš konkrétní finanční plán? Napište
+          mi, jaká je vaše situace – zda řešíte hypotéku, investice nebo rentu –
+          a domluvíme se na krátké konzultaci online nebo osobně.
+        </p>
+        <div className="max-w-2xl">
           <ContactForm />
         </div>
       </section>
-
-      <PreFooter />
     </main>
   );
 }
