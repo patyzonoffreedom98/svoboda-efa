@@ -1,92 +1,61 @@
-// components/Nav.tsx
 "use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+function isActive(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname === href;
+}
+
 export default function Nav() {
   const pathname = usePathname();
 
-  const isActive = (href: string) => {
-    if (href === "/") return pathname === "/";
-    return pathname === href || pathname.startsWith(href + "/");
-  };
-
   return (
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-neutral-800 bg-neutral-950 shadow-sm">
-      <div className="container flex items-center justify-between gap-4 py-3">
-        {/* Logo / jméno vlevo */}
-        <Link
-          href="/"
-          className="text-sm font-semibold tracking-wide text-gold md:text-base"
-        >
+    <header className="site-header">
+      <div className="container nav-inner">
+        <Link href="/" className="nav-brand">
           Bc. Patrik Svoboda, EFA
         </Link>
 
-        {/* Menu vpravo */}
-        <nav className="flex items-center gap-2 md:gap-3 text-xs md:text-sm text-gray-200">
+        <nav className="nav-links">
+          {/* „O mně“ vede na úvodní sekci na homepage */}
           <Link
-            href="/o-mne"
-            className={
-              "nav-link " + (isActive("/o-mne") ? "nav-link-active" : "")
-            }
+            href="/#o-mne"
+            className="nav-link"
           >
             O mně
           </Link>
 
           <Link
             href="/efa"
-            className={"nav-link " + (isActive("/efa") ? "nav-link-active" : "")}
+            className={`nav-link ${isActive(pathname, "/efa") ? "nav-link--active" : ""}`}
           >
             EFA
           </Link>
 
-          {/* Služby s rozbalovacím menu */}
-          <div className="relative group">
-            <button
-              type="button"
-              className={
-                "nav-link inline-flex items-center gap-1 " +
-                (pathname.startsWith("/sluzby") ? "nav-link-active" : "")
-              }
-            >
-              Služby
-              <span className="text-[0.65rem]">▾</span>
-            </button>
-
-            <div className="absolute right-0 top-full z-30 mt-2 hidden min-w-[230px] overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-950 py-2 text-sm shadow-xl group-hover:block">
-              <Link
-                href="/sluzby/hypoteky-a-financovani"
-                className="block px-4 py-2 text-gray-100 hover:bg-neutral-900 hover:text-gold"
-              >
+          {/* Dropdown Služby – bez JS, jen <details> */}
+          <details className="nav-details">
+            <summary>Služby</summary>
+            <div className="nav-details-menu">
+              <Link href="/sluzby/hypoteky-a-financovani">
                 Hypotéky a financování
               </Link>
-              <Link
-                href="/sluzby/investice-a-renta"
-                className="block px-4 py-2 text-gray-100 hover:bg-neutral-900 hover:text-gold"
-              >
+              <Link href="/sluzby/investice-a-renta">
                 Investice a renta
               </Link>
-              <Link
-                href="/sluzby/renta"
-                className="block px-4 py-2 text-gray-100 hover:bg-neutral-900 hover:text-gold"
-              >
+              <Link href="/sluzby/renta">
                 Renta
               </Link>
-              <Link
-                href="/sluzby/zajisteni"
-                className="block px-4 py-2 text-gray-100 hover:bg-neutral-900 hover:text-gold"
-              >
+              <Link href="/sluzby/zajisteni">
                 Zajištění
               </Link>
             </div>
-          </div>
+          </details>
 
           <Link
             href="/kontakt"
-            className={
-              "nav-link " + (isActive("/kontakt") ? "nav-link-active" : "")
-            }
+            className={`nav-link ${isActive(pathname, "/kontakt") ? "nav-link--active" : ""}`}
           >
             Kontakt
           </Link>
