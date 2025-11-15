@@ -13,7 +13,7 @@ export default function Nav() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-neutral-800 bg-neutral-950/90 backdrop-blur">
+    <header className="fixed inset-x-0 top-0 z-40 border-b border-neutral-800 bg-neutral-950 shadow-sm">
       <div className="container flex items-center justify-between gap-4 py-3">
         {/* Logo / jméno vlevo */}
         <Link
