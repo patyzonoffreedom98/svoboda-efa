@@ -50,7 +50,7 @@ function ContactForm() {
       console.error("ContactForm error:", err);
       setStatus("error");
       setError(
-        `Něco se nepovedlo. Zkuste prosím znovu. (Detail: ${
+        `Něco se nepovedlo. Zkuste to prosím znovu. (Detail: ${
           err?.message || "neznámá chyba"
         })`
       );
@@ -90,7 +90,7 @@ function ContactForm() {
 
       <div className="flex flex-col gap-1">
         <label htmlFor="message" className="text-sm text-gray-300">
-          S čím ti můžu pomoci?
+          S čím vám mohu pomoci?
         </label>
         <textarea
           id="message"
@@ -98,13 +98,13 @@ function ContactForm() {
           required
           rows={4}
           className="input min-h-[120px]"
-          placeholder="Stručně popiš svou situaci (hypotéka, investice, renta...)"
+          placeholder="Stručně popište svou situaci (hypotéka, investice, renta...)"
         />
       </div>
 
       {status === "success" && (
         <p className="text-sm text-emerald-400">
-          Děkuji, zpráva byla odeslána. Ozvu se co nejdřív.
+          Děkuji, zpráva byla odeslána. Ozvu se vám co nejdříve.
         </p>
       )}
 
@@ -121,15 +121,12 @@ function ContactForm() {
       </button>
 
       <p className="small text-gray-400">
-        Odesláním formuláře souhlasíš se zpracováním osobních údajů za účelem
-        kontaktování ohledně tvého dotazu.
+        Odesláním formuláře souhlasíte se zpracováním osobních údajů za účelem
+        kontaktování ohledně vašeho dotazu.
       </p>
     </form>
   );
 }
 
-// default export – aby fungovalo: import ContactForm from "@/components/ContactForm";
 export default ContactForm;
-
-// pojmenovaný export – kdyby někde bylo: import { ContactForm } from ...
 export { ContactForm };
