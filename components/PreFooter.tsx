@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function PreFooter() {
   return (
     <section className="border-t border-slate-800 bg-neutral-950 py-10 mt-10">
-      <div className="container mx-auto grid gap-6 md:grid-cols-3">
+      <div className="container mx-auto grid gap-6 md:grid-cols-3 px-4">
         {/* SPOJME SE */}
         <div className="rounded-2xl border border-slate-800 bg-slate-950 p-5">
           <h3 className="mb-2 text-lg font-semibold text-white">Spojme se</h3>
