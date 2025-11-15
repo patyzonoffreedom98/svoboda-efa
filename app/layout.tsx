@@ -7,7 +7,7 @@ import PreFooter from "@/components/PreFooter";
 export const metadata: Metadata = {
   title: "Bc. Patrik Svoboda, EFA – finanční plánování",
   description:
-    "Hypotéky, investice, zajištění a renta – bez nátlaku, srozumitelně a s důrazem na dlouhodobý plán, který obstojí v číslech i realitě.",
+    "Finanční plánování bez nátlaku: hypotéky, investice, zajištění a dlouhodobý plán pro vás a vaši rodinu. Vysočina a celá ČR, osobně i online.",
 };
 
 export default function RootLayout({
@@ -18,9 +18,15 @@ export default function RootLayout({
   return (
     <html lang="cs">
       <body className="bg-neutral-950 text-white">
-        <Nav />
-        {children}
-        {/* Společný spodní panel na VŠECH stránkách */}
+        {/* Horní navigace – fixní nahoře */}
+        <header className="sticky top-0 z-40 bg-neutral-950/95 backdrop-blur border-b border-neutral-800">
+          <Nav />
+        </header>
+
+        {/* Obsah stránek */}
+        <main>{children}</main>
+
+        {/* Společný spodní pruh – 3 rámečky, jen jednou a na všech stránkách */}
         <PreFooter />
       </body>
     </html>
