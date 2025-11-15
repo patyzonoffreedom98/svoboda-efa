@@ -1,100 +1,106 @@
-// app/api/contact/route.ts
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const RESEND_API_URL = "https://api.resend.com/emails";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    const name = (body.name as string | undefined)?.trim();
-    const email = (body.email as string | undefined)?.trim();
-    const message = (body.message as string | undefined)?.trim();
+    // Ošetření vstupů z formuláře (aby to nepadalo, i kdyby se pole jmenovala trochu jinak)
+    const name = typeof body.name === "string" ? body.name.trim() : "";
+    const email = typeof body.email === "string" ? body.email.trim() : "";
+    const phone = typeof body.phone === "string" ? body.phone.trim() : "";
+    const message =
+      typeof body.message === "string" ? body.message.trim() : "";
+    const source = typeof body.source === "string" ? body.source.trim() : "";
 
-    // základní kontrola
-    if (!name || !email || !message) {
+    if (!email) {
       return NextResponse.json(
-        { ok: false, error: "Vyplň prosím všechna pole." },
+        { ok: false, error: "Chybí e-mailová adresa." },
         { status: 400 }
       );
     }
 
-    const to = process.env.CONTACT_TO;
+    const apiKey = process.env.RESEND_API_KEY;
     const from = process.env.CONTACT_FROM;
+    const to = process.env.CONTACT_TO;
 
-    if (!to || !from || !process.env.RESEND_API_KEY) {
-      console.error("Contact API misconfigured – missing env vars");
+    if (!apiKey || !from || !to) {
+      console.error("Kontakt API: chybí RESEND_API_KEY / CONTACT_FROM / CONTACT_TO");
       return NextResponse.json(
-        {
-          ok: false,
-          error:
-            "Omlouvám se, něco je špatně nastavené. Zkus to prosím později nebo mi zavolej.",
-        },
+        { ok: false, error: "Server není správně nastavený." },
         { status: 500 }
       );
     }
 
-    const siteUrl =
-      process.env.NEXT_PUBLIC_SITE_URL ?? "https://svoboda-efa.vercel.app";
+    const subject =
+      "Nová zpráva z kontaktního formuláře – svoboda-efa";
 
-    const subject = `Nová poptávka z webu – ${name}`;
     const text = `
-Nová zpráva z kontaktního formuláře:
+Nový kontakt z webu svoboda-efa:
 
-Jméno: ${name}
+Jméno: ${name || "-"}
 E-mail: ${email}
+Telefon: ${phone || "-"}
+Zdroj: ${source || "-"}
 
 Zpráva:
-${message}
+${message || "-"}
 
----
-
-Odesláno z: ${siteUrl}
+Celá data z formuláře:
+${JSON.stringify(body, null, 2)}
     `.trim();
 
     const html = `
-      <div style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.5; color: #111827;">
-        <h2>Nová poptávka z webu</h2>
-        <p><strong>Jméno:</strong> ${name}</p>
-        <p><strong>E-mail:</strong> ${email}</p>
-        <p><strong>Zpráva:</strong></p>
-        <p>${message.replace(/\n/g, "<br />")}</p>
-        <hr style="margin-top: 24px; margin-bottom: 8px; border: none; border-top: 1px solid #e5e7eb;" />
-        <p style="font-size: 12px; color: #6b7280;">
-          Odesláno z: ${siteUrl}
-        </p>
-      </div>
+      <h2>Nový kontakt z webu svoboda-efa</h2>
+      <p><strong>Jméno:</strong> ${name || "-"}</p>
+      <p><strong>E-mail:</strong> ${email}</p>
+      <p><strong>Telefon:</strong> ${phone || "-"}</p>
+      ${source ? `<p><strong>Zdroj:</strong> ${source}</p>` : ""}
+      <p><strong>Zpráva:</strong></p>
+      <p>${(message || "-").replace(/\n/g, "<br />")}</p>
+      <hr />
+      <p><strong>Celá data z formuláře (JSON):</strong></p>
+      <pre>${JSON.stringify(body, null, 2)}</pre>
     `;
 
-    const { error } = await resend.emails.send({
-      from,
-      to,
-      reply_to: email,
-      subject,
-      text,
-      html,
+    const resendResponse = await fetch(RESEND_API_URL, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to: [to],
+        subject,
+        text,
+        html,
+        // aby odpovědi šly přímo na e-mail klienta
+        reply_to: email || undefined,
+      }),
     });
 
-    if (error) {
-      console.error("Resend error", error);
+    if (!resendResponse.ok) {
+      const errorText = await resendResponse.text();
+      console.error(
+        "Resend API error",
+        resendResponse.status,
+        errorText
+      );
       return NextResponse.json(
-        {
-          ok: false,
-          error:
-            "Omlouvám se, zprávu se nepodařilo odeslat. Zkus to prosím za chvíli nebo mi zavolej.",
-        },
+        { ok: false, error: "Nepodařilo se odeslat e-mail." },
         { status: 500 }
       );
     }
 
     return NextResponse.json({ ok: true });
-  } catch (err) {
-    console.error("Contact API unexpected error", err);
+  } catch (error) {
+    console.error("Contact form error", error);
     return NextResponse.json(
       {
         ok: false,
-        error: "Něco se pokazilo. Zkus to prosím za chvíli nebo mi zavolej.",
+        error: "Něco se pokazilo. Zkuste to prosím znovu.",
       },
       { status: 500 }
     );
