@@ -15,29 +15,29 @@ export default function HomePage() {
   return (
     <main className="bg-neutral-950">
       {/* HERO – vlevo text, vpravo fotka */}
-      <section>
-        <div className="container grid gap-10 py-16 lg:grid-cols-2 lg:items-center">
-          {/* Text vlevo */}
-          <div className="space-y-6">
+      <section className="py-12 md:py-16">
+        <div className="container hero-layout">
+          {/* Levá půlka – claim a text */}
+          <div className="hero-left space-y-6">
             <h1 className="text-3xl font-semibold leading-tight text-gold md:text-4xl lg:text-5xl">
               Plán, který obstojí v číslech i realitě
             </h1>
 
-            <p className="max-w-xl text-base text-gray-200 md:text-lg">
+            <p className="max-w-xl text-sm text-gray-200 md:text-base lg:text-lg">
               Hypotéka, investice i zajištění – bez nátlaku, srozumitelně a s
               důrazem na dlouhodobý plán. Postarám se o to, aby vaše rozhodnutí
               dávala smysl v číslech i ve vašem životě.
             </p>
 
-            <ul className="space-y-2 text-sm text-gray-200 md:text-base">
+            <ul className="space-y-1.5 text-sm text-gray-200 md:text-base">
               <li>• Dlouhodobý plán a osobní péče, ne „rychlý prodej“.</li>
               <li>• Hypotéka, investice a zajištění jsou navzájem provázané.</li>
               <li>• Vysočina a celá ČR, osobně i online.</li>
               <li>• Transparentně a s respektem k vašemu rozpočtu.</li>
             </ul>
 
-            {/* CTA tlačítka */}
-            <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            {/* Tři tlačítka – všechny vedou na kalkulačky */}
+            <div className="mt-4 grid gap-3 sm:grid-cols-3">
               <Link
                 href="/sluzby/hypoteky-a-financovani"
                 className="btn w-full text-center"
@@ -56,8 +56,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Fotka vpravo – menší, celá postava */}
-          <div className="flex items-end justify-center lg:justify-end">
+          {/* Pravá půlka – fotka */}
+          <div className="hero-right flex items-end justify-center lg:justify-end">
             <div className="relative w-full max-w-sm">
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-gold/20 to-transparent blur-2xl" />
               <div className="relative overflow-hidden rounded-3xl border border-neutral-800 bg-neutral-900 p-4">
@@ -76,12 +76,12 @@ export default function HomePage() {
       </section>
 
       {/* PROČ ŘEŠIT FINANCE S ODBORNÍKEM */}
-      <section className="py-16">
+      <section className="py-12 md:py-16">
         <div className="container space-y-8">
           <h2 className="section-title">Proč řešit finance s odborníkem</h2>
 
-          {/* čtyři menší dlaždice vedle sebe */}
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Čtyři benefity – menší dlaždice vedle sebe */}
+          <div className="benefits-grid">
             <div className="card p-5">
               <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
                 Dlouhodobý plán
@@ -123,7 +123,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* text pod benefity */}
+          {/* Text navazující na benefity (to, co jsi chtěl doplnit) */}
           <div className="max-w-3xl space-y-3 text-sm text-gray-300 md:text-base">
             <p>
               Kvalitní finanční plán není o jedné schůzce ani o jednom produktu.
@@ -148,22 +148,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* INSTAGRAM – dvě menší karty vedle sebe */}
-      <section className="pb-16">
+      {/* INSTAGRAM – dva náhledy menší, vedle sebe */}
+      <section className="pb-12 md:pb-16">
         <div className="container space-y-6">
           <h2 className="section-title">
             Krátká videa a vysvětlení v praxi (Instagram)
           </h2>
 
-          <div className="flex flex-wrap justify-center gap-8">
-            <div className="w-full max-w-xs">
+          <div className="ig-row">
+            <div className="ig-item">
               <InstagramEmbed
                 url="https://www.instagram.com/p/DPjUX2NDNKg/"
                 showHeader={false}
                 maxWidth={280}
               />
             </div>
-            <div className="w-full max-w-xs">
+            <div className="ig-item">
               <InstagramEmbed
                 url="https://www.instagram.com/p/DO_gbreDMox/"
                 showHeader={false}
@@ -174,7 +174,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* NEZÁVAZNÁ KONZULTACE */}
+      {/* NEZÁVAZNÁ KONZULTACE – text ve vykání + formulář */}
       <section className="pb-20">
         <div className="container grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-start">
           <div className="space-y-4">
