@@ -14,14 +14,15 @@ export const metadata = {
 export default function HomePage() {
   return (
     <main className="bg-neutral-950">
-      {/* HERO – vlevo text + CTA, vpravo fotka */}
+      {/* HERO – vlevo claim, vpravo fotka */}
       <section>
-        <div className="container grid gap-10 py-16 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-center">
-          {/* Textová část */}
+        <div className="container grid gap-10 py-16 lg:grid-cols-2 lg:items-center">
+          {/* Text vlevo */}
           <div className="space-y-6">
             <h1 className="text-3xl font-semibold leading-tight text-gold md:text-4xl lg:text-5xl">
               Plán, který obstojí v číslech i realitě
             </h1>
+
             <p className="max-w-xl text-base text-gray-200 md:text-lg">
               Hypotéka, investice i zajištění – bez nátlaku, srozumitelně a s
               důrazem na dlouhodobý plán. Postarám se o to, aby vaše rozhodnutí
@@ -55,18 +56,20 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Fotka vpravo */}
-          <div className="relative mx-auto h-[360px] w-[260px] sm:h-[420px] sm:w-[300px] lg:h-[460px] lg:w-[330px]">
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-gold/20 to-transparent blur-2xl" />
-            <div className="relative h-full w-full overflow-hidden rounded-3xl border border-neutral-800 bg-neutral-900">
-              <Image
-                src="/ja-bile-pozadi.jpg"
-                alt="Bc. Patrik Svoboda, EFA"
-                fill
-                sizes="(min-width:1024px) 330px, 260px"
-                style={{ objectFit: "cover" }}
-                priority
-              />
+          {/* Fotka vpravo – menší, celá postava */}
+          <div className="flex items-end justify-center lg:justify-end">
+            <div className="relative w-full max-w-sm">
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-gold/20 to-transparent blur-2xl" />
+              <div className="relative overflow-hidden rounded-3xl border border-neutral-800 bg-neutral-900 p-4">
+                <Image
+                  src="/ja-bile-pozadi.jpg"
+                  alt="Bc. Patrik Svoboda, EFA"
+                  width={480}
+                  height={640}
+                  className="mx-auto h-auto w-full max-w-xs object-contain"
+                  priority
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -77,7 +80,7 @@ export default function HomePage() {
         <div className="container space-y-8">
           <h2 className="section-title">Proč řešit finance s odborníkem</h2>
 
-          {/* menší 4 dlaždice vedle sebe */}
+          {/* čtyři menší dlaždice vedle sebe */}
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <div className="card p-5">
               <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
@@ -120,7 +123,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* text pod benefity – necháváme, jen zarovnáme šířku */}
+          {/* text pod benefity */}
           <div className="max-w-3xl space-y-3 text-sm text-gray-300 md:text-base">
             <p>
               Kvalitní finanční plán není o jedné schůzce ani o jednom produktu.
@@ -145,32 +148,33 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* INSTAGRAM – menší náhledy vedle sebe */}
+      {/* INSTAGRAM – menší a skutečně vedle sebe */}
       <section className="pb-16">
         <div className="container space-y-6">
           <h2 className="section-title">
             Krátká videa a vysvětlení v praxi (Instagram)
           </h2>
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="flex justify-center">
+
+          <div className="flex flex-wrap justify-center gap-8">
+            <div className="w-full max-w-xs">
               <InstagramEmbed
                 url="https://www.instagram.com/p/DPjUX2NDNKg/"
                 showHeader={false}
-                maxWidth={360}
+                maxWidth={280}
               />
             </div>
-            <div className="flex justify-center">
+            <div className="w-full max-w-xs">
               <InstagramEmbed
                 url="https://www.instagram.com/p/DO_gbreDMox/"
                 showHeader={false}
-                maxWidth={360}
+                maxWidth={280}
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* NEZÁVAZNÁ KONZULTACE – vykání */}
+      {/* NEZÁVAZNÁ KONZULTACE */}
       <section className="pb-20">
         <div className="container grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-start">
           <div className="space-y-4">
@@ -190,9 +194,6 @@ export default function HomePage() {
           <ContactForm />
         </div>
       </section>
-      {/* Poznámka: spodní trojrámeček (Spojme se / Sítě / Kde působím)
-          necháváme na komponentě PreFooter v layoutu – na této stránce
-          už nic dalšího nevykreslujeme. */}
     </main>
   );
 }
