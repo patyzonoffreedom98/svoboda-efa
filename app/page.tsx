@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import efaRegistryImage from "../efa-registr.png";
-import efpaVerificationImage from "../efpa-overeni.png";
 
 const services = [
   {
@@ -33,12 +32,12 @@ const advantages = [
     text: "Rozhodnutí podložená čísly, scénáři a souvislostmi – ne tlakem na rychlý podpis.",
   },
   {
-    title: "Vysočina i celá ČR",
-    text: "Osobně i online. Důležitý je výsledek, ne to, jestli sedíme ve stejné místnosti.",
-  },
-  {
     title: "Osobní přístup",
     text: "Každý plán musí dávat smysl i v reálném životě, ne jen na papíře.",
+  },
+  {
+    title: "Důvěra a kontinuita",
+    text: "Nejde o jednorázové rozhodnutí, ale o dlouhodobou spolupráci postavenou na klidu, přehledu a odpovědnosti.",
   },
 ];
 
@@ -81,7 +80,12 @@ export default function HomePage() {
             <a href="#kontakt">Kontakt</a>
           </nav>
 
-          <a href="#kontakt" className="header-cta">
+          <a
+            href="https://calendar.app.google/oJTfuFYsEd3QQoyr5"
+            target="_blank"
+            rel="noreferrer"
+            className="header-cta"
+          >
             Domluvit konzultaci
           </a>
         </div>
@@ -89,8 +93,10 @@ export default function HomePage() {
 
       <section className="hero">
         <div className="container hero-grid hero-grid-single">
-          <div className="hero-copy hero-copy-wide">
-            <div className="eyebrow">Hypotéky · Investice · Zajištění · DIP</div>
+          <div className="hero-copy hero-copy-wide fade-up delay-1">
+            <div className="eyebrow">
+              Hypotéky · Investice · Zajištění · Firemní benefity
+            </div>
 
             <h1>Plán, který obstojí v číslech i realitě.</h1>
 
@@ -103,16 +109,21 @@ export default function HomePage() {
             <ul className="hero-list">
               <li>Osobní přístup bez nátlaku a bez zbytečné omáčky.</li>
               <li>Jedna strategie místo nesourodých produktů.</li>
-              <li>Vysočina i celá ČR – osobně i online.</li>
-              <li>Důraz na srozumitelnost, čísla a reálnou použitelnost.</li>
+              <li>Rozhodnutí podložená čísly i souvislostmi.</li>
+              <li>Řešení, která dávají smysl v běžném životě, ne jen na papíře.</li>
             </ul>
 
             <div className="hero-actions">
-              <a href="#kontakt" className="btn btn-gold">
-                Nezávazně se spojit
-              </a>
-              <a href="#rezervace" className="btn btn-dark">
+              <a
+                href="https://calendar.app.google/oJTfuFYsEd3QQoyr5"
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-gold"
+              >
                 Rezervovat schůzku
+              </a>
+              <a href="#kontakt" className="btn btn-dark">
+                Zanechat kontakt
               </a>
               <a href="#kalkulacky" className="btn btn-outline">
                 Zobrazit kalkulačky
@@ -123,34 +134,38 @@ export default function HomePage() {
       </section>
 
       <section id="o-mne" className="section">
-        <div className="container narrow">
+        <div className="container narrow centered-block fade-up delay-2">
           <p className="section-label">O mně</p>
-          <h2>Finanční plánování, které drží i mimo ideální podmínky.</h2>
+          <h2>Finance, které mají řád, klid a dlouhodobý směr.</h2>
 
-          <div className="text-stack">
+          <div className="text-stack text-center">
             <p>
-              Nejde mi o to prodat jeden produkt a jít dál. Smysl vidím v tom,
+              Nejde mi o to prodat jednu smlouvu a jít dál. Smysl vidím v tom,
               aby měl klient finance poskládané jako funkční celek – od rezervy,
               přes ochranu příjmu a majetku, až po investice a budoucí rentu.
             </p>
             <p>
-              Pracuji s lidmi, kteří chtějí mít ve svých rozhodnutích větší klid,
-              pořádek a dlouhodobý směr. Vysvětluji věci srozumitelně, bez tlaku,
-              ale zároveň napřímo.
+              Jsem rodilý Jihlavák a ve financích působím šestým rokem. Za tu dobu
+              jsem pomohl stovkám klientů dělat rozhodnutí s větším klidem,
+              přehledem a dlouhodobou logikou.
             </p>
             <p>
-              Působím na Vysočině i po celé České republice. Schůzky řeším osobně
-              i online podle toho, co vám dává větší smysl.
+              Vysvětluji věci srozumitelně, bez tlaku, ale zároveň napřímo. Cílem
+              není složitý plán na efekt, ale dobře nastavený systém, který obstojí
+              v reálném životě.
             </p>
           </div>
         </div>
       </section>
 
-      <section className="section">
+      <section className="section section-tight">
         <div className="container">
           <div className="cards-grid four-up">
-            {advantages.map((item) => (
-              <article key={item.title} className="info-card">
+            {advantages.map((item, index) => (
+              <article
+                key={item.title}
+                className={`info-card fade-up delay-${index + 1}`}
+              >
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
               </article>
@@ -161,10 +176,10 @@ export default function HomePage() {
 
       <section id="efa" className="section">
         <div className="container">
-          <div className="two-column-block">
-            <div className="content-side">
+          <div className="two-column-block two-column-efa">
+            <div className="content-side fade-up delay-1">
               <p className="section-label">EFA</p>
-              <h2>Evropský standard odbornosti a etiky.</h2>
+              <h2>Evropský standard odbornosti, který je v Česku stále výjimečný.</h2>
               <div className="text-stack">
                 <p>
                   Certifikace EFA představuje evropský standard odbornosti v oblasti
@@ -172,29 +187,35 @@ export default function HomePage() {
                   schopnosti dívat se na finance v širších souvislostech.
                 </p>
                 <p>
-                  Pro klienta to znamená jediné: vyšší nárok na kvalitu, širší
-                  porozumění souvislostem a důraz na dlouhodobě obhajitelné řešení.
+                  V České republice ji má jen malé procento poradců, přibližně kolem
+                  jednoho procenta trhu. I proto jde o prestižní a zároveň náročnou
+                  certifikaci, která není jen formálním doplňkem ke jménu.
                 </p>
                 <p>
-                  Nejde o titul „na efekt“. Jde o závazek držet úroveň, kterou lze
-                  obhájit odborně i lidsky.
+                  Pro klienta to znamená vyšší nárok na kvalitu, širší porozumění
+                  souvislostem a důraz na řešení, která lze obhájit odborně i lidsky.
                 </p>
+              </div>
+
+              <div className="efa-links">
+                <a
+                  href="https://www.efpa.cz/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-outline"
+                >
+                  Více o EFPA
+                </a>
               </div>
             </div>
 
-            <div className="efa-images">
-              <div className="image-card">
+            <div className="efa-images fade-up delay-2">
+              <div className="image-card image-card-large">
                 <Image
                   src={efaRegistryImage}
-                  alt="EFA registr"
+                  alt="EFA registr a ověření poradce"
                   className="efa-image"
-                />
-              </div>
-              <div className="image-card">
-                <Image
-                  src={efpaVerificationImage}
-                  alt="EFPA ověření"
-                  className="efa-image"
+                  priority
                 />
               </div>
             </div>
@@ -203,13 +224,16 @@ export default function HomePage() {
       </section>
 
       <section id="sluzby" className="section">
-        <div className="container">
+        <div className="container fade-up delay-1">
           <p className="section-label">Služby</p>
           <h2>Oblasti, ve kterých klientům pomáhám.</h2>
 
           <div className="cards-grid services-grid">
-            {services.map((service) => (
-              <article key={service.title} className="service-card">
+            {services.map((service, index) => (
+              <article
+                key={service.title}
+                className={`service-card fade-up delay-${index + 1}`}
+              >
                 <h3>{service.title}</h3>
                 <p>{service.text}</p>
               </article>
@@ -219,21 +243,24 @@ export default function HomePage() {
       </section>
 
       <section id="kalkulacky" className="section">
-        <div className="container">
+        <div className="container fade-up delay-1">
           <div className="section-head">
             <div>
               <p className="section-label">Kalkulačky</p>
               <h2>Praktické výpočty pro schůzky i rychlou orientaci.</h2>
             </div>
             <p className="section-side-text">
-              Na hlavním webu zůstane čistý přehled. Každá kalkulačka má vlastní
-              odbočku, aby byl web přehledný a dobře použitelný i při jednání s klienty.
+              Každá kalkulačka má vlastní odbočku, aby web zůstal přehledný a dobře
+              použitelný i při jednání s klienty.
             </p>
           </div>
 
           <div className="cards-grid three-up">
-            {calculators.map((calculator) => (
-              <article key={calculator.title} className="utility-card">
+            {calculators.map((calculator, index) => (
+              <article
+                key={calculator.title}
+                className={`utility-card fade-up delay-${index + 1}`}
+              >
                 <h3>{calculator.title}</h3>
                 <p>{calculator.text}</p>
                 <Link href={calculator.href} className="text-link">
@@ -246,20 +273,26 @@ export default function HomePage() {
       </section>
 
       <section id="rezervace" className="section">
-        <div className="container">
+        <div className="container fade-up delay-1">
           <div className="booking-panel">
             <div className="booking-copy">
               <p className="section-label">Rezervace</p>
               <h2>Nejrychlejší cesta je rovnou si domluvit termín.</h2>
               <p>
-                Až mi pošleš svůj skutečný rezervační odkaz, napojíme ho sem jako
-                hlavní CTA. Zatím je tato sekce připravená a tlačítko vede na kontakt.
+                Pokud už víte, že chcete něco probrat, vyberte si rovnou termín v
+                rezervačním systému. Je to nejjednodušší způsob, jak se spojit bez
+                zbytečného čekání.
               </p>
             </div>
 
             <div className="booking-actions">
-              <a href="#kontakt" className="btn btn-gold">
-                Zatím přejít na kontakt
+              <a
+                href="https://calendar.app.google/oJTfuFYsEd3QQoyr5"
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-gold"
+              >
+                Otevřít rezervaci
               </a>
             </div>
           </div>
@@ -269,7 +302,7 @@ export default function HomePage() {
       <section id="kontakt" className="section section-last">
         <div className="container">
           <div className="contact-grid">
-            <div className="contact-card">
+            <div className="contact-card fade-up delay-1">
               <p className="section-label">Kontakt</p>
               <h2>Spojme se.</h2>
               <div className="text-stack">
@@ -286,19 +319,28 @@ export default function HomePage() {
               <div className="contact-lines">
                 <p>
                   <strong>E-mail:</strong>{" "}
-                  <a href="mailto:info@svoboda-efa.cz">info@svoboda-efa.cz</a>
+                  <a href="mailto:patrik.svoboda@wmfinance.cz">
+                    patrik.svoboda@wmfinance.cz
+                  </a>
                 </p>
                 <p>
                   <strong>Web:</strong>{" "}
-                  <a href="https://svoboda-efa.cz">svoboda-efa.cz</a>
+                  <a href="https://www.svoboda-efa.cz">www.svoboda-efa.cz</a>
                 </p>
                 <p>
-                  <strong>Působnost:</strong> Vysočina i celá ČR
+                  <strong>Rezervace:</strong>{" "}
+                  <a
+                    href="https://calendar.app.google/oJTfuFYsEd3QQoyr5"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Otevřít kalendář
+                  </a>
                 </p>
               </div>
             </div>
 
-            <div className="contact-card">
+            <div className="contact-card fade-up delay-2">
               <h3>Zanechte na sebe kontakt</h3>
 
               <form className="contact-form">
@@ -326,13 +368,13 @@ export default function HomePage() {
                 </label>
 
                 <button type="button" className="btn btn-gold">
-                  Formulář doplníme ve 2. fázi
+                  Formulář doplníme v další fázi
                 </button>
               </form>
 
               <p className="form-note">
-                Teď je formulář zatím jen vizuálně připravený. Ve druhé fázi ho
-                napojíme na reálné odesílání kontaktů.
+                Formulář je teď vizuálně připravený. V dalším kroku ho napojíme na
+                reálné odesílání kontaktů.
               </p>
             </div>
           </div>
