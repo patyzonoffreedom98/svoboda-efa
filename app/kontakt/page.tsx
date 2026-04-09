@@ -69,7 +69,7 @@ export default function KontaktPage() {
               </div>
               <div className="fact-box">
                 <span className="fact-label">E-mail</span>
-                <strong>info@svoboda-efa.cz</strong>
+                <strong>patrik.svoboda@wmfinance.cz</strong>
               </div>
               <div className="fact-box">
                 <span className="fact-label">Spolupráce</span>
@@ -151,7 +151,7 @@ export default function KontaktPage() {
 
               <div className="side-card">
                 <span>E-mail</span>
-                <strong>info@svoboda-efa.cz</strong>
+                <strong>patrik.svoboda@wmfinance.cz</strong>
               </div>
 
               <div className="side-note">
