@@ -78,7 +78,7 @@ export default function HomePage() {
             <a href="#sluzby">Služby</a>
             <a href="#kalkulacky">Kalkulačky</a>
             <a href="#rezervace">Rezervace</a>
-            <a href="#kontakt">Kontakt</a>
+            <Link href="/kontakt">Kontakt</Link>
           </nav>
 
           <a
@@ -117,9 +117,9 @@ export default function HomePage() {
               >
                 Rezervovat schůzku
               </a>
-              <a href="#kontakt" className="btn btn-dark">
+              <Link href="/kontakt" className="btn btn-dark">
                 Zanechat kontakt
-              </a>
+              </Link>
               <a href="#kalkulacky" className="btn btn-outline">
                 Zobrazit kalkulačky
               </a>
@@ -315,7 +315,8 @@ export default function HomePage() {
                 </p>
                 <p>
                   Nejjednodušší je využít rezervační systém. Pokud zatím nechcete
-                  vybírat termín, můžete zanechat kontakt.
+                  vybírat termín, můžete přejít na samostatnou kontaktní stránku a
+                  zanechat zprávu tam.
                 </p>
               </div>
 
@@ -348,40 +349,36 @@ export default function HomePage() {
             </div>
 
             <div className="contact-card fade-up delay-2">
-              <h3>Zanechte na sebe kontakt</h3>
+              <h3>Kontaktní stránka a rychlá cesta dál</h3>
 
-              <form className="contact-form">
-                <label>
-                  Jméno
-                  <input type="text" placeholder="Vaše jméno" />
-                </label>
+              <div className="text-stack">
+                <p>
+                  Kontaktní formulář je nyní plně funkční na samostatné stránce,
+                  aby byl přehlednější a profesionálnější.
+                </p>
+                <p>
+                  Můžete buď rovnou zanechat zprávu, nebo si rovnou vybrat termín
+                  konzultace v rezervačním systému.
+                </p>
+              </div>
 
-                <label>
-                  E-mail
-                  <input type="email" placeholder="Váš e-mail" />
-                </label>
+              <div className="hero-actions hero-actions-compact">
+                <Link href="/kontakt" className="btn btn-gold">
+                  Otevřít kontaktní stránku
+                </Link>
 
-                <label>
-                  Telefon
-                  <input type="tel" placeholder="Váš telefon" />
-                </label>
-
-                <label>
-                  Zpráva
-                  <textarea
-                    rows={5}
-                    placeholder="Stručně napište, co aktuálně řešíte."
-                  />
-                </label>
-
-                <button type="button" className="btn btn-gold">
-                  Formulář doplníme v další fázi
-                </button>
-              </form>
+                <a
+                  href="https://calendar.app.google/oJTfuFYsEd3QQoyr5"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-outline"
+                >
+                  Otevřít rezervaci
+                </a>
+              </div>
 
               <p className="form-note">
-                Formulář je teď vizuálně připravený. V dalším kroku ho napojíme na
-                reálné odesílání kontaktů.
+                Kontaktní formulář už funguje na samostatné stránce /kontakt.
               </p>
             </div>
           </div>
