@@ -57,127 +57,410 @@ export default function HypotekaPage() {
     }).format(value);
 
   return (
-    <main className="min-h-screen bg-[#0B1220] px-6 py-16 text-white">
-      <div className="mx-auto max-w-5xl">
-        <div className="mb-10">
-          <p className="mb-3 text-sm uppercase tracking-[0.25em] text-[#C6A55C]">
-            Kalkulačka
-          </p>
-          <h1 className="text-4xl font-semibold md:text-5xl">
-            Hypoteční kalkulačka
-          </h1>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-white/75">
-            Orientační výpočet splátky hypotéky, celkově zaplacených úroků a LTV.
-            Výsledek slouží pro rychlou představu, ne jako závazná nabídka banky.
-          </p>
-        </div>
+    <>
+      <main className="hypo-page">
+        <div className="hypo-wrapper">
+          <section className="hero-card">
+            <p className="eyebrow">Kalkulačka hypotéky</p>
+            <h1>Hypoteční úvěr</h1>
+            <p className="hero-text">
+              Hypotéka je dlouhodobý úvěr zajištěný nemovitostí. V praxi obvykle
+              rozhoduje nejen samotná sazba, ale i správně nastavená výše úvěru,
+              splatnost, rezerva a celková finanční stabilita domácnosti.
+            </p>
 
-        <div className="grid gap-8 lg:grid-cols-2">
-          <section className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur">
-            <h2 className="mb-6 text-2xl font-semibold">Zadejte parametry</h2>
-
-            <div className="space-y-5">
-              <div>
-                <label className="mb-2 block text-sm text-white/70">
-                  Hodnota nemovitosti
-                </label>
-                <input
-                  type="number"
-                  value={propertyValue}
-                  onChange={(e) => setPropertyValue(Number(e.target.value))}
-                  className="w-full rounded-2xl border border-white/10 bg-[#111827] px-4 py-3 text-white outline-none transition focus:border-[#C6A55C]"
-                />
+            <div className="hero-facts">
+              <div className="fact-box">
+                <span className="fact-label">Co zjistíte</span>
+                <strong>Měsíční splátku</strong>
               </div>
-
-              <div>
-                <label className="mb-2 block text-sm text-white/70">
-                  Výše hypotéky
-                </label>
-                <input
-                  type="number"
-                  value={loanAmount}
-                  onChange={(e) => setLoanAmount(Number(e.target.value))}
-                  className="w-full rounded-2xl border border-white/10 bg-[#111827] px-4 py-3 text-white outline-none transition focus:border-[#C6A55C]"
-                />
+              <div className="fact-box">
+                <span className="fact-label">Co zjistíte</span>
+                <strong>Celkové úroky</strong>
               </div>
-
-              <div>
-                <label className="mb-2 block text-sm text-white/70">
-                  Úroková sazba p.a. (%)
-                </label>
-                <input
-                  type="number"
-                  step="0.01"
-                  value={interestRate}
-                  onChange={(e) => setInterestRate(Number(e.target.value))}
-                  className="w-full rounded-2xl border border-white/10 bg-[#111827] px-4 py-3 text-white outline-none transition focus:border-[#C6A55C]"
-                />
-              </div>
-
-              <div>
-                <label className="mb-2 block text-sm text-white/70">
-                  Splatnost (roky)
-                </label>
-                <input
-                  type="number"
-                  value={years}
-                  onChange={(e) => setYears(Number(e.target.value))}
-                  className="w-full rounded-2xl border border-white/10 bg-[#111827] px-4 py-3 text-white outline-none transition focus:border-[#C6A55C]"
-                />
+              <div className="fact-box">
+                <span className="fact-label">Co zjistíte</span>
+                <strong>Orientační LTV</strong>
               </div>
             </div>
           </section>
 
-          <section className="rounded-3xl border border-[#C6A55C]/30 bg-[#0F172A] p-6 shadow-2xl">
-            <h2 className="mb-6 text-2xl font-semibold">Výsledek</h2>
+          <section className="calculator-grid">
+            <div className="panel">
+              <h2>Zadejte parametry</h2>
 
-            <div className="grid gap-4">
-              <div className="rounded-2xl bg-white/5 p-5">
-                <p className="text-sm text-white/60">Měsíční splátka</p>
-                <p className="mt-2 text-3xl font-semibold text-[#C6A55C]">
+              <div className="form-grid">
+                <div className="field">
+                  <label>Hodnota nemovitosti</label>
+                  <input
+                    type="number"
+                    value={propertyValue}
+                    onChange={(e) => setPropertyValue(Number(e.target.value))}
+                  />
+                </div>
+
+                <div className="field">
+                  <label>Výše hypotéky</label>
+                  <input
+                    type="number"
+                    value={loanAmount}
+                    onChange={(e) => setLoanAmount(Number(e.target.value))}
+                  />
+                </div>
+
+                <div className="field">
+                  <label>Úroková sazba p.a. (%)</label>
+                  <input
+                    type="number"
+                    step="0.01"
+                    value={interestRate}
+                    onChange={(e) => setInterestRate(Number(e.target.value))}
+                  />
+                </div>
+
+                <div className="field">
+                  <label>Splatnost (roky)</label>
+                  <input
+                    type="number"
+                    value={years}
+                    onChange={(e) => setYears(Number(e.target.value))}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="panel result-panel">
+              <h2>Výsledek kalkulačky</h2>
+
+              <div className="result-main">
+                <p className="result-main-label">Orientační měsíční splátka</p>
+                <p className="result-main-value">
                   {formatCurrency(result.monthlyPayment)}
                 </p>
               </div>
 
-              <div className="rounded-2xl bg-white/5 p-5">
-                <p className="text-sm text-white/60">Celkem zaplaceno</p>
-                <p className="mt-2 text-2xl font-semibold">
-                  {formatCurrency(result.totalPaid)}
-                </p>
+              <div className="result-table">
+                <div className="result-row">
+                  <span>Celkem zaplatíte</span>
+                  <strong>{formatCurrency(result.totalPaid)}</strong>
+                </div>
+
+                <div className="result-row">
+                  <span>Z toho na úrocích</span>
+                  <strong>{formatCurrency(result.totalInterest)}</strong>
+                </div>
+
+                <div className="result-row">
+                  <span>LTV</span>
+                  <strong>{formatPercent(result.ltv)} %</strong>
+                </div>
+
+                <div className="result-row">
+                  <span>Doporučený čistý příjem domácnosti</span>
+                  <strong>{formatCurrency(result.recommendedIncome)}</strong>
+                </div>
               </div>
 
-              <div className="rounded-2xl bg-white/5 p-5">
-                <p className="text-sm text-white/60">Celkem na úrocích</p>
-                <p className="mt-2 text-2xl font-semibold">
-                  {formatCurrency(result.totalInterest)}
-                </p>
-              </div>
+              <p className="note">
+                Výsledek je orientační. Banka při schvalování zohledňuje i další
+                závazky, typ příjmu, počet členů domácnosti, věk žadatelů a vlastní
+                interní scoring.
+              </p>
+            </div>
+          </section>
 
-              <div className="rounded-2xl bg-white/5 p-5">
-                <p className="text-sm text-white/60">LTV</p>
-                <p className="mt-2 text-2xl font-semibold">
-                  {formatPercent(result.ltv)} %
-                </p>
-              </div>
-
-              <div className="rounded-2xl bg-white/5 p-5">
-                <p className="text-sm text-white/60">
-                  Orientačně doporučený čistý měsíční příjem domácnosti
-                </p>
-                <p className="mt-2 text-2xl font-semibold">
-                  {formatCurrency(result.recommendedIncome)}
-                </p>
-              </div>
+          <section className="info-strip">
+            <div className="info-box">
+              <h3>Co je LTV?</h3>
+              <p>
+                LTV ukazuje poměr mezi výší úvěru a hodnotou nemovitosti. Čím nižší
+                LTV, tím obvykle lepší vyjednávací pozice.
+              </p>
             </div>
 
-            <p className="mt-6 text-sm leading-6 text-white/55">
-              Poznámka: doporučený příjem je pouze orientační pomocný údaj. Banka
-              vždy posuzuje i další závazky, počet členů domácnosti, typ příjmu a
-              vlastní scoring.
-            </p>
+            <div className="info-box">
+              <h3>Proč řešit splatnost?</h3>
+              <p>
+                Delší splatnost sníží měsíční splátku, ale zpravidla zvýší celkově
+                zaplacené úroky.
+              </p>
+            </div>
+
+            <div className="info-box">
+              <h3>Co dál po kalkulačce?</h3>
+              <p>
+                Kalkulačka dá rychlý obrázek. Reálné nastavení hypotéky je vždy lepší
+                posuzovat podle konkrétní situace domácnosti.
+              </p>
+            </div>
           </section>
         </div>
-      </div>
-    </main>
+      </main>
+
+      <style jsx>{`
+        .hypo-page {
+          min-height: 100vh;
+          background:
+            radial-gradient(circle at top center, rgba(198, 165, 92, 0.16), transparent 28%),
+            linear-gradient(180deg, #07111f 0%, #091728 100%);
+          padding: 56px 20px 80px;
+          color: #f7f3eb;
+        }
+
+        .hypo-wrapper {
+          max-width: 1180px;
+          margin: 0 auto;
+        }
+
+        .hero-card {
+          background: rgba(10, 19, 33, 0.82);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 28px;
+          padding: 36px;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+          margin-bottom: 28px;
+        }
+
+        .eyebrow {
+          margin: 0 0 12px 0;
+          font-size: 13px;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: #c6a55c;
+          font-weight: 700;
+        }
+
+        h1 {
+          margin: 0;
+          font-size: 48px;
+          line-height: 1.08;
+          font-weight: 700;
+          color: #f8f4ec;
+        }
+
+        .hero-text {
+          margin: 18px 0 0 0;
+          max-width: 850px;
+          font-size: 18px;
+          line-height: 1.75;
+          color: rgba(247, 243, 235, 0.78);
+        }
+
+        .hero-facts {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 16px;
+          margin-top: 26px;
+        }
+
+        .fact-box {
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid rgba(198, 165, 92, 0.2);
+          border-radius: 20px;
+          padding: 18px;
+        }
+
+        .fact-label {
+          display: block;
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 0.14em;
+          color: rgba(247, 243, 235, 0.55);
+          margin-bottom: 8px;
+        }
+
+        .fact-box strong {
+          font-size: 18px;
+          color: #f8f4ec;
+        }
+
+        .calculator-grid {
+          display: grid;
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: 28px;
+        }
+
+        .panel {
+          background: rgba(10, 19, 33, 0.88);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 28px;
+          padding: 30px;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+        }
+
+        .panel h2 {
+          margin: 0 0 22px 0;
+          font-size: 30px;
+          color: #f8f4ec;
+        }
+
+        .form-grid {
+          display: grid;
+          gap: 18px;
+        }
+
+        .field {
+          display: grid;
+          gap: 10px;
+        }
+
+        .field label {
+          font-size: 15px;
+          font-weight: 600;
+          color: rgba(247, 243, 235, 0.78);
+        }
+
+        .field input {
+          width: 100%;
+          box-sizing: border-box;
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          background: #0f1b2d;
+          color: #f8f4ec;
+          border-radius: 16px;
+          padding: 16px 18px;
+          font-size: 17px;
+          outline: none;
+          transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .field input:focus {
+          border-color: #c6a55c;
+          box-shadow: 0 0 0 3px rgba(198, 165, 92, 0.14);
+        }
+
+        .result-panel {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .result-main {
+          background: linear-gradient(135deg, rgba(198, 165, 92, 0.16), rgba(198, 165, 92, 0.05));
+          border: 1px solid rgba(198, 165, 92, 0.25);
+          border-radius: 22px;
+          padding: 24px;
+          margin-bottom: 18px;
+        }
+
+        .result-main-label {
+          margin: 0 0 10px 0;
+          font-size: 14px;
+          color: rgba(247, 243, 235, 0.68);
+        }
+
+        .result-main-value {
+          margin: 0;
+          font-size: 42px;
+          line-height: 1.1;
+          font-weight: 700;
+          color: #e1bf73;
+        }
+
+        .result-table {
+          display: grid;
+          gap: 10px;
+        }
+
+        .result-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 16px;
+          background: rgba(255, 255, 255, 0.04);
+          border-radius: 16px;
+          padding: 16px 18px;
+        }
+
+        .result-row span {
+          font-size: 15px;
+          color: rgba(247, 243, 235, 0.7);
+        }
+
+        .result-row strong {
+          font-size: 18px;
+          color: #f8f4ec;
+          text-align: right;
+        }
+
+        .note {
+          margin: 18px 0 0 0;
+          font-size: 14px;
+          line-height: 1.7;
+          color: rgba(247, 243, 235, 0.58);
+        }
+
+        .info-strip {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 18px;
+          margin-top: 28px;
+        }
+
+        .info-box {
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid rgba(255, 255, 255, 0.07);
+          border-radius: 22px;
+          padding: 22px;
+        }
+
+        .info-box h3 {
+          margin: 0 0 10px 0;
+          font-size: 20px;
+          color: #f8f4ec;
+        }
+
+        .info-box p {
+          margin: 0;
+          font-size: 15px;
+          line-height: 1.7;
+          color: rgba(247, 243, 235, 0.68);
+        }
+
+        @media (max-width: 960px) {
+          h1 {
+            font-size: 38px;
+          }
+
+          .calculator-grid,
+          .hero-facts,
+          .info-strip {
+            grid-template-columns: 1fr;
+          }
+
+          .result-main-value {
+            font-size: 34px;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .hypo-page {
+            padding: 32px 14px 56px;
+          }
+
+          .hero-card,
+          .panel,
+          .info-box {
+            padding: 22px;
+            border-radius: 22px;
+          }
+
+          h1 {
+            font-size: 32px;
+          }
+
+          .panel h2 {
+            font-size: 24px;
+          }
+
+          .result-row {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+
+          .result-row strong {
+            text-align: left;
+          }
+        }
+      `}</style>
+    </>
   );
 }
