@@ -256,18 +256,10 @@ export default function HomePage() {
 
       <section id="kalkulacky" className="section">
         <div className="container fade-up delay-1">
-          <div className="section-head">
-            <div>
-              <p className="section-label">Kalkulačky</p>
-              <h2>Praktické výpočty pro schůzky i rychlou orientaci.</h2>
-            </div>
-            <p className="section-side-text">
-              Každá kalkulačka má vlastní odbočku, aby web zůstal přehledný a dobře
-              použitelný i při jednání s klienty.
-            </p>
-          </div>
+          <p className="section-label">Kalkulačky</p>
+          <h2>Praktické výpočty pro schůzky i rychlou orientaci.</h2>
 
-          <div className="cards-grid three-up">
+          <div className="cards-grid three-up cards-top-gap">
             {calculators.map((calculator, index) => (
               <article
                 key={calculator.title}
