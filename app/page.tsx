@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import portrait from "../ja-bile-pozadi.jpg";
 import efaRegistryImage from "../efa-registr.png";
 import efpaVerificationImage from "../efpa-overeni.png";
 
@@ -89,8 +88,8 @@ export default function HomePage() {
       </header>
 
       <section className="hero">
-        <div className="container hero-grid">
-          <div className="hero-copy">
+        <div className="container hero-grid hero-grid-single">
+          <div className="hero-copy hero-copy-wide">
             <div className="eyebrow">Hypotéky · Investice · Zajištění · DIP</div>
 
             <h1>Plán, který obstojí v číslech i realitě.</h1>
@@ -118,17 +117,6 @@ export default function HomePage() {
               <a href="#kalkulacky" className="btn btn-outline">
                 Zobrazit kalkulačky
               </a>
-            </div>
-          </div>
-
-          <div className="hero-visual">
-            <div className="portrait-card portrait-fly-in">
-              <Image
-                src={portrait}
-                alt="Bc. Patrik Svoboda, EFA"
-                priority
-                className="portrait-image"
-              />
             </div>
           </div>
         </div>
