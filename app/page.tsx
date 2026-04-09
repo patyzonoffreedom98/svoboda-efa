@@ -103,18 +103,12 @@ export default function HomePage() {
 
             <p className="hero-text">
               Pomáhám klientům nastavovat finance s klidem, systémem a dlouhodobou
-              perspektivou. Hypotéka, investice, zajištění i firemní benefity mají
-              dávat smysl dohromady – ne každý zvlášť.
+              perspektivou. Hypotéka, investice, ochrana příjmu i majetku a budování
+              kapitálu mají tvořit jeden celek — srozumitelný, obhajitelný a
+              použitelný v reálném životě.
             </p>
 
-            <ul className="hero-list">
-              <li>Osobní přístup bez nátlaku a bez zbytečné omáčky.</li>
-              <li>Jedna strategie místo nesourodých produktů.</li>
-              <li>Rozhodnutí podložená čísly i souvislostmi.</li>
-              <li>Řešení, která dávají smysl v běžném životě, ne jen na papíře.</li>
-            </ul>
-
-            <div className="hero-actions">
+            <div className="hero-actions hero-actions-compact">
               <a
                 href="https://calendar.app.google/oJTfuFYsEd3QQoyr5"
                 target="_blank"
