@@ -118,7 +118,7 @@ img {
 }
 
 .hero {
-  padding: 28px 0 34px;
+  padding: 28px 0 28px;
   overflow: hidden;
 }
 
@@ -216,23 +216,15 @@ img {
   line-height: 1.82;
 }
 
-.hero-list {
-  margin: 22px 0 0;
-  padding-left: 22px;
-  color: var(--text);
-}
-
-.hero-list li {
-  margin-bottom: 12px;
-  line-height: 1.68;
-  color: var(--muted-strong);
-}
-
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
   margin-top: 26px;
+}
+
+.hero-actions-compact {
+  margin-top: 22px;
 }
 
 .btn {
