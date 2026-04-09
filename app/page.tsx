@@ -353,12 +353,12 @@ export default function HomePage() {
 
               <div className="text-stack">
                 <p>
-                  Kontaktní formulář je nyní plně funkční na samostatné stránce,
-                  aby byl přehlednější a profesionálnější.
+                  Pokud máte dotaz nebo si chcete nezávazně ujasnit další postup,
+                  stačí zanechat zprávu a navážeme podle toho, co právě řešíte.
                 </p>
                 <p>
-                  Můžete buď rovnou zanechat zprávu, nebo si rovnou vybrat termín
-                  konzultace v rezervačním systému.
+                  Můžete zanechat zprávu, nebo si rovnou vybrat termín konzultace v
+                  rezervačním systému.
                 </p>
               </div>
 
@@ -378,7 +378,7 @@ export default function HomePage() {
               </div>
 
               <p className="form-note">
-                Kontaktní formulář už funguje na samostatné stránce /kontakt.
+                Vyberte si variantu, která je pro vás teď nejjednodušší.
               </p>
             </div>
           </div>
