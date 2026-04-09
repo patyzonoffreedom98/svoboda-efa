@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import efaRegistryImage from "../efa-registr.png";
+import portraitImage from "../ja-vyrez.png";
 
 const services = [
   {
@@ -92,8 +93,8 @@ export default function HomePage() {
       </header>
 
       <section className="hero">
-        <div className="container hero-grid hero-grid-single">
-          <div className="hero-copy hero-copy-wide fade-up delay-1">
+        <div className="container hero-grid">
+          <div className="hero-copy fade-up delay-1">
             <div className="eyebrow">
               Hypotéky · Investice · Zajištění · Firemní benefity
             </div>
@@ -128,6 +129,17 @@ export default function HomePage() {
               <a href="#kalkulacky" className="btn btn-outline">
                 Zobrazit kalkulačky
               </a>
+            </div>
+          </div>
+
+          <div className="hero-visual fade-up delay-2">
+            <div className="portrait-wrap">
+              <Image
+                src={portraitImage}
+                alt="Bc. Patrik Svoboda, EFA"
+                priority
+                className="portrait-image"
+              />
             </div>
           </div>
         </div>
