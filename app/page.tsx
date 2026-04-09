@@ -105,7 +105,7 @@ export default function HomePage() {
               Pomáhám klientům nastavovat finance s klidem, systémem a dlouhodobou
               perspektivou. Hypotéka, investice, ochrana příjmu i majetku a budování
               kapitálu mají tvořit jeden celek — srozumitelný, obhajitelný a
-              použitelný v reálném životě.
+              použitelný v každodenním životě.
             </p>
 
             <div className="hero-actions hero-actions-compact">
@@ -156,9 +156,14 @@ export default function HomePage() {
               přehledem a dlouhodobou logikou.
             </p>
             <p>
+              Jsem také celoživotní sportovec a právě sport mě naučil disciplíně,
+              vytrvalosti a dlouhodobému přemýšlení. I díky tomu stavím svoji práci
+              na poctivosti, kontinuitě a důvěře, ne na rychlých zkratkách.
+            </p>
+            <p>
               Vysvětluji věci srozumitelně, bez tlaku, ale zároveň napřímo. Cílem
-              není složitý plán na efekt, ale dobře nastavený systém, který obstojí
-              v reálném životě.
+              není složitý plán na efekt, ale dobře nastavený systém, který dává
+              smysl dlouhodobě i lidsky.
             </p>
           </div>
         </div>
@@ -315,6 +320,10 @@ export default function HomePage() {
               </div>
 
               <div className="contact-lines">
+                <p>
+                  <strong>Telefon:</strong>{" "}
+                  <a href="tel:+420774697755">774 697 755</a>
+                </p>
                 <p>
                   <strong>E-mail:</strong>{" "}
                   <a href="mailto:patrik.svoboda@wmfinance.cz">
