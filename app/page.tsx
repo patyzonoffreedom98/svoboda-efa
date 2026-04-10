@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
 import efaRegistryImage from "../efa-registr.png";
 import portraitImage from "../ja-vyrez.png";
+
+export const metadata: Metadata = {
+  title: "Bc. Patrik Svoboda, EFA | Hypotéky, investice a finanční strategie",
+  description:
+    "Pomáhám klientům s hypotékami, investicemi, rentou a dlouhodobou finanční strategií. Bc. Patrik Svoboda, EFA.",
+};
 
 const services = [
   {
