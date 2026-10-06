@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/kontakt" },
   title: "Kontakt | Bc. Patrik Svoboda, EFA",
   description:
     "Spojme se. Hypotéky, investice, renta i komplexní finanční strategie. Kontaktujte mě a domluvíme další postup.",

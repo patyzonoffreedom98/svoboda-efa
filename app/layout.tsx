@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://svoboda-efa.cz"),
   title: "Bc. Patrik Svoboda, EFA",
   description:
     "Hypotéky, investice, renta a finanční strategie s klidem, systémem a dlouhodobým plánem.",
@@ -18,7 +21,10 @@ export default function RootLayout({
   return (
     <html lang="cs">
       <body>
+        <a href="#main-content" className="skip-link">Přejít na obsah</a>
+        <SiteHeader />
         {children}
+        <SiteFooter />
 
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}

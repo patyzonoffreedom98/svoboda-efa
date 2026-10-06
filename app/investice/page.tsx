@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import CalculatorContact from '@/components/CalculatorContact';
 
 export default function InvesticePage() {
   const [initialDeposit, setInitialDeposit] = useState(100000);
@@ -42,7 +43,7 @@ export default function InvesticePage() {
 
   return (
     <>
-      <main className="invest-page">
+      <main id="main-content" className="invest-page">
         <div className="invest-wrapper">
           <section className="hero-card">
             <p className="eyebrow">Kalkulačka investic</p>
@@ -178,6 +179,7 @@ export default function InvesticePage() {
               </p>
             </div>
           </section>
+          <CalculatorContact topic="Investice" summary={`Počáteční vklad: ${formatCurrency(initialDeposit)}; měsíčně: ${formatCurrency(monthlyDeposit)}; modelový výnos: ${annualReturn} % p.a.; horizont: ${years} let; modelová budoucí hodnota: ${formatCurrency(result.futureValue)}.`} />
         </div>
       </main>
 

@@ -609,3 +609,97 @@ img {
     width: 100%;
   }
 }
+
+/* Consultation and client stories */
+[id] { scroll-margin-top: 108px; }
+a, button, summary, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--gold); outline-offset: 5px; }
+button, select, textarea { font: inherit; }
+button, summary { cursor: pointer; }
+button:disabled { opacity: .65; cursor: wait; }
+.skip-link { position: fixed; top: -100px; left: 12px; z-index: 100; background: var(--gold); color: var(--bg); padding: 14px; border-radius: 8px; }
+.skip-link:focus { top: 10px; }
+.menu-toggle { display: none; border: 1px solid var(--line-gold); border-radius: 12px; color: var(--gold-soft); background: transparent; padding: 12px; }
+.mobile-nav { padding: 0 20px 20px; }
+.mobile-nav[hidden] { display: none; }
+.mobile-nav a { display: block; padding: 14px 0; border-top: 1px solid var(--line); }
+.marketing-hero { padding-top: 64px; }
+.marketing-hero .hero-grid { align-items: center; gap: 36px; }
+.marketing-hero .hero-copy h1 { max-width: 17ch; font-size: clamp(2.6rem, 4.6vw, 4.2rem); line-height: 1.12; }
+.marketing-hero .hero-visual { margin-top: 0; min-height: 0; }
+.marketing-hero .portrait-wrap { width: min(480px, 100%); }
+.marketing-hero .hero-text { max-width: 620px; }
+.gold-text { color: var(--gold-soft); }
+.hero-reassurance { color: var(--muted); font-size: .9rem; line-height: 1.7; margin-top: 20px; }
+.trust-strip { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 18px; border-block: 1px solid var(--line-gold); padding-block: 22px; margin-top: 36px; font-size: .95rem; color: var(--gold-soft); }
+.section h2 { max-width: 22ch; line-height: 1.12; }
+.section-intro { color: var(--muted); line-height: 1.8; max-width: 680px; margin: 22px 0 0; }
+.section-tinted { background: rgba(255,255,255,.018); border-block: 1px solid rgba(255,255,255,.05); }
+.story-card { display: flex; flex-direction: column; padding: 28px; border: 1px solid var(--line-gold); border-radius: 24px; background: var(--panel); }
+.story-number { font-size: 2.8rem; color: var(--gold); opacity: .65; margin-bottom: 24px; }
+.story-card .section-label { font-size: .72rem; line-height: 1.7; letter-spacing: .1em; }
+.story-card h3 { font-size: 1.4rem; line-height: 1.3; margin: 0 0 18px; }
+.story-card > p:not(.section-label) { color: var(--muted); line-height: 1.8; margin: 0 0 24px; }
+.story-card .text-link { margin-top: auto; padding-top: 8px; }
+.steps-list { list-style: none; padding: 0; margin: 32px 0; }
+.step-number { display: block; color: var(--gold); margin-bottom: 22px; font-size: 1.3rem; }
+.consultation-panel { display: flex; gap: 32px; align-items: center; padding: 30px; border: 1px solid var(--line-gold); border-radius: 24px; background: rgba(213,177,92,.06); }
+.consultation-panel h3 { margin: 0; font-size: 1.35rem; }
+.consultation-panel p { color: var(--muted); line-height: 1.8; margin-bottom: 0; max-width: 780px; }
+.consultation-panel .btn { flex-shrink: 0; }
+.faq-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 48px; }
+.faq-item { border-bottom: 1px solid var(--line); padding: 20px 0; }
+.faq-item:first-child { padding-top: 0; }
+.faq-item summary { color: var(--text); font-weight: 700; line-height: 1.6; padding-right: 12px; }
+.faq-item p { color: var(--muted); line-height: 1.85; margin-bottom: 4px; }
+.contact-form select { color: var(--text); background: #132131; border: 1px solid var(--line-strong); padding: 14px 16px; border-radius: 16px; width: 100%; }
+.contact-form textarea { resize: vertical; }
+.contact-form button { border: 0; }
+.field-hint { color: var(--muted); font-size: .85rem; }
+.form-honeypot { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.form-success { color: #a2e7b9; line-height: 1.7; }
+.form-error { color: #ffb1b1; line-height: 1.7; }
+.form-error a { text-decoration: underline; }
+.contact-lines a { overflow-wrap: anywhere; }
+.page-heading { margin: 0 0 40px; max-width: 850px; }
+.page-heading h1, .story-detail h1 { margin: 0; font-size: clamp(2.2rem, 4.5vw, 3.8rem); line-height: 1.12; letter-spacing: -.035em; }
+.story-detail { max-width: 820px; }
+.story-detail > .text-link { margin: 0 0 36px; }
+.story-lead { font-size: 1.2rem; color: var(--muted-strong); line-height: 1.8; margin: 28px 0 40px; }
+.story-section { margin-top: 32px; }
+.story-section h2 { font-size: 1.65rem; max-width: none; line-height: 1.4; }
+.story-section p { line-height: 1.9; color: var(--muted); font-size: 1.05rem; }
+.story-note { margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: .87rem; line-height: 1.7; }
+.calculator-contact { padding: 28px; margin: 32px 0 0; border-radius: 24px; border: 1px solid var(--line-gold); background: rgba(213,177,92,.06); }
+.calculator-contact h2 { font-size: clamp(1.5rem, 3vw, 2rem); max-width: none; line-height: 1.3; }
+.calculator-contact p { color: var(--muted); line-height: 1.8; }
+.site-footer { border-top: 1px solid var(--line); padding: 36px 0; }
+.footer-inner { display: flex; justify-content: space-between; gap: 28px; }
+.site-footer p { color: var(--muted); line-height: 1.7; font-size: .9rem; }
+.footer-links { display: grid; gap: 12px; color: var(--gold-soft); font-size: .9rem; overflow-wrap: anywhere; }
+@media (min-width: 1101px) { .mobile-nav { display: none; } .desktop-nav { gap: 18px; font-size: .92rem; } }
+@media (max-width: 1100px) {
+  .desktop-nav, .header-cta { display: none; }
+  .menu-toggle { display: block; }
+  .marketing-hero .hero-grid { grid-template-columns: minmax(0,1.25fr) minmax(220px,.75fr); }
+  .marketing-hero .hero-copy h1 { font-size: clamp(2.4rem,4.5vw,3.4rem); }
+  .faq-layout { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 820px) {
+  .header-inner { min-height: 72px; gap: 10px; }
+  .brand { font-size: .9rem; white-space: normal; }
+  .marketing-hero { padding-top: 34px; }
+  .marketing-hero .hero-grid { grid-template-columns: 1fr; gap: 10px; }
+  .marketing-hero .hero-copy h1 { font-size: clamp(2.45rem,9.5vw,3.6rem); max-width: 20ch; }
+  .marketing-hero .portrait-wrap { width: min(320px, 80%); }
+  .trust-strip { margin-top: 0; font-size: .8rem; gap: 12px; }
+  .trust-strip span:first-child { width: 100%; }
+  .consultation-panel, .footer-inner { flex-direction: column; align-items: stretch; }
+  .info-card, .service-card, .utility-card, .contact-card, .story-card, .consultation-panel { padding: 24px; border-radius: 22px; }
+  .story-number { margin-bottom: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .fade-up { animation: none; opacity: 1; transform: none; }
+  .btn { transition: none; }
+}
