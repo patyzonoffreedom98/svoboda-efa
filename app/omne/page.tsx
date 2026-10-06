@@ -5,8 +5,8 @@ export default async function Page() {
     <section className="container">
       <h1 className="section-title">O mně</h1>
       <p className="small">
-        Jsem finanční poradce působící na Vysočině. Pomáhám s&nbsp;hypotékami, investicemi a dlouhodobým
-        plánem na rentu – srozumitelně a bez nátlaku. Tady doplníme konkrétní příběh a přístup.
+        Jsem finanční poradce se zázemím v Jihlavě, za klienty pravidelně cestuji po celé ČR. Pomáhám s&nbsp;hypotékami, investicemi a dlouhodobým
+        plánem na rentu – srozumitelně a bez nátlaku. Osobní setkání můžeme spojit s následnou spoluprací online.
       </p>
     </section>
   );

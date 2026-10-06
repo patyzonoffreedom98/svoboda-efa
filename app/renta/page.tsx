@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import CalculatorContact from '@/components/CalculatorContact';
 
 export default function RentaPage() {
   const [targetMonthlyRent, setTargetMonthlyRent] = useState(30000);
@@ -55,7 +56,7 @@ export default function RentaPage() {
 
   return (
     <>
-      <main className="renta-page">
+      <main id="main-content" className="renta-page">
         <div className="renta-wrapper">
           <section className="hero-card">
             <p className="eyebrow">Kalkulačka renty</p>
@@ -209,6 +210,7 @@ export default function RentaPage() {
               </p>
             </div>
           </section>
+          <CalculatorContact topic="Renta" summary={`Cílová měsíční renta: ${formatCurrency(targetMonthlyRent)}; míra čerpání: ${withdrawalRate} %; současné úspory: ${formatCurrency(currentSavings)}; měsíční investice: ${formatCurrency(monthlyInvestment)}; modelový výnos: ${annualReturn} % p.a.`} />
         </div>
       </main>
 

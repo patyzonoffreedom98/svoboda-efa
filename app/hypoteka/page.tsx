@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import CalculatorContact from '@/components/CalculatorContact';
 
 export default function HypotekaPage() {
   const [propertyValue, setPropertyValue] = useState(5000000);
@@ -58,7 +59,7 @@ export default function HypotekaPage() {
 
   return (
     <>
-      <main className="hypo-page">
+      <main id="main-content" className="hypo-page">
         <div className="hypo-wrapper">
           <section className="hero-card">
             <p className="eyebrow">Kalkulačka hypotéky</p>
@@ -194,6 +195,7 @@ export default function HypotekaPage() {
               </p>
             </div>
           </section>
+          <CalculatorContact topic="Hypotéka" summary={`Hodnota nemovitosti: ${formatCurrency(propertyValue)}; výše úvěru: ${formatCurrency(loanAmount)}; sazba: ${interestRate} % p.a.; splatnost: ${years} let; orientační splátka: ${formatCurrency(result.monthlyPayment)}.`} />
         </div>
       </main>
 

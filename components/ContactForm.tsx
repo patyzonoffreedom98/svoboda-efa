@@ -1,132 +1,44 @@
-// components/ContactForm.tsx
 "use client";
-
-import { useState } from "react";
-
-type Status = "idle" | "loading" | "success" | "error";
-
-function ContactForm() {
-  const [status, setStatus] = useState<Status>("idle");
-  const [error, setError] = useState<string | null>(null);
-
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+import { FormEvent, useId, useRef, useState } from "react";
+import { site } from "@/lib/site";
+export default function ContactForm({ initialMessage = "", topic = "Obecný dotaz" }: { initialMessage?: string; topic?: string }) {
+  const id = useId();
+  const busy = useRef(false);
+  const [channel, setChannel] = useState("email");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (busy.current) return;
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const name = String(data.get("name") || "").trim();
+    const contact = String(data.get("contact") || "").trim();
+    if (!name || !contact) { setStatus("error"); return; }
+    busy.current = true;
     setStatus("loading");
-    setError(null);
-
-    const formData = new FormData(event.currentTarget);
-    const name = String(formData.get("name") || "");
-    const email = String(formData.get("email") || "");
-    const message = String(formData.get("message") || "");
-
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email, message }),
+      const response = await fetch("https://formspree.io/f/xjgpddqa", {
+        method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ name, ...(channel === "email" ? { email: contact } : { phone: contact }), message: String(data.get("message") || "").trim(), topic, source: window.location.pathname, _gotcha: String(data.get("website") || "") }),
       });
-
-      let data: any = null;
-      try {
-        data = await res.json();
-      } catch {
-        // odpověď nebyla JSON – ignorujeme
-      }
-
-      if (!res.ok || !data?.ok) {
-        const serverMessage: string | undefined =
-          data?.error ||
-          (res.ok ? undefined : `Server vrátil chybu ${res.status}.`);
-        throw new Error(
-          serverMessage || "Nepodařilo se odeslat formulář."
-        );
-      }
-
+      if (!response.ok) throw new Error("Submission failed");
+      form.reset();
       setStatus("success");
-      (event.target as HTMLFormElement).reset();
-    } catch (err: any) {
-      console.error("ContactForm error:", err);
-      setStatus("error");
-      setError(
-        `Něco se nepovedlo. Zkuste to prosím znovu. (Detail: ${
-          err?.message || "neznámá chyba"
-        })`
-      );
-    }
+    } catch { setStatus("error"); }
+    finally { busy.current = false; }
   }
-
-  return (
-    <form onSubmit={handleSubmit} className="card space-y-4">
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div className="flex flex-col gap-1">
-          <label htmlFor="name" className="text-sm text-gray-300">
-            Jméno a příjmení
-          </label>
-          <input
-            id="name"
-            name="name"
-            required
-            className="input"
-            placeholder="Jan Novák"
-          />
-        </div>
-
-        <div className="flex flex-col gap-1">
-          <label htmlFor="email" className="text-sm text-gray-300">
-            E-mail
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            className="input"
-            placeholder="jan.novak@example.com"
-          />
-        </div>
-      </div>
-
-      <div className="flex flex-col gap-1">
-        <label htmlFor="message" className="text-sm text-gray-300">
-          S čím vám mohu pomoci?
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          required
-          rows={4}
-          className="input min-h-[120px]"
-          placeholder="Stručně popište svou situaci (hypotéka, investice, renta...)"
-        />
-      </div>
-
-      {status === "success" && (
-        <p className="text-sm text-emerald-400">
-          Děkuji, zpráva byla odeslána. Ozvu se vám co nejdříve.
-        </p>
-      )}
-
-      {status === "error" && error && (
-        <p className="text-sm text-red-400 whitespace-pre-line">{error}</p>
-      )}
-
-      <button
-        type="submit"
-        className="btn w-full sm:w-auto"
-        disabled={status === "loading"}
-      >
-        {status === "loading" ? "Odesílám..." : "Odeslat zprávu"}
-      </button>
-
-      <p className="small text-gray-400">
-        Odesláním formuláře souhlasíte se zpracováním osobních údajů za účelem
-        kontaktování ohledně vašeho dotazu.
-      </p>
-    </form>
-  );
+  return <form onSubmit={handleSubmit} className="contact-form" aria-busy={status === "loading"}>
+    <label htmlFor={`${id}-name`}>Vaše jméno<input id={`${id}-name`} name="name" autoComplete="name" required maxLength={120} disabled={status === "loading"} /></label>
+    <label htmlFor={`${id}-channel`}>Jak se vám mám ozvat?<select id={`${id}-channel`} value={channel} disabled={status === "loading"} onChange={event => { setChannel(event.target.value); setStatus("idle"); }}><option value="email">E-mailem</option><option value="phone">Telefonicky</option></select></label>
+    <label htmlFor={`${id}-contact`}>{channel === "email" ? "Váš e-mail" : "Vaše telefonní číslo"}<input key={channel} id={`${id}-contact`} name="contact" type={channel === "email" ? "email" : "tel"} autoComplete={channel === "email" ? "email" : "tel"} required maxLength={200} disabled={status === "loading"} /></label>
+    <label htmlFor={`${id}-message`}>S čím vám mohu pomoci? <span className="field-hint">Nepovinné</span><textarea id={`${id}-message`} name="message" rows={4} maxLength={5000} defaultValue={initialMessage} disabled={status === "loading"} /></label>
+    <div className="form-honeypot" aria-hidden="true"><label htmlFor={`${id}-website`}>Web<input id={`${id}-website`} name="website" tabIndex={-1} autoComplete="off" /></label></div>
+    <button className="btn btn-gold" type="submit" disabled={status === "loading"}>{status === "loading" ? "Odesílám…" : "Odeslat nezávazný dotaz"}</button>
+    <div aria-live="polite" aria-atomic="true">
+      {status === "success" && <p className="form-success" role="status">Děkuji, zpráva byla odeslána. Ozvu se vám do dvou pracovních dnů.</p>}
+      {status === "error" && <p className="form-error" role="alert">Zprávu se nepodařilo odeslat. Zkontrolujte kontakt a zkuste to znovu, nebo mi <a href={site.phoneHref}>zavolejte</a>.</p>}
+    </div>
+    <p className="form-note">Ozvu se do dvou pracovních dnů. Kontaktní údaje použiji k vyřízení vašeho dotazu. Formulář odesílá služba Formspree.</p>
+  </form>;
 }
-
-export default ContactForm;
 export { ContactForm };

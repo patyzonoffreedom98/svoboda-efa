@@ -1,7 +1,10 @@
 import type { MetadataRoute } from "next";
+import { stories } from "@/lib/stories";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
+    ...stories.map(story => ({ url: `https://svoboda-efa.cz/pribehy/${story.slug}`, changeFrequency: "monthly" as const, priority: 0.7 })),
+    { url: "https://svoboda-efa.cz/sluzby/hypoteky", changeFrequency: "monthly", priority: 0.9 },
     {
       url: "https://svoboda-efa.cz",
       lastModified: new Date(),

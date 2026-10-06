@@ -1,0 +1,182 @@
+/* Quiet editorial direction: navy, warm paper and restrained champagne. */
+body { background: #0b1926; }
+.site-header { background: rgba(11,25,38,.94); }
+.header-inner { min-height: 88px; }
+.brand { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; font-size: 1.2rem; }
+.desktop-nav { font-size: .85rem; }
+.header-cta, .btn { border-radius: 4px; box-shadow: none; font-size: .9rem; }
+.btn-gold { background: #d8bb7c; color: #12212d; box-shadow: none; }
+.btn-outline { background: transparent; border-color: #70808c; }
+.header-cta { background: transparent; }
+.section h2, .page-heading h1, .story-detail h1 { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; letter-spacing: -.035em; line-height: 1.12; }
+.editorial-home .section { padding: 100px 0; }
+.editorial-home .section h2 { max-width: 21ch; font-size: clamp(2.3rem,4vw,3.5rem); }
+.editorial-home .section-label, .editorial-home .eyebrow { font-size: .7rem; letter-spacing: .21em; font-weight: 500; }
+.editorial-home .section-intro { max-width: 640px; margin-top: 24px; line-height: 1.8; }
+.editorial-home .marketing-hero { position: relative; padding: 68px 0 0; background: radial-gradient(ellipse at 83% 48%,#344048 0,transparent 48%),#0b1926; }
+.editorial-home .hero-grid { grid-template-columns: 1.15fr 1fr; gap: 40px; align-items: center; }
+.editorial-home .hero-copy { position: relative; z-index: 2; padding: 0 0 40px; }
+.editorial-home .hero-copy h1 { font-family: Georgia,'Times New Roman',serif; font-size: clamp(3rem,5.2vw,4.8rem); font-weight: 400; line-height: 1.08; letter-spacing: -.045em; max-width: 14ch; }
+.editorial-home .gold-text { color: #d8bb7c; background: none; -webkit-text-fill-color: currentColor; font-style: italic; }
+.editorial-home .hero-text { font-size: 1rem; line-height: 1.85; max-width: 505px; margin-top: 30px; color: #c7cdd2; }
+.editorial-home .hero-reassurance { font-size: .76rem; margin-top: 20px; line-height: 1.8; }
+.editorial-home .hero-visual { position: relative; margin: 0; padding: 0; align-self: end; align-items: end; min-height: 0; }
+.editorial-home .portrait-wrap { width: 100%; }
+.editorial-home .portrait-wrap::after { display: none; }
+.editorial-home .portrait-image { max-height: 620px; filter: none; object-position: bottom; }
+.portrait-caption { position: absolute; z-index: 3; bottom: 45px; right: 0; font-family: Georgia,serif; font-style: italic; font-size: 1.15rem; line-height: 1.5; color: #eddfc2; text-shadow: 0 2px 12px #0b1926; }
+.editorial-home .trust-strip { border: 0; border-top: 1px solid #ffffff20; border-radius: 0; background: none; margin-top: 0; padding: 24px 0; font-size: .78rem; letter-spacing: .035em; box-shadow: none; justify-content: space-between; }
+.editorial-home .paper-section { background: #f0eee7; color: #162837; --text: #162837; --muted: #4f5c65; --muted-strong: #384a56; --gold: #7b5b25; --gold-soft: #715522; }
+.editorial-home .paper-section p { color: #4f5c65; }
+.editorial-home .paper-section .section-label { color: #7b5b25; }
+.editorial-home .services-grid { gap: 0 64px; margin-top: 55px; }
+.editorial-home .service-card { position: relative; padding: 30px 0 34px 58px; background: none; border: 0; border-top: 1px solid #16283730; border-radius: 0; box-shadow: none; }
+.service-index { position: absolute; left: 0; top: 35px; color: #927748; font-size: .75rem; letter-spacing: .06em; }
+.editorial-home .service-card h3 { font-size: 1.22rem; font-weight: 500; letter-spacing: -.025em; }
+.editorial-home .service-card p { font-size: .95rem; line-height: 1.85; }
+.editorial-home .text-link { font-size: .88rem; font-weight: 500; padding-bottom: 5px; }
+.editorial-home .section-tinted { background: #102230; border: 0; }
+.story-showcase { position: relative; isolation: isolate; margin-top: 45px; overflow: hidden; background: #13232d; }
+.story-landscape { object-fit: cover; object-position: center; z-index: -2; }
+.story-showcase::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg,rgba(5,16,25,.97),rgba(5,16,25,.85) 40%,rgba(5,16,25,.14)),linear-gradient(0deg,rgba(5,16,25,.85),transparent 65%); z-index: -1; }
+.story-slides { display: grid; padding: 64px 64px 38px; }
+.story-slide { grid-area: 1/1; opacity: 0; visibility: hidden; transform: translateY(12px); transition: opacity .65s ease,transform .65s ease,visibility .65s; max-width: 620px; }
+.story-slide.is-active { opacity: 1; visibility: visible; transform: translateY(0); }
+.story-slide h3 { font-family: Georgia,serif; font-weight: 400; font-size: clamp(1.9rem,3.3vw,2.9rem); line-height: 1.16; letter-spacing: -.025em; margin: 20px 0 24px; }
+.story-summary { max-width: 510px; color: #dddeda; line-height: 1.85; font-size: .97rem; }
+.story-read { display: inline-flex; align-items: center; gap: 32px; margin-top: 20px; color: #e5cc94; border-bottom: 1px solid #d8bb7c77; padding-bottom: 12px; font-size: .9rem; }
+.story-read span { font-size: 1.4rem; }
+.story-controls { display: flex; gap: 25px; justify-content: space-between; align-items: center; padding: 0 64px 52px; }
+.story-selectors, .story-buttons { display: flex; gap: 14px; align-items: center; }
+.story-controls button { cursor: pointer; background: none; color: #e9e5dd; border: 0; min-height: 44px; padding: 8px; font: inherit; font-size: .75rem; }
+.story-selectors button { width: 60px; text-align: left; color: #bac1c7; }
+.story-selectors button[aria-pressed=true] { color: #efd49b; }
+.story-progress { display: block; height: 2px; width: 100%; background: #ffffff40; margin-top: 9px; }
+[aria-pressed=true] .story-progress { background: #d8bb7c; }
+.story-buttons button:not(:first-child) { font-size: 1.5rem; }
+.landscape-note { position: absolute; bottom: 12px; right: 20px; font-size: .62rem; color: #d4d6d4; }
+.editorial-home .steps-list { gap: 30px; margin-top: 55px; }
+.editorial-home .info-card { background: none; padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+.editorial-home .step-number { font-family: Georgia,serif; font-weight: 400; font-size: 2.8rem; color: #d8bb7c; border: 0; border-radius: 0; background: none; width: auto; height: auto; display: block; padding-bottom: 24px; margin-bottom: 25px; border-bottom: 1px solid #ffffff29; }
+.editorial-home .info-card h3 { font-size: 1.08rem; line-height: 1.5; font-weight: 500; }
+.editorial-home .info-card p { font-size: .9rem; line-height: 1.85; }
+.editorial-home .consultation-panel { border: 0; border-left: 2px solid #c3a16b; border-radius: 0; box-shadow: none; padding: 18px 0 18px 30px; background: none; margin-top: 60px; }
+.editorial-home .consultation-panel h3 { font-weight: 400; font-size: 1.25rem; }
+.editorial-home .consultation-panel p { font-size: .93rem; }
+.editorial-home .two-column-block { gap: 90px; align-items: center; }
+.editorial-home .image-card { background: #e6e2d8; border: 0; border-radius: 0; box-shadow: none; padding: 32px; }
+.editorial-home .efa-image { border-radius: 0; mix-blend-mode: multiply; }
+.editorial-home .text-stack { margin-top: 30px; }
+.editorial-home .text-stack p { font-size: 1rem; line-height: 1.9; }
+.editorial-home .utility-card { padding: 30px 0; border: 0; border-top: 1px solid #ffffff29; border-radius: 0; background: none; box-shadow: none; }
+.editorial-home .utility-card h3 { font-size: 1.2rem; font-weight: 400; }
+.editorial-home .utility-card p { font-size: .94rem; }
+.editorial-home .faq-item { padding: 24px 0; }
+.editorial-home .faq-item summary { font-weight: 400; }
+.editorial-home .contact-card { background: none; border: 0; box-shadow: none; border-radius: 0; padding: 0; }
+.editorial-home .contact-grid { gap: 100px; }
+.editorial-home .contact-lines { margin: 32px 0; }
+.editorial-home .contact-lines p:first-child { font-family: Georgia,serif; font-size: 2rem; }
+.editorial-home .contact-card h3 { font-weight: 400; font-size: 1.35rem; }
+.contact-form input, .contact-form select, .contact-form textarea { border-radius: 3px; background: #132532; }
+.editorial-home .section-last { padding-bottom: 110px; }
+@media (max-width:1100px) {
+ .editorial-home .hero-grid { grid-template-columns: 1.15fr 1fr; gap: 20px; }
+ .editorial-home .hero-copy h1 { font-size: clamp(2.8rem,5vw,4rem); }
+ .editorial-home .two-column-block, .editorial-home .contact-grid { gap: 40px; }
+ .editorial-home .steps-list { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 40px; }
+}
+@media (max-width:820px) {
+ .editorial-home .section { padding: 65px 0; }
+ .editorial-home .marketing-hero { padding-top: 42px; }
+ .editorial-home .hero-grid { grid-template-columns: 1fr; }
+ .editorial-home .hero-copy { padding-bottom: 0; }
+ .editorial-home .hero-copy h1 { font-size: clamp(2.7rem,9vw,4.3rem); max-width: 16ch; }
+ .editorial-home .hero-text { margin-top: 24px; }
+ .editorial-home .hero-visual { width: 100%; margin-top: 5px; }
+ .editorial-home .portrait-wrap { width: min(370px,85%); }
+ .portrait-caption { right: 4%; bottom: 28px; font-size: 1rem; }
+ .editorial-home .trust-strip { justify-content: flex-start; gap: 13px 24px; }
+ .editorial-home .trust-strip span:first-child { width: 100%; }
+ .editorial-home .services-grid { gap: 0; margin-top: 35px; grid-template-columns: 1fr; }
+ .editorial-home .service-card { padding-left: 43px; }
+ .story-slides { padding: 35px 25px 24px; }
+ .story-slide h3 { font-size: 2rem; }
+ .story-showcase::before { background: linear-gradient(90deg,#051019ed,#051019ad),linear-gradient(0deg,#051019e6,transparent); }
+ .story-controls { padding: 0 18px 40px; gap: 8px; flex-wrap: wrap; }
+ .story-selectors { gap: 5px; }
+ .story-selectors button { width: 44px; }
+ .story-buttons { gap: 5px; }
+ .editorial-home .two-column-block, .editorial-home .contact-grid { grid-template-columns: 1fr; gap: 45px; }
+ .editorial-home .image-card { padding: 22px; }
+ .editorial-home .utility-card { padding: 24px 0; }
+ .editorial-home .consultation-panel { padding-left: 22px; margin-top: 40px; }
+ .editorial-home .section-last { padding-bottom: 65px; }
+}
+@media (max-width:480px) {
+ .editorial-home .steps-list { grid-template-columns: 1fr; gap: 28px; }
+ .editorial-home .step-number { font-size: 2rem; padding-bottom: 14px; margin-bottom: 18px; }
+}
+@media (prefers-reduced-motion:reduce) { .story-slide { transition: none; transform: none; } }
+
+/* Personal brand and final homepage refinements. */
+.brand { display: inline-flex; align-items: center; gap: 14px; }
+.brand-monogram { width: 30px; height: 49px; object-fit: contain; filter: invert(1); mix-blend-mode: screen; flex-shrink: 0; }
+.editorial-home .marketing-hero { padding-top: 36px; }
+.editorial-home .hero-copy { align-self: start; padding-top: 12px; }
+.story-landscape { opacity: 0; transition: opacity .8s ease; }
+.story-landscape.is-active { opacity: 1; }
+.site-footer .legal-details { font-size: .76rem; line-height: 1.9; color: #aeb8c1; margin-top: 22px; }
+.legal-details a { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width:820px) {
+ .brand { gap: 10px; }
+ .brand-monogram { width: 23px; height: 38px; }
+ .editorial-home .marketing-hero { padding-top: 24px; }
+ .editorial-home .hero-copy { padding-top: 0; }
+}
+@media (prefers-reduced-motion:reduce) { .story-landscape { transition: none; } }
+
+/* Employer benefit comparison, kept distinct from the real case narrative. */
+.benefit-comparison { margin: 52px -32px 42px; padding: clamp(24px,4vw,48px); color: #172b39; background: #f0eee7; }
+.benefit-comparison .section-label { color: #765a2a; font-size: .69rem; letter-spacing: .17em; }
+.benefit-comparison h2 { font-size: clamp(2rem,4vw,2.65rem); max-width: none; }
+.benefit-intro { font-size: .98rem; line-height: 1.8; color: #4d5c64; }
+.benefit-options { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 32px 0 24px; }
+.benefit-option { padding: 26px; border-top: 2px solid #172b3940; background: #e6e4dc; }
+.benefit-option-accent { background: #102431; color: #f4eee0; border-color: #bf9f65; }
+.benefit-option h3 { font-size: 1.06rem; font-weight: 500; margin: 0 0 8px; }
+.benefit-option-note { margin: 0; font-size: .77rem; opacity: .85; }
+.benefit-option dl { margin: 28px 0 20px; }
+.benefit-option dt { font-size: .77rem; margin: 22px 0 6px; }
+.benefit-option dd { font-family: Georgia,serif; font-size: 2.15rem; margin: 0; letter-spacing: -.04em; }
+.benefit-option-accent dd { color: #e4c791; }
+.benefit-availability { font-size: .82rem; line-height: 1.65; margin: 0; }
+.benefit-monthly-result { font-size: .96rem; line-height: 1.8; }
+.benefit-savings { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; border-block: 1px solid #172b392b; padding: 28px 0; margin-top: 30px; }
+.benefit-savings span { display: block; font-size: .75rem; line-height: 1.6; color: #52616a; }
+.benefit-savings strong { display: block; margin-top: 9px; font-family: Georgia,serif; font-weight: 400; font-size: clamp(1.8rem,3.5vw,2.65rem); letter-spacing: -.045em; color: #755623; }
+.benefit-assumption { color: #52616a; font-size: .8rem; line-height: 1.75; }
+.benefit-table-wrap { overflow-x: auto; margin: 30px 0 20px; }
+.benefit-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.benefit-table caption { text-align: left; font-size: 1.06rem; margin-bottom: 16px; }
+.benefit-table th, .benefit-table td { text-align: right; padding: 15px 12px; border-bottom: 1px solid #172b3926; vertical-align: top; }
+.benefit-table th:first-child { text-align: left; padding-left: 0; font-weight: 400; width: 40%; }
+.benefit-table th:last-child, .benefit-table td:last-child { padding-right: 0; }
+.benefit-table thead th { font-size: .75rem; font-weight: 500; color: #53616a; }
+.benefit-table td { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.benefit-table small { display: block; margin-top: 5px; font-size: .67rem; white-space: normal; color: #59666e; line-height: 1.4; }
+.benefit-details { margin-top: 26px; border-top: 1px solid #172b3933; padding-top: 22px; }
+.benefit-details summary { cursor: pointer; font-size: .92rem; line-height: 1.6; }
+.benefit-details h3 { margin: 28px 0 10px; font-size: .94rem; }
+.benefit-details p { font-size: .85rem; line-height: 1.85; color: #465760; }
+.benefit-sources { margin: 12px 0 0; padding-left: 18px; font-size: .8rem; line-height: 1.9; }
+.benefit-sources a { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width:900px) { .benefit-comparison { margin-inline: 0; } }
+@media (max-width:580px) {
+ .benefit-options { grid-template-columns: 1fr; gap: 18px; }
+ .benefit-option { padding: 22px; }
+ .benefit-savings { grid-template-columns: 1fr; gap: 25px; }
+ .benefit-table { min-width: 330px; }
+ .benefit-comparison { padding: 24px 20px; }
+ .story-selectors button { width: 42px; }
+}

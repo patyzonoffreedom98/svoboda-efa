@@ -45,8 +45,9 @@ export default function EfaPage() {
             </p>
 
             <p>
-              EFA titulem disponuje zhruba <strong>1&nbsp;%</strong> poradců u nás.
-              Na Vysočině je to aktuálně pouze <strong>8 poradců</strong>.
+              Držitelé certifikace musí průběžně plnit požadavky na odborné vzdělávání,
+              dodržovat etický kodex EFPA a obnovovat členství. Pro mě je to závazek
+              každý rok investovat čas i prostředky do profesního rozvoje.
             </p>
           </div>
         </div>
