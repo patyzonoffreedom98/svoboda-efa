@@ -6,7 +6,7 @@ import efaRegistryImage from "../efa-registr.png";
 import ContactForm from "@/components/ContactForm";
 import ContactActions from "@/components/ContactActions";
 import ConsultationFaq from "@/components/ConsultationFaq";
-import { stories } from "@/lib/stories";
+import StoryCarousel from "@/components/StoryCarousel";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -24,11 +24,11 @@ const steps = [
   { title: "Nejdřív se poznáme", text: "Během 30–60 minut probereme vaši situaci a očekávání. Bezplatně, bez podpisů a bez výpovědí smluv." },
   { title: "Připravím srozumitelný plán", text: "Propojím cíle s vaším rozpočtem. Vysvětlím možnosti, náklady i rizika, abyste se mohli rozhodnout." },
   { title: "Pomohu s vyřízením", text: "Po domluvě provedu dalšími kroky, přípravou podkladů a komunikací s finančními institucemi." },
-  { title: "Zůstaneme v kontaktu", text: "Podle domluveného rozsahu péče se k plánu vracíme a upravujeme ho při změnách příjmů, rodiny či potřeb." },
+  { title: "Zůstaneme v kontaktu", text: "Plán průběžně aktualizujeme. Řeším za vás komunikaci s institucemi, výpovědi i hlášení pojistných událostí. Stačí dodat potřebné podklady; když je potřeba váš podpis či rozhodnutí, provedu vás dalším krokem." },
 ];
 
 export default function HomePage() {
-  return <main id="main-content" className="site-shell">
+  return <main id="main-content" className="site-shell editorial-home">
     <section className="hero marketing-hero">
       <div className="container hero-grid">
         <div className="hero-copy fade-up">
@@ -38,23 +38,21 @@ export default function HomePage() {
           <ContactActions />
           <p className="hero-reassurance">První konzultace 30–60 minut · bezplatně · osobně i online</p>
         </div>
-        <div className="hero-visual fade-up delay-1"><div className="portrait-wrap"><Image src={portraitImage} alt="Bc. Patrik Svoboda, EFA — finanční poradce" priority sizes="(max-width: 1100px) 90vw, 480px" className="portrait-image" /></div></div>
+        <div className="hero-visual fade-up delay-1"><span className="portrait-caption">Osobně. Srozumitelně.<br />Dlouhodobě.</span><div className="portrait-wrap"><Image src={portraitImage} alt="Bc. Patrik Svoboda, EFA — finanční poradce" priority sizes="(max-width: 1100px) 90vw, 480px" className="portrait-image" /></div></div>
       </div>
       <div className="container trust-strip"><span>Bc. Patrik Svoboda, EFA</span><span>Plán podle vaší situace</span><span>Pomoc i po sjednání</span></div>
     </section>
 
-    <section id="sluzby" className="section"><div className="container">
+    <section id="sluzby" className="section paper-section"><div className="container">
       <p className="section-label">S čím vám pomohu</p><h2>Začneme tím, co právě potřebujete.</h2>
       <p className="section-intro">Můžeme řešit jednu konkrétní věc i dlouhodobý plán. Rozsah spolupráce domluvíme společně.</p>
-      <div className="cards-grid services-grid">{services.map(service => <article key={service.title} className="service-card"><h3>{service.title}</h3><p>{service.text}</p><Link href={service.href} className="text-link">{service.cta} →</Link></article>)}</div>
+      <div className="cards-grid services-grid">{services.map((service, index) => <article key={service.title} className="service-card"><span className="service-index" aria-hidden="true">0{index + 1}</span><h3>{service.title}</h3><p>{service.text}</p><Link href={service.href} className="text-link">{service.cta} →</Link></article>)}</div>
     </div></section>
 
     <section id="pribehy" className="section section-tinted"><div className="container">
       <p className="section-label">Příběhy z praxe</p><h2>Konkrétní situace. Konkrétní pomoc.</h2>
       <p className="section-intro">Tři anonymizované případy z mé praxe. Od prvního rozhovoru až po péči v dalších letech.</p>
-      <div className="cards-grid three-up cards-top-gap">{stories.map((story, index) => <article className="story-card" key={story.slug}>
-        <span className="story-number" aria-hidden="true">0{index + 1}</span><p className="section-label">{story.category}</p><h3>{story.title}</h3><p>{story.summary}</p><Link href={`/pribehy/${story.slug}`} className="text-link">Přečíst celý příběh →</Link>
-      </article>)}</div>
+      <StoryCarousel />
     </div></section>
 
     <section id="spoluprace" className="section"><div className="container">
@@ -63,7 +61,7 @@ export default function HomePage() {
       <div className="consultation-panel"><div><h3>Na první schůzku můžete přijít i bez podkladů.</h3><p>Projdeme příjmy, výdaje, rodinnou situaci a to, čeho chcete dosáhnout. Podklady mohou pomoci, ale jejich shánění nemusí prvnímu rozhovoru předcházet.</p></div><a className="btn btn-gold" href={site.booking} target="_blank" rel="noreferrer">Vybrat termín</a></div>
     </div></section>
 
-    <section id="o-mne" className="section"><div className="container two-column-block">
+    <section id="o-mne" className="section paper-section"><div className="container two-column-block">
       <div><p className="section-label">Váš poradce</p><h2>Odbornost, kterou využijete v běžném životě.</h2><div className="text-stack">
         <p>Jsem Patrik Svoboda, rodilý Jihlavák a finanční poradce s certifikací EFA. Pomáhám rodinám i podnikatelům zorientovat se ve financích a rozhodovat se s přehledem.</p>
         <p>Vysvětluji, ptám se a hledám řešení v souvislostech. Záleží mi na tom, abyste rozuměli tomu, co navrhuji, kolik to stojí a jaká jsou rizika.</p>
