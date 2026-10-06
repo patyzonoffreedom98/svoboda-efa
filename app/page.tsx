@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import portraitImage from "../ja-vyrez.png";
+import portraitImage from "../public/portrait.webp";
 import efaRegistryImage from "../efa-registr.png";
 import ContactForm from "@/components/ContactForm";
 import ContactActions from "@/components/ContactActions";
@@ -11,7 +11,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Finanční poradce Jihlava | Bc. Patrik Svoboda, EFA",
-  description: "Hypotéky, investice a ochrana příjmu v Jihlavě, na Vysočině i online. Osobní přístup a dlouhodobá péče. Úvodní konzultace 30–60 minut bezplatně.",
+  description: "Hypotéky, investice a ochrana příjmu. Zázemí v Jihlavě, osobní schůzky po domluvě po celé ČR i online. Osobní přístup a dlouhodobá péče. Úvodní konzultace 30–60 minut bezplatně.",
   alternates: { canonical: "/" },
 };
 const services = [
@@ -32,7 +32,7 @@ export default function HomePage() {
     <section className="hero marketing-hero">
       <div className="container hero-grid">
         <div className="hero-copy fade-up">
-          <p className="eyebrow">Jihlava · Vysočina · online</p>
+          <p className="eyebrow">Zázemí v Jihlavě · za klienty po celé ČR</p>
           <h1>Vaše finance.<br />Jasný plán.<br /><span className="gold-text">Dlouhodobá péče.</span></h1>
           <p className="hero-text">Pomohu vám s hypotékou, investicemi i ochranou příjmu. Začneme tím, co právě řešíte, a společně nastavíme další kroky tak, aby dávaly smysl vašemu životu i rozpočtu.</p>
           <ContactActions />
@@ -40,7 +40,6 @@ export default function HomePage() {
         </div>
         <div className="hero-visual fade-up delay-1"><span className="portrait-caption">Osobně. Srozumitelně.<br />Dlouhodobě.</span><div className="portrait-wrap"><Image src={portraitImage} alt="Bc. Patrik Svoboda, EFA — finanční poradce" priority sizes="(max-width: 1100px) 90vw, 480px" className="portrait-image" /></div></div>
       </div>
-      <div className="container trust-strip"><span>Bc. Patrik Svoboda, EFA</span><span>Plán podle vaší situace</span><span>Pomoc i po sjednání</span></div>
     </section>
 
     <section id="sluzby" className="section paper-section"><div className="container">
@@ -62,12 +61,12 @@ export default function HomePage() {
     </div></section>
 
     <section id="o-mne" className="section paper-section"><div className="container two-column-block">
-      <div><p className="section-label">Váš poradce</p><h2>Odbornost, kterou využijete v běžném životě.</h2><div className="text-stack">
-        <p>Jsem Patrik Svoboda, rodilý Jihlavák a finanční poradce s certifikací EFA. Pomáhám rodinám i podnikatelům zorientovat se ve financích a rozhodovat se s přehledem.</p>
-        <p>Vysvětluji, ptám se a hledám řešení v souvislostech. Záleží mi na tom, abyste rozuměli tomu, co navrhuji, kolik to stojí a jaká jsou rizika.</p>
-        <p>Jsem také celoživotní sportovec. Disciplínu a vytrvalost přenáším i do práce: domluveným plánem spolupráce teprve začíná.</p>
+      <div><p className="section-label">Váš poradce</p><h2>Zkušenosti z praxe. Odbornost nad rámec běžných zkoušek.</h2><div className="text-stack">
+        <p>Jsem Patrik Svoboda, rodilý Jihlavák. Více než pět let pomáhám rodinám a podnikatelům s financemi a dlouhodobě pečuji přibližně o stovku klientů. Zázemí mám v Jihlavě, ale za klienty pravidelně cestuji — často do Brna, také do Prahy, Tábora a Prostějova.</p>
+        <p>Jsem držitelem evropské certifikace EFA (European Financial Advisor). Její získání zahrnuje písemnou zkoušku i praktickou obhajobu případové studie před komisí. Propojuje investice, financování, pojištění a další oblasti finančního plánování — přesně tak, jak se potkávají ve vašem životě.</p>
+        <p>Udržením certifikace se zavazuji k průběžnému odbornému vzdělávání a dodržování etického kodexu EFPA. Každý rok věnuji dalšímu rozvoji čas i prostředky, abych vám dokázal srozumitelně vysvětlit možnosti, náklady a rizika a pomoci rozhodovat se s přehledem.</p>
       </div></div>
-      <div id="efa" className="image-card"><Image src={efaRegistryImage} alt="Profesní certifikace a registr EFA — Patrik Svoboda" className="efa-image" sizes="(max-width: 1100px) 90vw, 460px" /><p className="form-note">EFA — European Financial Advisor. Odborná kvalifikace v oblasti finančního plánování a poradenství.</p><a href="https://www.efpa.cz/" target="_blank" rel="noreferrer" className="text-link">Více o certifikaci EFPA →</a></div>
+      <div id="efa" className="image-card"><Image src={efaRegistryImage} alt="Profesní certifikace a registr EFA — Patrik Svoboda" className="efa-image" sizes="(max-width: 1100px) 90vw, 460px" /><p className="form-note">EFA — European Financial Advisor. Evropská certifikace ověřující znalosti i jejich praktické využití při finančním plánování.</p><a href="https://efpa.cz/poradci" target="_blank" rel="noreferrer" className="text-link">Více o certifikaci EFPA →</a></div>
     </div></section>
 
     <section id="kalkulacky" className="section"><div className="container"><p className="section-label">Pro první představu</p><h2>Spočítejte si svůj další krok.</h2>

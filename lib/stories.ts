@@ -1,6 +1,7 @@
 export type Story = {
   slug: string;
   category: string;
+  image: string;
   title: string;
   summary: string;
   outcome: string;
@@ -11,6 +12,7 @@ export type Story = {
 export const stories: Story[] = [
   {
     slug: "vlastni-bydleni-pro-rodinu",
+    image: "/klid-domova.webp",
     category: "Hypotéky · následná péče",
     title: "Vlastní bydlení pro rodinu. A později chalupa rodičů bez zástavy.",
     summary: "Dva starší úvěry a nedostatek vlastních prostředků komplikovaly koupi bytu. Společný plán pomohl vyřešit financování i pozdější uvolnění nemovitosti rodičů.",
@@ -32,6 +34,7 @@ export const stories: Story[] = [
   },
   {
     slug: "duvera-v-investicni-plan",
+    image: "/investicni-plan.webp",
     category: "Investice · čtyři roky spolupráce",
     title: "Od špatné zkušenosti k důvěře ve vlastní investiční plán.",
     summary: "Podnikatel s několikamilionovými úsporami se po předchozí zkušenosti investování obával. Začali jsme vysvětlováním, šesti schůzkami a menší částkou.",
@@ -56,6 +59,7 @@ export const stories: Story[] = [
   },
   {
     slug: "pomoc-pri-pojistne-udalosti",
+    image: "/ochrana-rodiny.webp",
     category: "Pojištění · pomoc při plnění",
     title: "Pojišťovna plnění zamítla. Pomohla příprava a odvolání.",
     summary: "Dlouhodobá pracovní neschopnost zasáhla příjem rodiny. Při sporu o zdravotní dotazník jsem doložil původní odpovědi a vedl odvolání až k vyplacení plnění.",

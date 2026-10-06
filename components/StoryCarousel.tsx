@@ -38,7 +38,7 @@ export default function StoryCarousel() {
   return <div ref={root} className="story-showcase" role="region" aria-roledescription="karusel" aria-label="Příběhy klientů"
     onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
     onFocusCapture={() => setFocused(true)} onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false); }}>
-    <Image src="/klid-domova.webp" alt="" fill sizes="(max-width: 1200px) 100vw, 1180px" className="story-landscape" />
+    {stories.map((story, index) => <Image key={story.slug} src={story.image} alt="" fill sizes="(max-width: 1200px) 100vw, 1180px" className={`story-landscape${active === index ? " is-active" : ""}`} />)}
     <div className="story-slides" aria-live={paused ? "polite" : "off"}>
       {stories.map((story, index) => <article className={`story-slide${active === index ? " is-active" : ""}`} key={story.slug}
         aria-hidden={active !== index} inert={active !== index} role="group" aria-roledescription="snímek" aria-label={`${index + 1} ze ${stories.length}`}>

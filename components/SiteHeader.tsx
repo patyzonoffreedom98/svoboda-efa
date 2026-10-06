@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { site } from "@/lib/site";
 const links = [["/#sluzby", "Služby"], ["/#pribehy", "Příběhy z praxe"], ["/#spoluprace", "Spolupráce"], ["/#o-mne", "O mně"], ["/kontakt", "Kontakt"]];
@@ -7,7 +8,7 @@ export default function SiteHeader() {
   const [open, setOpen] = useState(false);
   return <header className="site-header">
     <div className="container header-inner">
-      <Link href="/" className="brand" onClick={() => setOpen(false)}>{site.name}</Link>
+      <Link href="/" className="brand" onClick={() => setOpen(false)}><Image src="/brand-monogram.png" alt="" width={32} height={52} className="brand-monogram" /><span>{site.name}</span></Link>
       <nav className="desktop-nav" aria-label="Hlavní navigace">{links.map(([href, label]) => <Link key={href} href={href}>{label}</Link>)}</nav>
       <a href={site.booking} className="header-cta" target="_blank" rel="noreferrer">Vybrat termín</a>
       <button className="menu-toggle" type="button" aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)}>{open ? "Zavřít" : "Menu"}</button>
