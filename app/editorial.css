@@ -135,3 +135,48 @@ body { background: #0b1926; }
  .editorial-home .hero-copy { padding-top: 0; }
 }
 @media (prefers-reduced-motion:reduce) { .story-landscape { transition: none; } }
+
+/* Employer benefit comparison, kept distinct from the real case narrative. */
+.benefit-comparison { margin: 52px -32px 42px; padding: clamp(24px,4vw,48px); color: #172b39; background: #f0eee7; }
+.benefit-comparison .section-label { color: #765a2a; font-size: .69rem; letter-spacing: .17em; }
+.benefit-comparison h2 { font-size: clamp(2rem,4vw,2.65rem); max-width: none; }
+.benefit-intro { font-size: .98rem; line-height: 1.8; color: #4d5c64; }
+.benefit-options { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 32px 0 24px; }
+.benefit-option { padding: 26px; border-top: 2px solid #172b3940; background: #e6e4dc; }
+.benefit-option-accent { background: #102431; color: #f4eee0; border-color: #bf9f65; }
+.benefit-option h3 { font-size: 1.06rem; font-weight: 500; margin: 0 0 8px; }
+.benefit-option-note { margin: 0; font-size: .77rem; opacity: .85; }
+.benefit-option dl { margin: 28px 0 20px; }
+.benefit-option dt { font-size: .77rem; margin: 22px 0 6px; }
+.benefit-option dd { font-family: Georgia,serif; font-size: 2.15rem; margin: 0; letter-spacing: -.04em; }
+.benefit-option-accent dd { color: #e4c791; }
+.benefit-availability { font-size: .82rem; line-height: 1.65; margin: 0; }
+.benefit-monthly-result { font-size: .96rem; line-height: 1.8; }
+.benefit-savings { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; border-block: 1px solid #172b392b; padding: 28px 0; margin-top: 30px; }
+.benefit-savings span { display: block; font-size: .75rem; line-height: 1.6; color: #52616a; }
+.benefit-savings strong { display: block; margin-top: 9px; font-family: Georgia,serif; font-weight: 400; font-size: clamp(1.8rem,3.5vw,2.65rem); letter-spacing: -.045em; color: #755623; }
+.benefit-assumption { color: #52616a; font-size: .8rem; line-height: 1.75; }
+.benefit-table-wrap { overflow-x: auto; margin: 30px 0 20px; }
+.benefit-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.benefit-table caption { text-align: left; font-size: 1.06rem; margin-bottom: 16px; }
+.benefit-table th, .benefit-table td { text-align: right; padding: 15px 12px; border-bottom: 1px solid #172b3926; vertical-align: top; }
+.benefit-table th:first-child { text-align: left; padding-left: 0; font-weight: 400; width: 40%; }
+.benefit-table th:last-child, .benefit-table td:last-child { padding-right: 0; }
+.benefit-table thead th { font-size: .75rem; font-weight: 500; color: #53616a; }
+.benefit-table td { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.benefit-table small { display: block; margin-top: 5px; font-size: .67rem; white-space: normal; color: #59666e; line-height: 1.4; }
+.benefit-details { margin-top: 26px; border-top: 1px solid #172b3933; padding-top: 22px; }
+.benefit-details summary { cursor: pointer; font-size: .92rem; line-height: 1.6; }
+.benefit-details h3 { margin: 28px 0 10px; font-size: .94rem; }
+.benefit-details p { font-size: .85rem; line-height: 1.85; color: #465760; }
+.benefit-sources { margin: 12px 0 0; padding-left: 18px; font-size: .8rem; line-height: 1.9; }
+.benefit-sources a { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width:900px) { .benefit-comparison { margin-inline: 0; } }
+@media (max-width:580px) {
+ .benefit-options { grid-template-columns: 1fr; gap: 18px; }
+ .benefit-option { padding: 22px; }
+ .benefit-savings { grid-template-columns: 1fr; gap: 25px; }
+ .benefit-table { min-width: 330px; }
+ .benefit-comparison { padding: 24px 20px; }
+ .story-selectors button { width: 42px; }
+}

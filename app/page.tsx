@@ -18,7 +18,7 @@ const services = [
   { title: "Chci řešit bydlení", text: "Koupě bytu, stavba, rekonstrukce nebo konec fixace. Projdeme rozpočet, možnosti financování a pomohu s vyřízením.", href: "/sluzby/hypoteky", cta: "Hypotéky a financování" },
   { title: "Chci dát penězům směr", text: "Začneme cílem, rezervou a tím, jaké riziko je pro vás přijatelné. Vytvoříme investiční plán a průběžně se k němu budeme vracet.", href: "/pribehy/duvera-v-investicni-plan", cta: "Jak může vypadat spolupráce" },
   { title: "Chci ochránit rodinu a příjem", text: "Spočítáme, jak by výpadek příjmu zasáhl váš rozpočet. Projdeme stávající pojištění a důležitá rizika. Pomohu i při pojistné události.", href: "/pribehy/pomoc-pri-pojistne-udalosti", cta: "Příklad pomoci při plnění" },
-  { title: "Řeším finance ve firmě", text: "Podnikatelská rizika, pojištění i zaměstnanecké benefity. Probereme, co vaše firma potřebuje a co má smysl pro její zaměstnance.", href: "/kontakt?tema=Firemní%20finance", cta: "Probrat potřeby firmy" },
+  { title: "Řeším finance ve firmě", text: "Podnikatelská rizika, pojištění i zaměstnanecké benefity. Probereme, co vaše firma potřebuje a co má smysl pro její zaměstnance.", href: "/pribehy/finance-stavebni-firmy", cta: "Příběh firmy se 30 zaměstnanci" },
 ];
 const steps = [
   { title: "Nejdřív se poznáme", text: "Během 30–60 minut probereme vaši situaci a očekávání. Bezplatně, bez podpisů a bez výpovědí smluv." },
@@ -50,7 +50,7 @@ export default function HomePage() {
 
     <section id="pribehy" className="section section-tinted"><div className="container">
       <p className="section-label">Příběhy z praxe</p><h2>Konkrétní situace. Konkrétní pomoc.</h2>
-      <p className="section-intro">Tři anonymizované případy z mé praxe. Od prvního rozhovoru až po péči v dalších letech.</p>
+      <p className="section-intro">Čtyři anonymizované případy z mé praxe. Od prvního rozhovoru až po péči v dalších letech.</p>
       <StoryCarousel />
     </div></section>
 
@@ -62,7 +62,7 @@ export default function HomePage() {
 
     <section id="o-mne" className="section paper-section"><div className="container two-column-block">
       <div><p className="section-label">Váš poradce</p><h2>Zkušenosti z praxe. Odbornost nad rámec běžných zkoušek.</h2><div className="text-stack">
-        <p>Jsem Patrik Svoboda, rodilý Jihlavák. Více než pět let pomáhám rodinám a podnikatelům s financemi a dlouhodobě pečuji přibližně o stovku klientů. Zázemí mám v Jihlavě, ale za klienty pravidelně cestuji — často do Brna, také do Prahy, Tábora a Prostějova.</p>
+        <p>Jsem Patrik Svoboda, rodilý Jihlavák. Více než šest let pomáhám rodinám a podnikatelům s financemi. Zázemí mám v Jihlavě, ale za klienty pravidelně cestuji — často do Brna, Prahy nebo Jihočeského či Olomouckého kraje.</p>
         <p>Jsem držitelem evropské certifikace EFA (European Financial Advisor). Její získání zahrnuje písemnou zkoušku i praktickou obhajobu případové studie před komisí. Propojuje investice, financování, pojištění a další oblasti finančního plánování — přesně tak, jak se potkávají ve vašem životě.</p>
         <p>Udržením certifikace se zavazuji k průběžnému odbornému vzdělávání a dodržování etického kodexu EFPA. Každý rok věnuji dalšímu rozvoji čas i prostředky, abych vám dokázal srozumitelně vysvětlit možnosti, náklady a rizika a pomoci rozhodovat se s přehledem.</p>
       </div></div>

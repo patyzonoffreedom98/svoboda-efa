@@ -83,4 +83,36 @@ export const stories: Story[] = [
     ],
     note: "Anonymizovaný příklad z praxe. Výsledek konkrétní pojistné události závisí na smlouvě, jejích podmínkách a doložených okolnostech.",
   },
+  {
+    slug: "finance-stavebni-firmy",
+    image: "/firemni-finance.webp",
+    category: "Firemní finance · ochrana a benefity",
+    title: "Méně administrativy. Lepší ochrana firmy i jejích lidí.",
+    summary: "Ve stavební firmě s přibližně třiceti zaměstnanci jsme sjednotili pojištění aut, nastavili ochranu firmy i zaměstnanců a otevřeli téma efektivnějších benefitů.",
+    outcome: "Firemní flotila, přehlednější pojištění a jeden kontakt pro vedení i zaměstnance.",
+    sections: [
+      { paragraphs: [
+        "Ve stavební firmě s přibližně třiceti zaměstnanci bylo každé auto pojištěné zvlášť. Nové vozidlo, další smlouva, jiný termín platby. Asistentka se opakovaně vracela k přepočtům a komunikaci s pojišťovnami místo své další práce.",
+        "Začali jsme právě tady. Postupně se ale ukázalo, že vedle vozidel má smysl společně řešit i ochranu firmy, odpovědnost zaměstnanců a možnosti příspěvků na jejich budoucnost.",
+      ] },
+      { heading: "Firemní auta v jedné flotile.", paragraphs: [
+        "Samostatné pojistky jsme převedli do firemní flotily. S pojišťovnou jsem vyjednal výhodnější podmínky a sjednotili jsme správu i platby. Firma snížila náklady na pojištění a asistentce ubyla opakovaná administrativa.",
+        "Vedení tak získalo přehlednější řešení a jednoho člověka, na kterého se může s pojištěním vozidel obracet.",
+      ] },
+      { heading: "Ochrana zaměstnanců i vztahů ve firmě.", paragraphs: [
+        "Když zaměstnanec při práci způsobí škodu, může to být nepříjemná situace pro obě strany. U běžné škody z nedbalosti se požadovaná náhrada zpravidla omezuje na 4,5násobek průměrného měsíčního výdělku. Zákon ale zná i výjimky, například úmyslné jednání nebo škodu pod vlivem alkoholu.",
+        "Za zaměstnanci jsem osobně přijel a vyřešil s nimi pojištění odpovědnosti při výkonu povolání. Nastavení se odvíjelo od jejich práce, výdělku a konkrétních rizik. Firma i zaměstnanci tak získali jasný kontakt pro sjednání a další řešení.",
+        "Smyslem je zmírnit finanční dopad neúmyslné chyby. Rozsah ochrany vždy vychází z konkrétní smlouvy, jejích limitů, spoluúčasti a výluk.",
+      ] },
+      { heading: "Pojištění podle toho, co firma skutečně dělá.", paragraphs: [
+        "Další částí byla podnikatelská odpovědnost společnosti a stavebně-montážní pojištění. Ve stavebnictví mohou škody dosahovat milionových částek, proto samotné porovnání ceny pojistky nestačí.",
+        "Prošli jsme činnosti firmy, rozsah zakázek a návaznost jednotlivých pojištění. Cílem bylo, aby pojistná ochrana odpovídala reálnému provozu a vedení rozumělo tomu, co smlouvy pokrývají a kde mají hranice.",
+      ] },
+      { heading: "Přesah do odměňování: více pro lidi, méně na odvodech.", paragraphs: [
+        "Spolupráce otevřela také téma příspěvků zaměstnavatele na dlouhodobý investiční produkt (DIP) nebo doplňkové penzijní spoření (DPS). Dobře nastavený příspěvek může pomáhat zaměstnancům budovat zázemí na stáří a firmě snížit odvody oproti stejně vysokému navýšení hrubé mzdy.",
+        "Právě propojení provozu firmy a potřeb jejích lidí dává spolupráci širší smysl. Níže ukazuji modelové srovnání příspěvku 2 000 Kč měsíčně podle pravidel roku 2026. Jde o ilustraci principu, nikoli o vyčíslení skutečné úspory této firmy.",
+      ] },
+    ],
+    note: "Anonymizovaný příklad z praxe. Pojistná ochrana závisí na konkrétních smlouvách. Výpočet benefitů je samostatný model; nastavení v konkrétní firmě je potřeba sladit s její mzdovou účetní nebo daňovým poradcem.",
+  },
 ];

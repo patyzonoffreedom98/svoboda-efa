@@ -29,6 +29,6 @@ export const consultationQuestions = [
   },
   {
     question: "Kde se potkáme a kdy se ozvete?",
-    answer: "Potkat se můžeme v kanceláři v Jihlavě, ale pravidelně jezdím i za klienty — často do Brna, také do Prahy, Tábora a Prostějova. Pokud to dává oboustranně smysl, rád přijedu na úvodní seznámení i jinam. Další schůzky můžeme pohodlně řešit online. Na zprávu z webu se vám ozvu do dvou pracovních dnů; termín si můžete vybrat i přes online rezervaci.",
+    answer: "Potkat se můžeme v kanceláři v Jihlavě, ale pravidelně jezdím i za klienty — často do Brna, Prahy nebo Jihočeského či Olomouckého kraje. Pokud to dává oboustranně smysl, rád přijedu na úvodní seznámení i jinam. Další schůzky můžeme pohodlně řešit online. Na zprávu z webu se vám ozvu do dvou pracovních dnů; termín si můžete vybrat i přes online rezervaci.",
   },
 ];

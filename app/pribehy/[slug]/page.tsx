@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import EmployeeBenefitComparison from "@/components/EmployeeBenefitComparison";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { stories } from "@/lib/stories";
@@ -18,6 +19,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
     <Link href="/#pribehy" className="text-link">← Všechny příběhy z praxe</Link>
     <p className="section-label">{story.category}</p><h1>{story.title}</h1><p className="story-lead">{story.summary}</p>
     {story.sections.map((section, index) => <section key={index} className="story-section">{section.heading && <h2>{section.heading}</h2>}{section.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</section>)}
+    {story.slug === "finance-stavebni-firmy" && <EmployeeBenefitComparison />}
     <p className="story-note">{story.note}</p>
     <aside className="calculator-contact"><h2>Řešíte podobnou situaci?</h2><p>Začneme vaším příběhem. První konzultace je bezplatná a zabere 30–60 minut.</p><ContactActions topic={story.category} /></aside>
   </article></main>;
