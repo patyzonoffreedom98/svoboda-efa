@@ -3,6 +3,8 @@ import Script from "next/script";
 import "./globals.css";
 import "./editorial.css";
 import SiteHeader from "@/components/SiteHeader";
+import ReviewBadge from "@/components/ReviewBadge";
+import "./reviews.css";
 import SiteFooter from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
@@ -26,6 +28,7 @@ export default function RootLayout({
         <SiteHeader />
         {children}
         <SiteFooter />
+        <ReviewBadge />
 
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}

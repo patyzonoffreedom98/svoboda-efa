@@ -1,0 +1,20 @@
+.reviews-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: center; }
+.review-invitation { border: 1px solid #16283726; border-top: 3px solid #b8995e; padding: 36px; background: #e7e5dd; }
+.review-source { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: #715522; }
+.review-invitation h3 { font-family: Georgia, serif; font-weight: 400; font-size: 1.85rem; line-height: 1.2; margin: 24px 0 16px; }
+.review-invitation p { line-height: 1.8; font-size: .95rem; }
+.review-invitation .btn { margin-top: 16px; gap: 12px; }
+.review-invitation p.review-note { font-size: .78rem; margin-top: 18px; }
+.review-badge { position: fixed; right: 20px; bottom: max(20px, env(safe-area-inset-bottom)); z-index: 40; width: 290px; max-width: calc(100vw - 32px); padding: 20px 38px 14px 20px; background: #f0eee7; color: #162837; border: 1px solid #b8995e; border-radius: 6px; box-shadow: 0 8px 32px #0003; }
+.review-badge-title { display: block; font-family: Georgia, serif; font-size: 1.05rem; line-height: 1.4; }
+.review-badge-action { display: flex; align-items: center; gap: 8px; min-height: 44px; font-size: .78rem; color: #715522; text-decoration: underline; text-underline-offset: 4px; }
+.review-badge-close { position: absolute; right: 0; top: 0; width: 36px; height: 36px; border: 0; background: transparent; color: #4f5c65; font-size: 1.4rem; }
+.site-footer { padding-bottom: 145px; }
+@media (min-width:1101px) { .desktop-nav { gap: 13px; font-size: .8rem; } }
+@media (max-width:820px) {
+  .reviews-layout { grid-template-columns: 1fr; gap: 32px; }
+  .review-invitation { padding: 24px; }
+  .review-badge { right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); width: 250px; padding: 12px 34px 4px 16px; }
+  .review-badge-title { font-size: .95rem; }
+}
+@media print { .review-badge { display: none; } }

@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { site } from "@/lib/site";
-const links = [["/#sluzby", "Služby"], ["/#pribehy", "Příběhy z praxe"], ["/#spoluprace", "Spolupráce"], ["/#o-mne", "O mně"], ["/kontakt", "Kontakt"]];
+const links = [["/#sluzby", "Služby"], ["/#pribehy", "Příběhy z praxe"], ["/#spoluprace", "Spolupráce"], ["/#o-mne", "O mně"], ["/#recenze", "Recenze"], ["/kontakt", "Kontakt"]];
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
   return <header className="site-header">

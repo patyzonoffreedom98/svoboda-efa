@@ -7,6 +7,7 @@ export const site = {
   phoneHref: "tel:+420774697755",
   email: "patrik.svoboda@wmfinance.cz",
   booking: "https://calendar.app.google/oJTfuFYsEd3QQoyr5",
+  googleReview: "https://g.page/r/CcddbKa35zTSECE/review",
   whatsapp: "https://wa.me/420774697755",
 };
 
