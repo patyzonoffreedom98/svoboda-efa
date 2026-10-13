@@ -91,9 +91,9 @@ export default function HypotekaPage() {
               <h2 className="calc-result-heading">Orientační výsledek</h2>
 
               <div className="result-main">
-                <p className="result-main-label">Orientační měsíční splátka</p>
+                <p className="result-main-label">Vaše měsíční splátka</p>
                 <p className="result-main-value">
-                  {formatCurrency(result.monthlyPayment)}
+                  {formatCurrency(result.monthlyPayment)}<span className="calc-payment-unit"> / měsíc</span>
                 </p>
               </div>
 
@@ -115,12 +115,14 @@ export default function HypotekaPage() {
                   <strong>{formatPercent(result.ltv)} %</strong>
                 </div>
 
-                <div className="result-row">
-                  <span>Doporučený čistý příjem domácnosti</span>
-                  <strong>{formatCurrency(result.recommendedIncome)}</strong>
-                </div>
+
               </div>
 
+              <p className="note calc-income-note">
+                <span>Doplňková orientace pro rozpočet:</span>{' '}
+                Orientační čistý příjem domácnosti: {formatCurrency(result.recommendedIncome)} měsíčně.
+                Model počítá se splátkou ve výši 45 % čistého příjmu. Nejde o podmínku banky ani příslib schválení úvěru.
+              </p>
               <p className="note">
                 Výsledek je orientační. Banka při schvalování zohledňuje i další
                 závazky, typ příjmu, počet členů domácnosti, věk žadatelů a vlastní
