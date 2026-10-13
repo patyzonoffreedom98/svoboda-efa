@@ -1,11 +1,12 @@
 "use client";
+import CalculatorPdfButton from "./CalculatorPdfButton";
 import { useMemo, useState } from "react";
+import { SliderField, ProjectionChart, balancePoints } from "./CalculatorVisuals";
 
-const input = "input";
 const fmt = (n:number)=>Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g," ")+" Kč";
-const num = (s:string)=>Number(s.toString().replace(/\s+/g,"").replace(/\./g,"").replace(/,/g,"."));
+const num = (s:string)=>Number(s.toString().replace(/\s+/g,"").replace(/,/g,"."));
 function Row({label,value}:{label:string;value:React.ReactNode}) {
-  return <div className="row"><span style={{color:"var(--muted)"}}>{label}</span><strong>{value}</strong></div>;
+ return <div className="result-row"><span>{label}</span><strong>{value}</strong></div>;
 }
 
 export default function RentCalc(){
@@ -26,28 +27,11 @@ export default function RentCalc(){
     return { PMT_const, PMT_indexed };
   },[capital,rate,years,index]);
 
-  return (
-    <div className="card" style={{ maxWidth: 740 }}>
-      <div className="grid">
-        <label>Počáteční kapitál (Kč)
-          <input className={input} value={capital} onChange={e=>setCapital(e.target.value)} inputMode="numeric"/>
-        </label>
-        <label>Zhodnocení p.a. (%)
-          <input className={input} value={rate} onChange={e=>setRate(e.target.value)} inputMode="decimal"/>
-        </label>
-        <label>Doba čerpání (roky)
-          <input className={input} value={years} onChange={e=>setYears(e.target.value)} inputMode="numeric"/>
-        </label>
-        <label>Indexace p.a. (%)
-          <input className={input} value={index} onChange={e=>setIndex(e.target.value)} inputMode="decimal"/>
-        </label>
-      </div>
-      <hr style={{ border:0, borderTop:"1px solid var(--border)", margin:"12px 0" }}/>
-      <>
-        <Row label="Měsíční renta (bez indexace)" value={res?fmt(res.PMT_const):"—"}/>
-        <Row label="Měsíční renta (s indexací)" value={res && res.PMT_indexed!=null?fmt(res.PMT_indexed):"N/A (indexace ≥ výnos)"}/>
-        <div className="small">Orientační výpočet. Poplatky/daně nejsou zahrnuty.</div>
-      </>
-    </div>
-  );
+  return <div className="fin-calculator calc-embedded"><section className="calculator-grid">
+<div className="panel"><h2>Váš scénář</h2><p className="calc-controls-hint">Posuňte lištu nebo napište přesnou hodnotu.</p><div className="form-grid"><SliderField label="Počáteční kapitál" value={num(capital)} onChange={value => setCapital(String(value))} min={1000} max={30000000} step={10000} unit="Kč" />
+<SliderField label="Zhodnocení p.a." value={num(rate)} onChange={value => setRate(String(value))} min={0} max={15} step={0.1} unit="%" />
+<SliderField label="Doba čerpání" value={num(years)} onChange={value => setYears(String(value))} min={1} max={50} step={1} unit="let" />
+<SliderField label="Indexace p.a." value={num(index)} onChange={value => setIndex(String(value))} min={0} max={10} step={0.1} unit="%" /></div></div>
+<div className="panel result-panel"><h2 className="calc-result-heading">Orientační výsledek</h2>{res && <><div className="result-main"><p className="result-main-label">Měsíční renta bez indexace</p><p className="result-main-value">{fmt(res.PMT_const)}</p></div><ProjectionChart title="Postupné čerpání kapitálu" label="Zbývající kapitál bez indexace" points={balancePoints(num(capital), num(rate), num(years), res.PMT_const)}/><div className="result-table"><Row label="Počáteční renta s indexací" value={res.PMT_indexed != null ? fmt(res.PMT_indexed) : 'Pro tuto indexaci model není dostupný'}/><Row label="Doba čerpání" value={`${years} let`}/></div></>}<p className="note">Model počítá s vyčerpáním kapitálu na konci období. Graf zobrazuje variantu bez indexace. Poplatky a daně nejsou zahrnuty, výnos není garantovaný.</p><CalculatorPdfButton title="Renta - pravidelná výplata" /></div>
+</section></div>;
 }

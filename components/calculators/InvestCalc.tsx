@@ -1,11 +1,12 @@
 "use client";
+import CalculatorPdfButton from "./CalculatorPdfButton";
 import { useMemo, useState } from "react";
+import { SliderField, ProjectionChart, investmentPoints } from "./CalculatorVisuals";
 
-const input = "input";
 const fmt = (n:number)=>Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g," ")+" Kč";
-const num = (s:string)=>Number(s.toString().replace(/\s+/g,"").replace(/\./g,"").replace(/,/g,"."));
+const num = (s:string)=>Number(s.toString().replace(/\s+/g,"").replace(/,/g,"."));
 function Row({label,value}:{label:string;value:React.ReactNode}) {
-  return <div className="row"><span style={{color:"var(--muted)"}}>{label}</span><strong>{value}</strong></div>;
+ return <div className="result-row"><span>{label}</span><strong>{value}</strong></div>;
 }
 
 export default function InvestCalc(){
@@ -26,29 +27,15 @@ export default function InvestCalc(){
     return { FV, contrib, growth };
   },[initial,monthly,rate,years]);
 
-  return (
-    <div className="card" style={{ maxWidth: 740 }}>
-      <div className="grid">
-        <label>Počáteční investice (Kč)
-          <input className={input} value={initial} onChange={e=>setInitial(e.target.value)} inputMode="numeric"/>
-        </label>
-        <label>Měsíční vklad (Kč)
-          <input className={input} value={monthly} onChange={e=>setMonthly(e.target.value)} inputMode="numeric"/>
-        </label>
-        <label>Zhodnocení p.a. (%)
-          <input className={input} value={rate} onChange={e=>setRate(e.target.value)} inputMode="decimal"/>
-        </label>
-        <label>Doba (roky)
-          <input className={input} value={years} onChange={e=>setYears(e.target.value)} inputMode="numeric"/>
-        </label>
-      </div>
-      <hr style={{ border:0, borderTop:"1px solid var(--border)", margin:"12px 0" }}/>
-      {res ? <>
-        <Row label="Budoucí hodnota portfolia" value={fmt(res.FV)}/>
-        <Row label="Celkové vklady" value={fmt(res.contrib)}/>
-        <Row label="Zhodnocení (výnos)" value={fmt(res.growth)}/>
-        <div className="small">Orientační výpočet. Poplatky/daně nejsou zahrnuty.</div>
-      </> : <em>Zadejte platná čísla…</em>}
-    </div>
-  );
+  return <div className="fin-calculator calc-embedded"><section className="calculator-grid">
+<div className="panel"><h2>Váš scénář</h2><p className="calc-controls-hint">Posuňte lištu nebo napište přesnou hodnotu.</p><div className="form-grid"><SliderField label="Počáteční investice" value={num(initial)} onChange={value => setInitial(String(value))} min={0} max={10000000} step={10000} unit="Kč" />
+<SliderField label="Měsíční vklad" value={num(monthly)} onChange={value => setMonthly(String(value))} min={0} max={100000} step={500} unit="Kč" />
+<SliderField label="Zhodnocení p.a." value={num(rate)} onChange={value => setRate(String(value))} min={0} max={15} step={0.1} unit="%" />
+<SliderField label="Investiční horizont" value={num(years)} onChange={value => setYears(String(value))} min={1} max={50} step={1} unit="let" /></div></div>
+<div className="panel result-panel"><h2 className="calc-result-heading">Orientační výsledek</h2>{res && <>
+<div className="result-main"><p className="result-main-label">Budoucí hodnota portfolia</p><p className="result-main-value">{fmt(res.FV)}</p></div>
+<ProjectionChart title="Jak může růst váš majetek" label="Hodnota investice" secondaryLabel="Vlastní vklady" points={investmentPoints(num(initial), num(monthly), num(rate), num(years))} />
+<div className="result-table"><Row label="Celkové vklady" value={fmt(res.contrib)}/><Row label="Zhodnocení" value={fmt(res.growth)}/></div>
+</>}<p className="note">Orientační model bez poplatků a daní. Skutečný vývoj může kolísat a výnos není garantovaný.</p><CalculatorPdfButton title="Investiční kalkulačka" /></div>
+</section></div>;
 }

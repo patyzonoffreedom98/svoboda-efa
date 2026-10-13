@@ -1,6 +1,9 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { SliderField, ProjectionChart, balancePoints } from '@/components/calculators/CalculatorVisuals';
+import Link from 'next/link';
+import CalculatorPdfButton from '@/components/calculators/CalculatorPdfButton';
 import CalculatorContact from '@/components/CalculatorContact';
 
 export default function HypotekaPage() {
@@ -59,86 +62,42 @@ export default function HypotekaPage() {
 
   return (
     <>
-      <main id="main-content" className="hypo-page">
-        <div className="hypo-wrapper">
-          <section className="hero-card">
-            <p className="eyebrow">Kalkulačka hypotéky</p>
-            <h1>Hypoteční úvěr</h1>
-            <p className="hero-text">
-              Hypotéka je dlouhodobý úvěr zajištěný nemovitostí. V praxi obvykle
-              rozhoduje nejen samotná sazba, ale i správně nastavená výše úvěru,
-              splatnost, rezerva a celková finanční stabilita domácnosti.
-            </p>
-
-            <div className="hero-facts">
-              <div className="fact-box">
-                <span className="fact-label">Co zjistíte</span>
-                <strong>Měsíční splátku</strong>
-              </div>
-              <div className="fact-box">
-                <span className="fact-label">Co zjistíte</span>
-                <strong>Celkové úroky</strong>
-              </div>
-              <div className="fact-box">
-                <span className="fact-label">Co zjistíte</span>
-                <strong>Orientační LTV</strong>
-              </div>
-            </div>
-          </section>
+      <main id="main-content" className="fin-calculator calc-hypoteka">
+        <div className="calc-wrapper">
+          <header className="calc-hero">
+            <nav className="calc-nav" aria-label="Kalkulačky">
+              <Link href="/investice" >Investice</Link>
+              <Link href="/hypoteka" aria-current="page">Hypotéka</Link>
+              <Link href="/renta" >Renta</Link>
+            </nav>
+            <p className="calc-eyebrow">Hypoteční kalkulačka</p><h1>Váš domov. Váš plán.</h1>
+            <p className="calc-intro">Najděte rovnováhu mezi výší splátky, délkou úvěru a rozpočtem na vaše bydlení.</p>
+          </header>
 
           <section className="calculator-grid">
             <div className="panel">
-              <h2>Zadejte parametry</h2>
+              <h2>Váš scénář</h2>
 
+              <p className="calc-controls-hint">Posuňte lištu nebo napište přesnou hodnotu.</p>
               <div className="form-grid">
-                <div className="field">
-                  <label>Hodnota nemovitosti</label>
-                  <input
-                    type="number"
-                    value={propertyValue}
-                    onChange={(e) => setPropertyValue(Number(e.target.value))}
-                  />
-                </div>
-
-                <div className="field">
-                  <label>Výše hypotéky</label>
-                  <input
-                    type="number"
-                    value={loanAmount}
-                    onChange={(e) => setLoanAmount(Number(e.target.value))}
-                  />
-                </div>
-
-                <div className="field">
-                  <label>Úroková sazba p.a. (%)</label>
-                  <input
-                    type="number"
-                    step="0.01"
-                    value={interestRate}
-                    onChange={(e) => setInterestRate(Number(e.target.value))}
-                  />
-                </div>
-
-                <div className="field">
-                  <label>Splatnost (roky)</label>
-                  <input
-                    type="number"
-                    value={years}
-                    onChange={(e) => setYears(Number(e.target.value))}
-                  />
-                </div>
+                <SliderField label="Hodnota nemovitosti" value={propertyValue} onChange={setPropertyValue} min={100000} max={50000000} step={100000} unit="Kč" />
+                <SliderField label="Výše hypotéky" value={loanAmount} onChange={setLoanAmount} min={0} max={30000000} step={100000} unit="Kč" />
+                <SliderField label="Úroková sazba p.a." value={interestRate} onChange={setInterestRate} min={0} max={15} step={0.01} unit="%" />
+                <SliderField label="Splatnost" value={years} onChange={setYears} min={1} max={40} step={1} unit="let" />
               </div>
             </div>
 
             <div className="panel result-panel">
-              <h2>Výsledek kalkulačky</h2>
+              <h2 className="calc-result-heading">Orientační výsledek</h2>
 
               <div className="result-main">
-                <p className="result-main-label">Orientační měsíční splátka</p>
+                <p className="result-main-label">Vaše měsíční splátka</p>
                 <p className="result-main-value">
-                  {formatCurrency(result.monthlyPayment)}
+                  {formatCurrency(result.monthlyPayment)}<span className="calc-payment-unit"> / měsíc</span>
                 </p>
               </div>
+
+              <ProjectionChart title="Cesta k vlastnímu bydlení" label="Zbývá splatit" points={balancePoints(loanAmount, interestRate, years, result.monthlyPayment)} />
 
               <div className="result-table">
                 <div className="result-row">
@@ -156,17 +115,20 @@ export default function HypotekaPage() {
                   <strong>{formatPercent(result.ltv)} %</strong>
                 </div>
 
-                <div className="result-row">
-                  <span>Doporučený čistý příjem domácnosti</span>
-                  <strong>{formatCurrency(result.recommendedIncome)}</strong>
-                </div>
+
               </div>
 
+              <p className="note calc-income-note">
+                <span>Doplňková orientace pro rozpočet:</span>{' '}
+                Orientační čistý příjem domácnosti: {formatCurrency(result.recommendedIncome)} měsíčně.
+                Model počítá se splátkou ve výši 45 % čistého příjmu. Nejde o podmínku banky ani příslib schválení úvěru.
+              </p>
               <p className="note">
                 Výsledek je orientační. Banka při schvalování zohledňuje i další
                 závazky, typ příjmu, počet členů domácnosti, věk žadatelů a vlastní
                 interní scoring.
               </p>
+              <CalculatorPdfButton title="Hypoteční kalkulačka" />
             </div>
           </section>
 
@@ -199,270 +161,6 @@ export default function HypotekaPage() {
         </div>
       </main>
 
-      <style jsx>{`
-        .hypo-page {
-          min-height: 100vh;
-          background:
-            radial-gradient(circle at top center, rgba(198, 165, 92, 0.16), transparent 28%),
-            linear-gradient(180deg, #07111f 0%, #091728 100%);
-          padding: 56px 20px 80px;
-          color: #f7f3eb;
-        }
-
-        .hypo-wrapper {
-          max-width: 1180px;
-          margin: 0 auto;
-        }
-
-        .hero-card {
-          background: rgba(10, 19, 33, 0.82);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 28px;
-          padding: 36px;
-          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
-          margin-bottom: 28px;
-        }
-
-        .eyebrow {
-          margin: 0 0 12px 0;
-          font-size: 13px;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          color: #c6a55c;
-          font-weight: 700;
-        }
-
-        h1 {
-          margin: 0;
-          font-size: 48px;
-          line-height: 1.08;
-          font-weight: 700;
-          color: #f8f4ec;
-        }
-
-        .hero-text {
-          margin: 18px 0 0 0;
-          max-width: 850px;
-          font-size: 18px;
-          line-height: 1.75;
-          color: rgba(247, 243, 235, 0.78);
-        }
-
-        .hero-facts {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 16px;
-          margin-top: 26px;
-        }
-
-        .fact-box {
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(198, 165, 92, 0.2);
-          border-radius: 20px;
-          padding: 18px;
-        }
-
-        .fact-label {
-          display: block;
-          font-size: 12px;
-          text-transform: uppercase;
-          letter-spacing: 0.14em;
-          color: rgba(247, 243, 235, 0.55);
-          margin-bottom: 8px;
-        }
-
-        .fact-box strong {
-          font-size: 18px;
-          color: #f8f4ec;
-        }
-
-        .calculator-grid {
-          display: grid;
-          grid-template-columns: 1.1fr 0.9fr;
-          gap: 28px;
-        }
-
-        .panel {
-          background: rgba(10, 19, 33, 0.88);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 28px;
-          padding: 30px;
-          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
-        }
-
-        .panel h2 {
-          margin: 0 0 22px 0;
-          font-size: 30px;
-          color: #f8f4ec;
-        }
-
-        .form-grid {
-          display: grid;
-          gap: 18px;
-        }
-
-        .field {
-          display: grid;
-          gap: 10px;
-        }
-
-        .field label {
-          font-size: 15px;
-          font-weight: 600;
-          color: rgba(247, 243, 235, 0.78);
-        }
-
-        .field input {
-          width: 100%;
-          box-sizing: border-box;
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          background: #0f1b2d;
-          color: #f8f4ec;
-          border-radius: 16px;
-          padding: 16px 18px;
-          font-size: 17px;
-          outline: none;
-          transition: border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .field input:focus {
-          border-color: #c6a55c;
-          box-shadow: 0 0 0 3px rgba(198, 165, 92, 0.14);
-        }
-
-        .result-panel {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .result-main {
-          background: linear-gradient(135deg, rgba(198, 165, 92, 0.16), rgba(198, 165, 92, 0.05));
-          border: 1px solid rgba(198, 165, 92, 0.25);
-          border-radius: 22px;
-          padding: 24px;
-          margin-bottom: 18px;
-        }
-
-        .result-main-label {
-          margin: 0 0 10px 0;
-          font-size: 14px;
-          color: rgba(247, 243, 235, 0.68);
-        }
-
-        .result-main-value {
-          margin: 0;
-          font-size: 42px;
-          line-height: 1.1;
-          font-weight: 700;
-          color: #e1bf73;
-        }
-
-        .result-table {
-          display: grid;
-          gap: 10px;
-        }
-
-        .result-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          gap: 16px;
-          background: rgba(255, 255, 255, 0.04);
-          border-radius: 16px;
-          padding: 16px 18px;
-        }
-
-        .result-row span {
-          font-size: 15px;
-          color: rgba(247, 243, 235, 0.7);
-        }
-
-        .result-row strong {
-          font-size: 18px;
-          color: #f8f4ec;
-          text-align: right;
-        }
-
-        .note {
-          margin: 18px 0 0 0;
-          font-size: 14px;
-          line-height: 1.7;
-          color: rgba(247, 243, 235, 0.58);
-        }
-
-        .info-strip {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 18px;
-          margin-top: 28px;
-        }
-
-        .info-box {
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(255, 255, 255, 0.07);
-          border-radius: 22px;
-          padding: 22px;
-        }
-
-        .info-box h3 {
-          margin: 0 0 10px 0;
-          font-size: 20px;
-          color: #f8f4ec;
-        }
-
-        .info-box p {
-          margin: 0;
-          font-size: 15px;
-          line-height: 1.7;
-          color: rgba(247, 243, 235, 0.68);
-        }
-
-        @media (max-width: 960px) {
-          h1 {
-            font-size: 38px;
-          }
-
-          .calculator-grid,
-          .hero-facts,
-          .info-strip {
-            grid-template-columns: 1fr;
-          }
-
-          .result-main-value {
-            font-size: 34px;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .hypo-page {
-            padding: 32px 14px 56px;
-          }
-
-          .hero-card,
-          .panel,
-          .info-box {
-            padding: 22px;
-            border-radius: 22px;
-          }
-
-          h1 {
-            font-size: 32px;
-          }
-
-          .panel h2 {
-            font-size: 24px;
-          }
-
-          .result-row {
-            flex-direction: column;
-            align-items: flex-start;
-          }
-
-          .result-row strong {
-            text-align: left;
-          }
-        }
-      `}</style>
     </>
   );
 }
