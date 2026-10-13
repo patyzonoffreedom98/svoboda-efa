@@ -1,19 +1,14 @@
 "use client";
 import { useMemo, useState } from "react";
+import { SliderField, ProjectionChart, balancePoints } from "./CalculatorVisuals";
 
-const inputCls = "input";
 const fmt = (n: number) =>
   Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " Kč";
 const num = (s: string) =>
-  Number(s.toString().replace(/\s+/g, "").replace(/\./g, "").replace(/,/g, "."));
+  Number(s.toString().replace(/\s+/g, "").replace(/,/g, "."));
 
-function Row({ label, value }: { label: string; value: React.ReactNode }) {
-  return (
-    <div className="row">
-      <span style={{ color: "var(--muted)" }}>{label}</span>
-      <strong>{value}</strong>
-    </div>
-  );
+function Row({label,value}:{label:string;value:React.ReactNode}) {
+ return <div className="result-row"><span>{label}</span><strong>{value}</strong></div>;
 }
 
 export default function HypoCalc() {
@@ -32,50 +27,10 @@ export default function HypoCalc() {
     return { M, total: M * n, interest: M * n - P, n };
   }, [principal, rate, years]);
 
-  return (
-    <div className="card" style={{ maxWidth: 740 }}>
-      <div className="grid">
-        <label>
-          Výše úvěru (Kč)
-          <input
-            className={inputCls}
-            inputMode="numeric"
-            value={principal}
-            onChange={(e) => setPrincipal(e.target.value)}
-          />
-        </label>
-        <label>
-          Úrok p.a. (%)
-          <input
-            className={inputCls}
-            inputMode="decimal"
-            value={rate}
-            onChange={(e) => setRate(e.target.value)}
-          />
-        </label>
-        <label>
-          Splatnost (roky)
-          <input
-            className={inputCls}
-            inputMode="numeric"
-            value={years}
-            onChange={(e) => setYears(e.target.value)}
-          />
-        </label>
-      </div>
-
-      <hr style={{ border: 0, borderTop: "1px solid var(--border)", margin: "12px 0" }} />
-
-      {res ? (
-        <>
-          <Row label="Měsíční splátka" value={fmt(res.M)} />
-          <Row label="Celkem zaplaceno" value={fmt(res.total)} />
-          <Row label="Z toho úroky" value={fmt(res.interest)} />
-          <div className="small">Orientační výpočet bez poplatků a daní.</div>
-        </>
-      ) : (
-        <em>Zadejte platná čísla…</em>
-      )}
-    </div>
-  );
+  return <div className="fin-calculator calc-embedded"><section className="calculator-grid">
+<div className="panel"><h2>Váš scénář</h2><p className="calc-controls-hint">Posuňte lištu nebo napište přesnou hodnotu.</p><div className="form-grid"><SliderField label="Výše úvěru" value={num(principal)} onChange={value => setPrincipal(String(value))} min={1000} max={30000000} step={100000} unit="Kč" />
+<SliderField label="Úrok p.a." value={num(rate)} onChange={value => setRate(String(value))} min={0} max={15} step={0.01} unit="%" />
+<SliderField label="Splatnost" value={num(years)} onChange={value => setYears(String(value))} min={1} max={40} step={1} unit="let" /></div></div>
+<div className="panel result-panel"><h2 className="calc-result-heading">Orientační výsledek</h2>{res && <><div className="result-main"><p className="result-main-label">Orientační měsíční splátka</p><p className="result-main-value">{fmt(res.M)}</p></div><ProjectionChart title="Cesta k vlastnímu bydlení" label="Zbývá splatit" points={balancePoints(num(principal), num(rate), num(years), res.M)}/><div className="result-table"><Row label="Celkem zaplatíte" value={fmt(res.total)}/><Row label="Z toho úroky" value={fmt(res.interest)}/></div></>}<p className="note">Orientační výpočet při stejné sazbě po celou dobu splácení, bez poplatků a pojištění.</p></div>
+</section></div>;
 }
