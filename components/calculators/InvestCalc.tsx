@@ -1,4 +1,5 @@
 "use client";
+import CalculatorPdfButton from "./CalculatorPdfButton";
 import { useMemo, useState } from "react";
 import { SliderField, ProjectionChart, investmentPoints } from "./CalculatorVisuals";
 
@@ -35,6 +36,6 @@ export default function InvestCalc(){
 <div className="result-main"><p className="result-main-label">Budoucí hodnota portfolia</p><p className="result-main-value">{fmt(res.FV)}</p></div>
 <ProjectionChart title="Jak může růst váš majetek" label="Hodnota investice" secondaryLabel="Vlastní vklady" points={investmentPoints(num(initial), num(monthly), num(rate), num(years))} />
 <div className="result-table"><Row label="Celkové vklady" value={fmt(res.contrib)}/><Row label="Zhodnocení" value={fmt(res.growth)}/></div>
-</>}<p className="note">Orientační model bez poplatků a daní. Skutečný vývoj může kolísat a výnos není garantovaný.</p></div>
+</>}<p className="note">Orientační model bez poplatků a daní. Skutečný vývoj může kolísat a výnos není garantovaný.</p><CalculatorPdfButton title="Investiční kalkulačka" /></div>
 </section></div>;
 }

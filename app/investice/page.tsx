@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import { SliderField, ProjectionChart, investmentPoints } from '@/components/calculators/CalculatorVisuals';
 import Link from 'next/link';
+import CalculatorPdfButton from '@/components/calculators/CalculatorPdfButton';
 import CalculatorContact from '@/components/CalculatorContact';
 
 export default function InvesticePage() {
@@ -109,6 +110,7 @@ export default function InvesticePage() {
                 a není garantovaný. V praxi záleží na zvolené strategii, nákladech,
                 čase i průběhu trhu.
               </p>
+              <CalculatorPdfButton title="Investiční kalkulačka" />
             </div>
           </section>
 

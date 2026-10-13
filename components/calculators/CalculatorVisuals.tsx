@@ -34,7 +34,7 @@ export function ProjectionChart({ points, title, label, secondaryLabel, target }
   const path = (own = false) => safePoints.map((p, i) => `${i ? 'L' : 'M'}${x(p.year)},${y(own ? p.own ?? 0 : p.value)}`).join(' ');
   const active = safePoints[Math.min(selected ?? safePoints.length - 1, safePoints.length - 1)];
   const short = (n: number) => n >= 1e6 ? `${number(n / 1e6)} mil.` : n >= 1000 ? `${number(n / 1000)} tis.` : number(n);
-  return <figure className="calc-chart">
+  return <figure className="calc-chart" data-report-chart={JSON.stringify({ points: safePoints, title, label, secondaryLabel, target })}>
     <div className="calc-chart-heading"><h3>{title}</h3><span>Kč</span></div>
     <svg viewBox="0 0 550 240" role="img" aria-labelledby={`${id}-title ${id}-desc`}>
       <title id={`${id}-title`}>{title}</title><desc id={`${id}-desc`}>Modelový vývoj za {number(last.year)} let. {label}: {currency(last.value)}.{secondaryLabel && ` ${secondaryLabel}: ${currency(last.own ?? 0)}.`}{target !== undefined && ` Cílový kapitál: ${currency(target)}.`} Přesné hodnoty vyberete posuvníkem pod grafem.</desc>

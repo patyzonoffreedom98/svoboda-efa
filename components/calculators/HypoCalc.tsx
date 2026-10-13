@@ -1,4 +1,5 @@
 "use client";
+import CalculatorPdfButton from "./CalculatorPdfButton";
 import { useMemo, useState } from "react";
 import { SliderField, ProjectionChart, balancePoints } from "./CalculatorVisuals";
 
@@ -31,6 +32,6 @@ export default function HypoCalc() {
 <div className="panel"><h2>Váš scénář</h2><p className="calc-controls-hint">Posuňte lištu nebo napište přesnou hodnotu.</p><div className="form-grid"><SliderField label="Výše úvěru" value={num(principal)} onChange={value => setPrincipal(String(value))} min={1000} max={30000000} step={100000} unit="Kč" />
 <SliderField label="Úrok p.a." value={num(rate)} onChange={value => setRate(String(value))} min={0} max={15} step={0.01} unit="%" />
 <SliderField label="Splatnost" value={num(years)} onChange={value => setYears(String(value))} min={1} max={40} step={1} unit="let" /></div></div>
-<div className="panel result-panel"><h2 className="calc-result-heading">Orientační výsledek</h2>{res && <><div className="result-main"><p className="result-main-label">Orientační měsíční splátka</p><p className="result-main-value">{fmt(res.M)}</p></div><ProjectionChart title="Cesta k vlastnímu bydlení" label="Zbývá splatit" points={balancePoints(num(principal), num(rate), num(years), res.M)}/><div className="result-table"><Row label="Celkem zaplatíte" value={fmt(res.total)}/><Row label="Z toho úroky" value={fmt(res.interest)}/></div></>}<p className="note">Orientační výpočet při stejné sazbě po celou dobu splácení, bez poplatků a pojištění.</p></div>
+<div className="panel result-panel"><h2 className="calc-result-heading">Orientační výsledek</h2>{res && <><div className="result-main"><p className="result-main-label">Orientační měsíční splátka</p><p className="result-main-value">{fmt(res.M)}</p></div><ProjectionChart title="Cesta k vlastnímu bydlení" label="Zbývá splatit" points={balancePoints(num(principal), num(rate), num(years), res.M)}/><div className="result-table"><Row label="Celkem zaplatíte" value={fmt(res.total)}/><Row label="Z toho úroky" value={fmt(res.interest)}/></div></>}<p className="note">Orientační výpočet při stejné sazbě po celou dobu splácení, bez poplatků a pojištění.</p><CalculatorPdfButton title="Hypoteční kalkulačka" /></div>
 </section></div>;
 }

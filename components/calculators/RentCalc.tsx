@@ -1,4 +1,5 @@
 "use client";
+import CalculatorPdfButton from "./CalculatorPdfButton";
 import { useMemo, useState } from "react";
 import { SliderField, ProjectionChart, balancePoints } from "./CalculatorVisuals";
 
@@ -31,6 +32,6 @@ export default function RentCalc(){
 <SliderField label="Zhodnocení p.a." value={num(rate)} onChange={value => setRate(String(value))} min={0} max={15} step={0.1} unit="%" />
 <SliderField label="Doba čerpání" value={num(years)} onChange={value => setYears(String(value))} min={1} max={50} step={1} unit="let" />
 <SliderField label="Indexace p.a." value={num(index)} onChange={value => setIndex(String(value))} min={0} max={10} step={0.1} unit="%" /></div></div>
-<div className="panel result-panel"><h2 className="calc-result-heading">Orientační výsledek</h2>{res && <><div className="result-main"><p className="result-main-label">Měsíční renta bez indexace</p><p className="result-main-value">{fmt(res.PMT_const)}</p></div><ProjectionChart title="Postupné čerpání kapitálu" label="Zbývající kapitál bez indexace" points={balancePoints(num(capital), num(rate), num(years), res.PMT_const)}/><div className="result-table"><Row label="Počáteční renta s indexací" value={res.PMT_indexed != null ? fmt(res.PMT_indexed) : 'Pro tuto indexaci model není dostupný'}/><Row label="Doba čerpání" value={`${years} let`}/></div></>}<p className="note">Model počítá s vyčerpáním kapitálu na konci období. Graf zobrazuje variantu bez indexace. Poplatky a daně nejsou zahrnuty, výnos není garantovaný.</p></div>
+<div className="panel result-panel"><h2 className="calc-result-heading">Orientační výsledek</h2>{res && <><div className="result-main"><p className="result-main-label">Měsíční renta bez indexace</p><p className="result-main-value">{fmt(res.PMT_const)}</p></div><ProjectionChart title="Postupné čerpání kapitálu" label="Zbývající kapitál bez indexace" points={balancePoints(num(capital), num(rate), num(years), res.PMT_const)}/><div className="result-table"><Row label="Počáteční renta s indexací" value={res.PMT_indexed != null ? fmt(res.PMT_indexed) : 'Pro tuto indexaci model není dostupný'}/><Row label="Doba čerpání" value={`${years} let`}/></div></>}<p className="note">Model počítá s vyčerpáním kapitálu na konci období. Graf zobrazuje variantu bez indexace. Poplatky a daně nejsou zahrnuty, výnos není garantovaný.</p><CalculatorPdfButton title="Renta - pravidelná výplata" /></div>
 </section></div>;
 }

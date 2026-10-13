@@ -3,9 +3,14 @@
 import { useMemo, useState } from 'react';
 import { SliderField, ProjectionChart, investmentPoints } from '@/components/calculators/CalculatorVisuals';
 import Link from 'next/link';
+import RentDrawdown from '@/components/calculators/RentDrawdown';
+import CalculatorPdfButton from '@/components/calculators/CalculatorPdfButton';
 import CalculatorContact from '@/components/CalculatorContact';
 
 export default function RentaPage() {
+  const [mode, setMode] = useState<'build' | 'draw'>('build');
+  const [drawCapital, setDrawCapital] = useState(9000000);
+  const [drawVersion, setDrawVersion] = useState(0);
   const [targetMonthlyRent, setTargetMonthlyRent] = useState(30000);
   const [withdrawalRate, setWithdrawalRate] = useState(4);
   const [currentSavings, setCurrentSavings] = useState(500000);
@@ -70,6 +75,12 @@ export default function RentaPage() {
             <p className="calc-intro">Zjistěte, jaký kapitál potřebujete pro svou rentu a jak dlouhá může být cesta k němu.</p>
           </header>
 
+          <div className="calc-mode-switch" role="group" aria-label="Typ výpočtu renty">
+            <button type="button" aria-pressed={mode === 'build'} onClick={() => setMode('build')}>1. Vytvořit kapitál</button>
+            <button type="button" aria-pressed={mode === 'draw'} onClick={() => setMode('draw')}>2. Čerpat rentu</button>
+          </div>
+          <div hidden={mode !== 'draw'}><RentDrawdown key={drawVersion} initialCapital={drawCapital} /></div>
+          <div hidden={mode !== 'build'}>
           <section className="calculator-grid">
             <div className="panel">
               <h2>Váš scénář</h2>
@@ -127,6 +138,8 @@ export default function RentaPage() {
                 s inflací, kolísáním trhu, daněmi, rezervou a vhodně zvolenou
                 strategií čerpání.
               </p>
+              <button className="calc-transfer" type="button" onClick={() => { setDrawCapital(result.targetCapital); setDrawVersion(v => v + 1); setMode('draw'); }}>Pokračovat s {formatCurrency(result.targetCapital)} do čerpání →</button>
+              <CalculatorPdfButton title="Renta - tvorba kapitálu" />
             </div>
           </section>
 
@@ -159,6 +172,7 @@ export default function RentaPage() {
             </div>
           </section>
           <CalculatorContact topic="Renta" summary={`Cílová měsíční renta: ${formatCurrency(targetMonthlyRent)}; míra čerpání: ${withdrawalRate} %; současné úspory: ${formatCurrency(currentSavings)}; měsíční investice: ${formatCurrency(monthlyInvestment)}; modelový výnos: ${annualReturn} % p.a.`} />
+          </div>
         </div>
       </main>
 

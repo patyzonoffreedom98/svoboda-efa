@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import { SliderField, ProjectionChart, balancePoints } from '@/components/calculators/CalculatorVisuals';
 import Link from 'next/link';
+import CalculatorPdfButton from '@/components/calculators/CalculatorPdfButton';
 import CalculatorContact from '@/components/CalculatorContact';
 
 export default function HypotekaPage() {
@@ -125,6 +126,7 @@ export default function HypotekaPage() {
                 závazky, typ příjmu, počet členů domácnosti, věk žadatelů a vlastní
                 interní scoring.
               </p>
+              <CalculatorPdfButton title="Hypoteční kalkulačka" />
             </div>
           </section>
 
