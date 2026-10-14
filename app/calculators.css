@@ -21,3 +21,27 @@
 .calc-mode-switch{position:relative;display:flex;gap:6px;width:fit-content;max-width:100%;padding:5px;margin:0 0 20px;border:1px solid #ffffff26;border-radius:9px;background:#142735}.calc-mode-switch button{border:0;border-radius:5px;color:#d2dbe0;background:transparent;padding:12px 22px;font:inherit;font-size:13px;cursor:pointer}.calc-mode-switch button[aria-pressed=true]{background:#f3f1eb;color:#142735}.calc-transfer{display:block;width:100%;border:1px solid #d8bb7c70;border-radius:5px;background:transparent;color:#e4c58b;padding:13px 16px;margin-top:24px;font:inherit;font-size:12px;line-height:1.6;cursor:pointer}.calc-export{margin-top:24px;border-top:1px solid #ffffff20;padding-top:16px}.calc-export button{border:0;background:#d8bb7c;color:#142735;font:inherit;font-size:12px;padding:12px 20px;border-radius:5px;cursor:pointer}.calc-export button:disabled{opacity:.6;cursor:wait}.calc-export p{font-size:10px;line-height:1.6;color:#c6cfd3;margin:8px 0 0}.calc-export [role=alert]{color:#ffd2bb}.fin-calculator [hidden]{display:none!important}@media(max-width:400px){.calc-mode-switch{width:100%}.calc-mode-switch button{flex:1;padding:12px 9px;font-size:12px}}
 
 .calc-payment-unit{font-size:15px;letter-spacing:0;color:#c6cfd3;white-space:nowrap}.fin-calculator .calc-income-note{border-top:1px solid #ffffff18;padding-top:16px;font-size:11px;color:#afbec8}.calc-income-note>span{display:block;margin-bottom:6px;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#c6cfd3}
+
+/* Historical return explorer */
+.fin-calculator .history-switch{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}
+.fin-calculator .history-switch button{padding:12px 20px;border:1px solid #ad9464;border-radius:999px;background:transparent;color:inherit;font:inherit;cursor:pointer}
+.fin-calculator .history-switch button[aria-pressed=true]{background:#142735;color:#fff}
+.fin-calculator .history-tabs{margin-bottom:28px}
+.fin-calculator .history-histogram{margin:28px 0}
+.fin-calculator .history-bars{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin:24px 0 14px}
+.fin-calculator .history-bar{text-align:center;font-size:11px;line-height:1.4}
+.fin-calculator .history-bar strong{display:block;white-space:nowrap;font-size:12px}
+.fin-calculator .history-bar-track{height:140px;display:flex;align-items:flex-end;margin:10px 4px}
+.fin-calculator .history-bar-track div{width:100%;border-radius:5px 5px 0 0}
+.fin-calculator .history-bar span{display:block;min-height:32px}
+.fin-calculator .history-histogram figcaption{font-size:12px;opacity:.8;line-height:1.6}
+.fin-calculator .history-horizons,.fin-calculator .history-method{margin-top:24px}
+.fin-calculator .history-horizons>div{display:grid;grid-template-columns:repeat(10,1fr);gap:8px;margin-top:20px}
+.fin-calculator .history-horizons button{border:1px solid #ddd5c5;border-radius:8px;background:#fff;color:#142735;padding:12px 3px;cursor:pointer}
+.fin-calculator .history-horizons button[aria-pressed=true]{background:#142735;color:#e4c58b}
+.fin-calculator .history-horizons button span,.fin-calculator .history-horizons button strong{display:block;margin:3px}
+.fin-calculator .history-method summary{font-weight:600;cursor:pointer}
+.fin-calculator .history-method p{line-height:1.7}
+.fin-calculator .history-method a{text-decoration:underline}
+.fin-calculator [hidden]{display:none!important}
+@media(max-width:650px){.fin-calculator .history-horizons>div{grid-template-columns:repeat(5,1fr)}.fin-calculator .history-bar strong{font-size:10px}.fin-calculator .history-bar-track{margin:10px 1px}.fin-calculator .history-bar{font-size:9px}}

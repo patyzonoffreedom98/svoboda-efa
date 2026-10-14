@@ -1,5 +1,5 @@
 export type ReportRow = { label: string; value: string };
-export type ReportChart = { title: string; label: string; secondaryLabel?: string; target?: number; points: { year: number; value: number; own?: number }[] };
+export type ReportChart = { kind?: 'histogram'; bars?: { label: string; value: number }[]; title: string; label: string; secondaryLabel?: string; target?: number; points: { year: number; value: number; own?: number }[] };
 export type CalculatorReport = { title: string; date: string; inputs: ReportRow[]; primary: ReportRow; results: ReportRow[]; chart: ReportChart; notes: string[]; comments: { title: string; text: string }[] };
 
 const clean = (value: string | null | undefined) => (value ?? '').replace(/\s+/g, ' ').trim();

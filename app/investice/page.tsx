@@ -4,9 +4,11 @@ import { useMemo, useState } from 'react';
 import { SliderField, ProjectionChart, investmentPoints } from '@/components/calculators/CalculatorVisuals';
 import Link from 'next/link';
 import CalculatorPdfButton from '@/components/calculators/CalculatorPdfButton';
+import HistoricalReturns from '@/components/calculators/HistoricalReturns';
 import CalculatorContact from '@/components/CalculatorContact';
 
 export default function InvesticePage() {
+  const [tab, setTab] = useState<'projection' | 'history'>('projection');
   const [initialDeposit, setInitialDeposit] = useState(100000);
   const [monthlyDeposit, setMonthlyDeposit] = useState(5000);
   const [annualReturn, setAnnualReturn] = useState(8);
@@ -58,6 +60,12 @@ export default function InvesticePage() {
             <p className="calc-intro">Vyzkoušejte, co pro váš budoucí majetek znamená pravidelná investice a delší horizont.</p>
           </header>
 
+          <div className="history-switch history-tabs" aria-label="Investiční kalkulačky">
+            <button type="button" aria-pressed={tab === 'projection'} onClick={() => setTab('projection')}>Budoucí hodnota</button>
+            <button type="button" aria-pressed={tab === 'history'} onClick={() => setTab('history')}>Historické výnosy</button>
+          </div>
+          {tab === 'history' && <HistoricalReturns />}
+          <div hidden={tab !== 'projection'}>
           <section className="calculator-grid">
             <div className="panel">
               <h2>Váš scénář</h2>
@@ -140,6 +148,7 @@ export default function InvesticePage() {
             </div>
           </section>
           <CalculatorContact topic="Investice" summary={`Počáteční vklad: ${formatCurrency(initialDeposit)}; měsíčně: ${formatCurrency(monthlyDeposit)}; modelový výnos: ${annualReturn} % p.a.; horizont: ${years} let; modelová budoucí hodnota: ${formatCurrency(result.futureValue)}.`} />
+          </div>
         </div>
       </main>
 

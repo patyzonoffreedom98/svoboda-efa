@@ -38,11 +38,11 @@ export async function createCalculatorPdf(report: CalculatorReport, assets: { fo
     text('FINANCE S PLÁNEM',left+43,height-68,8,gold);
     text('svoboda-efa.cz',width-128,height-48,9,muted);
     page.drawLine({start:{x:left,y:height-95},end:{x:width-left,y:height-95},color:gold,thickness:.8});
-    text(subtitle,left,height-127,22);
+    text(subtitle,left,height-127,Math.min(22,content / Math.max(1,font.widthOfTextAtSize(normalized(subtitle),1))));
     text(`Orientační model • ${report.date}`,left,height-148,8,muted);
     cursor = height-180;
   }
-  function ensure(space: number) { if(cursor-space<78) newPage(`${report.title} - pokračování`); }
+  function ensure(space: number) { if(cursor-space<78) newPage('Výpočet - pokračování'); }
   function heading(value: string) { ensure(34); text(value,left,cursor,10,gold); cursor-=22; }
   function rows(items: {label:string;value:string}[]) {
     for(let i=0;i<items.length;i+=2){
@@ -62,6 +62,20 @@ export async function createCalculatorPdf(report: CalculatorReport, assets: { fo
   const primarySize=Math.min(27,(content-34)/Math.max(1,font.widthOfTextAtSize(normalized(report.primary.value),1)));
   text(report.primary.value,left+17,cursor-43,primarySize,rgb(.89,.77,.54));cursor-=91;
   const chart=report.chart;const pts=chart.points;
+  if (chart.kind === 'histogram' && chart.bars?.length) {
+    ensure(235); text(chart.title,left,cursor,12); cursor-=28;
+    const top=cursor, bottom=top-125, bars=chart.bars, maximum=Math.max(1,...bars.map(b=>b.value));
+    const cell=content/bars.length;
+    bars.forEach((bar,i)=>{
+      const h=bar.value/maximum*110,x=left+i*cell+8;
+      page.drawRectangle({x,y:bottom,width:cell-16,height:h,color:i<3?rgb(.70,.39,.34):gold});
+      text(`${new Intl.NumberFormat('cs-CZ',{maximumFractionDigits:1}).format(bar.value)} %`,x,bottom+h+7,8);
+      paragraph(bar.label,x,bottom-15,cell-10,7);
+    });
+    text('Roční zhodnocení (% p. a.)',left,bottom-49,8,muted);
+    text('Výška sloupců: podíl historických období (%)',left,bottom-64,8,muted);
+    cursor=bottom-90;
+  } else {
   ensure(220); text(chart.title,left,cursor,12);cursor-=19;
   const chartTop=cursor-5,chartBottom=chartTop-130,x0=left+48,x1=width-left-8;
   const last=pts[pts.length-1];
@@ -81,6 +95,7 @@ export async function createCalculatorPdf(report: CalculatorReport, assets: { fo
   if(chart.secondaryLabel)text(chart.secondaryLabel,left+270,cursor,8,blue);
   if(chart.target!==undefined)text(`Cílový kapitál: ${new Intl.NumberFormat('cs-CZ',{maximumFractionDigits:0}).format(chart.target)} Kč`,left+235,cursor,8,blue);
   cursor-=27;
+  }
   heading('CO VÝPOČET UKAZUJE');rows(report.results);
   // Explanations have their own clean page for the full calculators.
   if(report.comments.length) newPage('Souvislosti vašeho výpočtu');
