@@ -1,4 +1,5 @@
 "use client";
+import HistoricalReturns from "./HistoricalReturns";
 import CalculatorPdfButton from "./CalculatorPdfButton";
 import { useMemo, useState } from "react";
 import { SliderField, ProjectionChart, investmentPoints } from "./CalculatorVisuals";
@@ -10,6 +11,7 @@ function Row({label,value}:{label:string;value:React.ReactNode}) {
 }
 
 export default function InvestCalc(){
+  const [tab,setTab]=useState("projection");
   const [initial,setInitial]=useState("200 000");
   const [monthly,setMonthly]=useState("5 000");
   const [rate,setRate]=useState("7");     // p.a. %
@@ -27,7 +29,10 @@ export default function InvestCalc(){
     return { FV, contrib, growth };
   },[initial,monthly,rate,years]);
 
-  return <div className="fin-calculator calc-embedded"><section className="calculator-grid">
+  return <div className="fin-calculator calc-embedded">
+<div className="history-switch history-tabs" aria-label="Investiční kalkulačky"><button type="button" aria-pressed={tab === 'projection'} onClick={() => setTab('projection')}>Budoucí hodnota</button><button type="button" aria-pressed={tab === 'history'} onClick={() => setTab('history')}>Historické výnosy</button></div>
+{tab === 'history' && <HistoricalReturns />}
+<div hidden={tab !== 'projection'}><section className="calculator-grid">
 <div className="panel"><h2>Váš scénář</h2><p className="calc-controls-hint">Posuňte lištu nebo napište přesnou hodnotu.</p><div className="form-grid"><SliderField label="Počáteční investice" value={num(initial)} onChange={value => setInitial(String(value))} min={0} max={10000000} step={10000} unit="Kč" />
 <SliderField label="Měsíční vklad" value={num(monthly)} onChange={value => setMonthly(String(value))} min={0} max={100000} step={500} unit="Kč" />
 <SliderField label="Zhodnocení p.a." value={num(rate)} onChange={value => setRate(String(value))} min={0} max={15} step={0.1} unit="%" />
@@ -37,5 +42,5 @@ export default function InvestCalc(){
 <ProjectionChart title="Jak může růst váš majetek" label="Hodnota investice" secondaryLabel="Vlastní vklady" points={investmentPoints(num(initial), num(monthly), num(rate), num(years))} />
 <div className="result-table"><Row label="Celkové vklady" value={fmt(res.contrib)}/><Row label="Zhodnocení" value={fmt(res.growth)}/></div>
 </>}<p className="note">Orientační model bez poplatků a daní. Skutečný vývoj může kolísat a výnos není garantovaný.</p><CalculatorPdfButton title="Investiční kalkulačka" /></div>
-</section></div>;
+</section></div></div>;
 }
