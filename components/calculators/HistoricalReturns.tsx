@@ -18,6 +18,10 @@ export default function HistoricalReturns() {
   outcomes.forEach(o => counts[bandIndex(o.rate)]++);
   const sorted = [...outcomes].sort((a, b) => a.value - b.value);
   const median = (sorted[Math.floor((sorted.length - 1) / 2)].value + sorted[Math.ceil((sorted.length - 1) / 2)].value) / 2;
+  const modalIndex = counts.indexOf(Math.max(...counts));
+  const modalShare = counts[modalIndex] / outcomes.length * 100;
+  const medianRate = (sorted[Math.floor((sorted.length - 1) / 2)].rate + sorted[Math.ceil((sorted.length - 1) / 2)].rate) / 2;
+  const tied = counts.filter(count => count === counts[modalIndex]).length > 1;
   const bars = counts.map((count, i) => ({ label: bandLabels[i], value: count / outcomes.length * 100 }));
   const chart = { kind: 'histogram', title: 'Rozdělení ročního zhodnocení', label: 'Podíl historických období (%)', points: [], bars };
   const paid = amount * (mode === 'lump' ? 1 : years * 12);
@@ -35,14 +39,18 @@ export default function HistoricalReturns() {
         <p className="note">Režim: {mode === 'lump' ? 'jednorázová investice na začátku období' : 'stejný vklad na začátku každého měsíce'}. Výnosy i částky jsou v USD, bez inflace, daní a převodů měn; zvolené náklady jsou započteny.</p>
       </div>
       <div className="panel result-panel">
-        <div className="result-main"><p className="result-main-label">Podíl období zakončených ztrátou</p><p className="result-main-value">{pct(horizonLoss[years - 1])}</p></div>
+        <div className="history-highlights">
+          <div className="result-main"><p className="result-main-label">Podíl období zakončených ztrátou</p><p className="result-main-value">{pct(horizonLoss[years - 1])}</p></div>
+          <div className="history-modal"><p className="result-main-label">{tied ? 'Jedno z nejčastějších pásem' : 'Nejčastější roční výnos'}</p><p className="result-main-value">{bandLabels[modalIndex]}</p><p className="history-modal-caption">p. a. · {pct(modalShare)} historických období</p></div>
+        </div>
+        <p className="history-median">Medián ročního výnosu: <strong>{pct(medianRate * 100)} p. a.</strong><br /><small>Polovina sledovaných období měla nižší, polovina vyšší roční výnos.</small></p>
         <p>{horizonLoss[years - 1] === 0 ? `Žádné z ${outcomes.length} sledovaných období délky ${years} let neskončilo ztrátou. To není záruka budoucího výsledku.` : `Ze všech ${outcomes.length} sledovaných období délky ${years} let. Ztráta znamená konečnou hodnotu nižší než součet vkladů.`}</p>
         <figure className="history-histogram" data-report-chart={JSON.stringify(chart)}>
           <h3>Rozdělení ročního zhodnocení</h3>
           <div className="history-bars">{bars.map((bar, i) => <div className="history-bar" key={bar.label}><strong>{pct(bar.value)}</strong><div className="history-bar-track"><div style={{ height: `${Math.max(0, bar.value / Math.max(1, ...bars.map(b => b.value)) * 100)}%`, background: i < 3 ? '#cd9a91' : '#e4c58b' }} /></div><span>{bar.label}</span></div>)}</div>
           <figcaption>Pásma výnosu v % p. a. · {mode === 'lump' ? 'složené roční zhodnocení (CAGR)' : 'roční zhodnocení zohledňující načasování vkladů (IRR)'}</figcaption>
         </figure>
-        <div className="result-table">{[['Celkem vloženo', usd(paid)], ['Medián konečné hodnoty', usd(median * amount)], ['Nejhorší konečná hodnota', usd(sorted[0].value * amount)], ['Nejlepší konečná hodnota', usd(sorted[sorted.length - 1].value * amount)], ['Počet historických období', String(outcomes.length)], ['Datový rozsah', sourcePeriod]].map(([label, value]) => <div className="result-row" key={label}><span>{label}</span><strong>{value}</strong></div>)}</div>
+        <div className="result-table">{[[tied ? 'Jedno z nejčastějších pásem' : 'Nejčastější výnosové pásmo', `${bandLabels[modalIndex]} p. a. (${pct(modalShare)} období)`], ['Medián ročního výnosu', `${pct(medianRate * 100)} p. a.`], ['Celkem vloženo', usd(paid)], ['Medián konečné hodnoty', usd(median * amount)], ['Nejhorší konečná hodnota', usd(sorted[0].value * amount)], ['Nejlepší konečná hodnota', usd(sorted[sorted.length - 1].value * amount)], ['Počet historických období', String(outcomes.length)], ['Datový rozsah', sourcePeriod]].map(([label, value]) => <div className="result-row" key={label}><span>{label}</span><strong>{value}</strong></div>)}</div>
         <p className="note">Zdroj: Robert J. Shiller, zpracování DataHub (datahub.io/core/s-and-p-500), soubor převzat 14. 10. 2026 pod poskytovatelem uvedenou licencí ODC-PDDL-1.0. Rozsah 01/1871–06/2023. Jde o americký historický akciový kompozit, nikoli MSCI World.</p>
         <p className="note">Měsíční výnos = (cena v aktuálním měsíci + roční dividenda / 12) / cena v předchozím měsíci − 1. Ceny jsou měsíční průměry, dividendy částečně interpolované. Výsledky jsou rekonstrukcí, nikoli přesným výnosem obchodovatelného fondu.</p>
         <p className="note">Roční zhodnocení: {mode === 'lump' ? 'CAGR (složený roční výnos)' : 'IRR (výnos zohledňující načasování vkladů)'}. Historická četnost není předpověď. Období začínají každý měsíc a překrývají se. Pásma zahrnují dolní hranici a nezahrnují horní; nula patří do pásma 0 až 5 %. Nejstarší začátek: {dates[0]}, nejnovější začátek: {dates[returns.length - years * 12]}.</p>

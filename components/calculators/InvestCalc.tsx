@@ -30,7 +30,7 @@ export default function InvestCalc(){
   },[initial,monthly,rate,years]);
 
   return <div className="fin-calculator calc-embedded">
-<div className="history-switch history-tabs" aria-label="Investiční kalkulačky"><button type="button" aria-pressed={tab === 'projection'} onClick={() => setTab('projection')}>Budoucí hodnota</button><button type="button" aria-pressed={tab === 'history'} onClick={() => setTab('history')}>Historické výnosy</button></div>
+<div className="calc-mode-switch investment-tabs" role="group" aria-label="Typ investiční kalkulačky"><button type="button" aria-pressed={tab === 'projection'} onClick={() => setTab('projection')}>Výnosnost investice</button><button type="button" aria-pressed={tab === 'history'} onClick={() => setTab('history')}>Pravděpodobnost výnosů investice</button></div>
 {tab === 'history' && <HistoricalReturns />}
 <div hidden={tab !== 'projection'}><section className="calculator-grid">
 <div className="panel"><h2>Váš scénář</h2><p className="calc-controls-hint">Posuňte lištu nebo napište přesnou hodnotu.</p><div className="form-grid"><SliderField label="Počáteční investice" value={num(initial)} onChange={value => setInitial(String(value))} min={0} max={10000000} step={10000} unit="Kč" />
