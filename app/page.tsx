@@ -55,6 +55,8 @@ export default function HomePage() {
       <StoryCarousel />
     </div></section>
 
+    <ReviewsSection />
+
     <section id="spoluprace" className="section"><div className="container">
       <p className="section-label">Jak spolupráce probíhá</p><h2>Víte, co bude následovat.</h2>
       <ol className="cards-grid four-up steps-list">{steps.map((step, index) => <li className="info-card" key={step.title}><span className="step-number">0{index + 1}</span><h3>{step.title}</h3><p>{step.text}</p></li>)}</ol>
@@ -79,8 +81,6 @@ export default function HomePage() {
     </div></section>
 
     <section className="section section-tinted"><div className="container faq-layout"><div><p className="section-label">Před první schůzkou</p><h2>Na co se často ptáte.</h2></div><ConsultationFaq /></div></section>
-
-    <ReviewsSection />
 
     <section id="kontakt" className="section section-last"><div className="container contact-grid">
       <div className="contact-card"><p className="section-label">První krok</p><h2>Co právě řešíte vy?</h2><div className="text-stack"><p>Napište mi pár slov, nebo si rovnou vyberte termín. Ozvu se do dvou pracovních dnů.</p><p>Úvodní konzultace je bezplatná. Nejprve se poznáme a projdeme vaši situaci — bez podpisů a výpovědí smluv.</p></div>

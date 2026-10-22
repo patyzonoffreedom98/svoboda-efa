@@ -1,20 +1,27 @@
 import { site } from "@/lib/site";
+import { googleReviews, reviewSummary } from "@/lib/reviews";
 
 export default function ReviewsSection() {
-  return <section id="recenze" className="section paper-section" aria-labelledby="reviews-heading">
-    <div className="container reviews-layout">
-      <div>
-        <p className="section-label">Recenze klientů</p>
-        <h2 id="reviews-heading">Jak se vám se mnou spolupracuje?</h2>
-        <p className="section-intro">Za každou spoluprací je osobní zkušenost. Budu rád, když se o tu svou podělíte — pomůžete tím i lidem, kteří svého finančního poradce teprve hledají.</p>
+  return <section id="recenze" className="section client-reviews" aria-labelledby="reviews-heading">
+    <div className="container">
+      <div className="reviews-heading-row">
+        <div><p className="section-label">Recenze klientů · Google</p>
+          <h2 id="reviews-heading">Důvěra, která má své jméno.</h2>
+          <p className="section-intro">Jak spolupráci vnímají lidé, kteří mi svěřili své finance? Přečtěte si jejich vlastní slova.</p>
+        </div>
+        <a className="reviews-score" href={reviewSummary.url} target="_blank" rel="noopener noreferrer" aria-label={`Hodnocení ${reviewSummary.rating} z 5, ${reviewSummary.count} recenze na Googlu`}>
+          <span className="reviews-score-number">{reviewSummary.rating.toFixed(1).replace(".", ",")}<small> / 5</small></span>
+          <span className="review-stars" aria-hidden="true">★★★★★</span>
+          <span>{reviewSummary.count} recenze na Googlu ↗</span>
+          <small>Stav k {reviewSummary.checked}</small>
+        </a>
       </div>
-      <div className="review-invitation">
-        <span className="review-source">Hodnocení na Googlu</span>
-        <h3>Vaše zkušenost má své místo.</h3>
-        <p>Prostor pro recenze právě otevírám. Pokud jsme spolu řešili vaše finance, napište, co vám spolupráce přinesla nebo co bych mohl zlepšit.</p>
-        <a className="btn btn-gold" href={site.googleReview} target="_blank" rel="noopener noreferrer">Napsat recenzi na Googlu <span aria-hidden="true">↗</span></a>
-        <p className="review-note">Otevře se Google, kde recenzi odešlete ze svého účtu. Děkuji za upřímnou zpětnou vazbu.</p>
-      </div>
+      <div className="reviews-grid">{googleReviews.map(review => <article className="client-review" key={review.id}>
+        <div className="review-person"><span className="review-initial" aria-hidden="true">{review.author.split(" ").map(word => word[0]).join("")}</span><div><h3>{review.author}</h3><span className="review-stars" role="img" aria-label={`${review.rating} z 5 hvězdiček`}>{"★".repeat(review.rating)}</span></div></div>
+        <blockquote>{review.text}</blockquote>
+        <a className="text-link" href={review.url} target="_blank" rel="noopener noreferrer">{review.excerpt ? "Celá recenze na Googlu" : "Recenze na Googlu"} ↗</a>
+      </article>)}</div>
+      <div className="reviews-footer"><p>Máte vlastní zkušenost se spoluprací? Budu rád, když se o ni podělíte.</p><a className="btn btn-gold" href={site.googleReview} target="_blank" rel="noopener noreferrer">Napsat recenzi na Googlu ↗</a></div>
     </div>
   </section>;
 }
