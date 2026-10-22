@@ -3,6 +3,7 @@ export const googleReviews = [
   {
     "id": "Ci9DQUlRQUNvZENodHljRjlvT25CeU1GUTJXSFpUY1Vad1FUTjFkV2N3VXpKRU5HYxAB",
     "author": "Jaroslava Hájková",
+    "avatar": "/reviews/jaroslava-hajkova.png",
     "rating": 5,
     "text": "Pan Svoboda je přesně koho potřebujete,zařídí,poradí.Je milý a absolutně spolehlivý,mohu doporučit z vlastních zkušeností.",
     "excerpt": false,
@@ -12,6 +13,7 @@ export const googleReviews = [
   {
     "id": "Ci9DQUlRQUNvZENodHljRjlvT2xWQlRqVXdPSEZuTkdWaVgwa3piR3AzWmtWbVNXYxAB",
     "author": "Martin Řanda",
+    "avatar": "/reviews/martin-randa.png",
     "rating": 5,
     "text": "S p. Svobodou jsem řešil hlavně pojištění všeho druhu a musím napsat pouze chválu na jeho pracovní nasazení,spolehlivost a ochotu hledat ta nejlepší řešení. Za…",
     "excerpt": true,
@@ -21,6 +23,7 @@ export const googleReviews = [
   {
     "id": "Ci9DQUlRQUNvZENodHljRjlvT21KWmRWZHhSRzk1V1VoclpUUTBaRzk2TFZBemRuYxAB",
     "author": "Iveta Kabatkova",
+    "avatar": "/reviews/iveta-kabatkova.png",
     "rating": 5,
     "text": "S panem Svobodou jsem vždy spokojena. Velmi dobře poradí a vse vysvětlí. Řešila jsem sním uz hodně věcí a vždy super. Moc doporučuji.",
     "excerpt": false,

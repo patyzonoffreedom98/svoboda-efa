@@ -1,4 +1,9 @@
-.client-reviews { background: #e8e5db; border-top: 1px solid #b8995e66; border-bottom: 1px solid #b8995e66; }
+.client-reviews { background: #e8e5db; color: #162837; --text: #162837; --muted: #435461; --muted-strong: #384a56; --gold: #715522; --gold-soft: #715522; border-top: 1px solid #b8995e66; border-bottom: 1px solid #b8995e66; }
+.client-reviews .section-label { color: #715522; }
+.client-reviews h2 { color: #162837; }
+.client-reviews .section-intro, .reviews-footer p { color: #435461; }
+.client-reviews .text-link { color: #715522; }
+.client-reviews .text-link:hover { color: #162837; text-decoration: underline; text-underline-offset: 4px; }
 .reviews-heading-row { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; margin-bottom: 36px; }
 .reviews-heading-row h2 { max-width: 700px; }
 .reviews-score { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 24px 32px; border-left: 1px solid #b8995e80; color: #162837; font-size: .85rem; text-decoration: none; }
@@ -10,7 +15,9 @@
 .client-review { background: #f8f6ef; padding: 30px; border: 1px solid #16283720; border-top: 3px solid #b8995e; display: flex; flex-direction: column; }
 .review-person { display: flex; align-items: center; gap: 14px; }
 .review-person h3 { margin: 0 0 5px; font-size: 1rem; color: #162837; }
-.review-initial { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: #162837; color: #efe6d0; font-family: Georgia,serif; }
+.review-avatar { display: block; flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; object-fit: cover; background: #e8e5db; }
+.review-badge-person { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
+.review-badge-person .review-avatar { width: 40px; height: 40px; }
 .client-review blockquote { margin: 24px 0; color: #263a48; font-size: 1rem; line-height: 1.85; overflow-wrap: anywhere; }
 .client-review .text-link { margin-top: auto; font-size: .8rem; padding-top: 8px; }
 .reviews-footer { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-top: 32px; }

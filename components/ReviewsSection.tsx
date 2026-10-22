@@ -1,5 +1,6 @@
 import { site } from "@/lib/site";
 import { googleReviews, reviewSummary } from "@/lib/reviews";
+import ReviewAvatar from "@/components/ReviewAvatar";
 
 export default function ReviewsSection() {
   return <section id="recenze" className="section client-reviews" aria-labelledby="reviews-heading">
@@ -17,7 +18,7 @@ export default function ReviewsSection() {
         </a>
       </div>
       <div className="reviews-grid">{googleReviews.map(review => <article className="client-review" key={review.id}>
-        <div className="review-person"><span className="review-initial" aria-hidden="true">{review.author.split(" ").map(word => word[0]).join("")}</span><div><h3>{review.author}</h3><span className="review-stars" role="img" aria-label={`${review.rating} z 5 hvězdiček`}>{"★".repeat(review.rating)}</span></div></div>
+        <div className="review-person"><ReviewAvatar src={review.avatar} /><div><h3>{review.author}</h3><span className="review-stars" role="img" aria-label={`${review.rating} z 5 hvězdiček`}>{"★".repeat(review.rating)}</span></div></div>
         <blockquote>{review.text}</blockquote>
         <a className="text-link" href={review.url} target="_blank" rel="noopener noreferrer">{review.excerpt ? "Celá recenze na Googlu" : "Recenze na Googlu"} ↗</a>
       </article>)}</div>

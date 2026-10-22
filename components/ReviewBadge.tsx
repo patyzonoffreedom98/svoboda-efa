@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { site } from "@/lib/site";
 import { googleReviews } from "@/lib/reviews";
+import ReviewAvatar from "@/components/ReviewAvatar";
 
 export default function ReviewBadge() {
   const [visible, setVisible] = useState(true);
@@ -35,7 +36,7 @@ export default function ReviewBadge() {
     <span className="review-source">Recenze z Googlu</span>
     <div className="review-badge-content" aria-live={paused ? "polite" : "off"} aria-atomic="true">
       <span className="review-stars" role="img" aria-label={`${review.rating} z 5 hvězdiček`}>{"★".repeat(review.rating)}</span>
-      <blockquote>{review.text}</blockquote><a className="review-badge-author" href={review.url} target="_blank" rel="noopener noreferrer">{review.author} ↗</a>
+      <blockquote>{review.text}</blockquote><div className="review-badge-person"><ReviewAvatar src={review.avatar} /><a className="review-badge-author" href={review.url} target="_blank" rel="noopener noreferrer">{review.author} ↗</a></div>
     </div>
     <div className="review-badge-controls"><button type="button" onClick={() => select(active - 1)} aria-label="Předchozí recenze">←</button><span>{active + 1} / {googleReviews.length}</span><button type="button" onClick={() => select(active + 1)} aria-label="Další recenze">→</button>{!reducedMotion && <button className="review-pause" type="button" onClick={() => setPaused(!paused)} aria-label={paused ? "Spustit střídání recenzí" : "Pozastavit střídání recenzí"}>{paused ? "Spustit" : "Pozastavit"}</button>}</div>
     <div className="review-badge-links"><Link href="/#recenze">Všechny recenze</Link><a href={site.googleReview} target="_blank" rel="noopener noreferrer">Napsat recenzi ↗</a></div>
