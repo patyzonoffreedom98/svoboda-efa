@@ -1,5 +1,15 @@
-// Public Google reviews, checked 2026-10-22. Refresh on request; preserve authors and wording.
+// Public Google reviews, checked 2026-10-26. Refresh on request; preserve authors and wording.
 export const googleReviews = [
+  {
+    "id": "vojtech-bouchner-2026-10-26",
+    "author": "Vojtech Bouchner",
+    "avatar": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2296%22%20height%3D%2296%22%20viewBox%3D%220%200%2096%2096%22%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2248%22%20r%3D%2248%22%20fill%3D%22%2329443b%22%2F%3E%3Ctext%20x%3D%2248%22%20y%3D%2264%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2248%22%20fill%3D%22%23fff%22%3EV%3C%2Ftext%3E%3C%2Fsvg%3E",
+    "rating": 5,
+    "text": "Pan Svoboda se pravidelně věnuje celé naší rodině. Nejdříve pečlivě zjistí aktuální stav a následně navrhne krátkodobé i dlouhodobé řešení financí nebo pojištění. Jedná vždy upřímně a především má pochopení. Vždy byl ochotný řešit vše ihned. Určitě doporučuji!",
+    "excerpt": false,
+    "url": "https://maps.app.goo.gl/oZax7WPoPLWejX1fA",
+    "date": "2026-10-26"
+  },
   {
     "id": "Ci9DQUlRQUNvZENodHljRjlvT25CeU1GUTJXSFpUY1Vad1FUTjFkV2N3VXpKRU5HYxAB",
     "author": "Jaroslava Hájková",
@@ -31,4 +41,4 @@ export const googleReviews = [
     "date": "2026-10-20"
   }
 ];
-export const reviewSummary = { rating: 5, count: 3, checked: "22. 10. 2026", url: "https://maps.app.goo.gl/oZax7WPoPLWejX1fA" };
+export const reviewSummary = { rating: 5, count: 4, checked: "26. 10. 2026", url: "https://maps.app.goo.gl/oZax7WPoPLWejX1fA" };
