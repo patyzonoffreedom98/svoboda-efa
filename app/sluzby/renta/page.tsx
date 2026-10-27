@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function PlanovaniRentyPage() {
   return <main id="main-content" className="section"><div className="container">
     <div className="page-heading">
-      <p className="section-label">Finanční renta · Jihlava a online</p>
+      <p className="section-label">Finanční renta · osobně po celé ČR</p>
       <h1>Finanční renta začíná plánem, nikoli jedním číslem.</h1>
       <p className="section-intro">Ať už chcete postupně vytvořit kapitál, nebo už úspory máte a uvažujete o jejich čerpání, plán má vycházet z vašich potřeb, investičního horizontu a míry rizika.</p>
       <ContactActions topic="Plánování finanční renty" />
@@ -26,7 +26,7 @@ export default function PlanovaniRentyPage() {
       </div>
     </section>
     <section className="section two-column-block"><div><p className="section-label">Orientační propočet</p><h2>Vyzkoušejte si kalkulačku renty.</h2><p>V <Link href="/renta">kalkulačce finanční renty</Link> můžete porovnat tvorbu kapitálu i možnosti čerpání. Výsledky jsou modelové a nejsou zárukou budoucího vývoje.</p></div>
-    <div><p className="section-label">Péče a zkušenosti</p><h2>Renta patří do celkového finančního plánu.</h2><p>Vedle investic se podíváme na dostupnou rezervu, rizika a další závazky. Schůzku můžeme uskutečnit v Jihlavě nebo online. Další informace o spolupráci najdete v části <Link href="/kontakt">Kontakt</Link>.</p></div></section>
+    <div><p className="section-label">Péče a zkušenosti</p><h2>Renta patří do celkového finančního plánu.</h2><p>Vedle investic se podíváme na dostupnou rezervu, rizika a další závazky. Pro sestavení komplexního plánu za vámi rád přijedu osobně kamkoliv po ČR. Navazující konzultace můžeme vést online, ušetřit si cestu a zároveň zůstat v pravidelném kontaktu. Pokud dáváte přednost osobním schůzkám, můžeme pokračovat i tak. Další informace najdete v části <Link href="/kontakt">Kontakt</Link>.</p></div></section>
     <section className="section contact-grid"><div><p className="section-label">Začněme konkrétně</p><h2>Jakou rentu si přejete?</h2><p className="section-intro">Napište mi svou představu a domluvíme první konzultaci.</p></div><div className="contact-card"><ContactForm topic="Finanční renta" /></div></section>
   </div></main>;
 }

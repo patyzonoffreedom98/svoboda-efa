@@ -10,7 +10,7 @@ const business = {
   url: site.url,
   telephone: "+420774697755",
   email: site.email,
-  description: "Finanční poradenství v Jihlavě a na Vysočině. Hypotéky, refinancování, investice a dlouhodobé finanční plánování. Schůzky pouze po předchozí domluvě.",
+  description: "Finanční poradce se zázemím v Jihlavě. Osobní schůzky po celé České republice pro hypotéky, refinancování, investice a komplexní finanční plánování. Navazující péče také online; setkání po předchozí domluvě.",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Žižkova 1683/13",

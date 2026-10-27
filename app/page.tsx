@@ -14,7 +14,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Finanční poradce Jihlava | Bc. Patrik Svoboda, EFA",
-  description: "Hypotéky, investice a ochrana příjmu. Zázemí v Jihlavě, osobní schůzky po domluvě po celé ČR i online. Osobní přístup a dlouhodobá péče. Úvodní konzultace 30–60 minut bezplatně.",
+  description: "Finanční poradce Jihlava, osobně po celé ČR. S hypotékou či komplexním finančním plánem za vámi rád přijedu; následnou péči můžeme pohodlně řešit i online.",
   alternates: { canonical: "/" },
 };
 const services = [
@@ -24,7 +24,7 @@ const services = [
   { title: "Řeším finance ve firmě", text: "Podnikatelská rizika, pojištění i zaměstnanecké benefity. Probereme, co vaše firma potřebuje a co má smysl pro její zaměstnance.", href: "/pribehy/finance-stavebni-firmy", cta: "Příběh firmy se 30 zaměstnanci" },
 ];
 const steps = [
-  { title: "Nejdřív se poznáme", text: "Během 30–60 minut probereme vaši situaci a očekávání. Bezplatně, bez podpisů a bez výpovědí smluv." },
+  { title: "Nejdřív se poznáme", text: "Během 30–60 minut probereme vaši situaci a očekávání. Rád za vámi přijedu osobně, ať jste odkudkoliv z ČR. Bezplatně a bez podpisů." },
   { title: "Připravím srozumitelný plán", text: "Propojím cíle s vaším rozpočtem. Vysvětlím možnosti, náklady i rizika, abyste se mohli rozhodnout." },
   { title: "Pomohu s vyřízením", text: "Po domluvě provedu dalšími kroky, přípravou podkladů a komunikací s finančními institucemi." },
   { title: "Zůstaneme v kontaktu", text: "Plán průběžně aktualizujeme. Řeším za vás komunikaci s institucemi, výpovědi i hlášení pojistných událostí. Stačí dodat potřebné podklady; když je potřeba váš podpis či rozhodnutí, provedu vás dalším krokem." },
@@ -35,11 +35,11 @@ export default function HomePage() {
     <section className="hero marketing-hero">
       <div className="container hero-grid">
         <div className="hero-copy fade-up">
-          <p className="eyebrow">Zázemí v Jihlavě · za klienty po celé ČR</p>
+          <p className="eyebrow">Zázemí v Jihlavě · osobně za vámi po celé ČR</p>
           <h1>Vaše finance.<br />Jasný plán.<br /><span className="gold-text">Dlouhodobá péče.</span></h1>
-          <p className="hero-text">Pomohu vám s hypotékou, investicemi i ochranou příjmu. Začneme tím, co právě řešíte, a společně nastavíme další kroky tak, aby dávaly smysl vašemu životu i rozpočtu.</p>
+          <p className="hero-text">Pomohu vám s hypotékou, investicemi i ochranou příjmu. Za důležitou úvodní schůzkou za vámi rád přijedu kamkoliv po ČR. Až se poznáme a nastavíme plán, další věci můžeme podle potřeby řešit osobně i online.</p>
           <ContactActions />
-          <p className="hero-reassurance">První konzultace 30–60 minut · bezplatně · osobně i online</p>
+          <p className="hero-reassurance">První konzultace 30–60 minut · bezplatně · osobní schůzky po celé ČR</p>
         </div>
         <div className="hero-visual fade-up delay-1"><span className="portrait-caption">Osobně. Srozumitelně.<br />Dlouhodobě.</span><div className="portrait-wrap"><Image src={portraitImage} alt="Bc. Patrik Svoboda, EFA — finanční poradce" priority sizes="(max-width: 1100px) 90vw, 480px" className="portrait-image" /></div></div>
       </div>
@@ -62,12 +62,12 @@ export default function HomePage() {
     <section id="spoluprace" className="section"><div className="container">
       <p className="section-label">Jak spolupráce probíhá</p><h2>Víte, co bude následovat.</h2>
       <ol className="cards-grid four-up steps-list">{steps.map((step, index) => <li className="info-card" key={step.title}><span className="step-number">0{index + 1}</span><h3>{step.title}</h3><p>{step.text}</p></li>)}</ol>
-      <div className="consultation-panel"><div><h3>Na první schůzku můžete přijít i bez podkladů.</h3><p>Projdeme příjmy, výdaje, rodinnou situaci a to, čeho chcete dosáhnout. Podklady mohou pomoci, ale jejich shánění nemusí prvnímu rozhovoru předcházet.</p></div><BookingLink className="btn btn-gold">Vybrat termín</BookingLink></div>
+      <div className="consultation-panel"><div><h3>Na první schůzku nemusíte mít připravené podklady.</h3><p>Projdeme příjmy, výdaje, rodinnou situaci a to, čeho chcete dosáhnout. Podklady mohou pomoci, ale jejich shánění nemusí prvnímu rozhovoru předcházet.</p></div><BookingLink className="btn btn-gold">Vybrat termín</BookingLink></div>
     </div></section>
 
     <section id="o-mne" className="section paper-section"><div className="container two-column-block">
       <div><p className="section-label">Váš poradce</p><h2>Zkušenosti z praxe. Odbornost nad rámec běžných zkoušek.</h2><div className="text-stack">
-        <p>Jsem Patrik Svoboda, rodilý Jihlavák. Finančnímu poradenství se věnuji už od studia na vysoké škole. Dlouholeté zkušenosti využívám při pomoci rodinám a podnikatelům s důležitými finančními rozhodnutími. Zázemí mám v Jihlavě, ale za klienty pravidelně cestuji — často do Brna, Prahy nebo Jihočeského či Olomouckého kraje.</p>
+        <p>Jsem Patrik Svoboda, rodilý Jihlavák. Finančnímu poradenství se věnuji už od studia na vysoké škole. Dlouholeté zkušenosti využívám při pomoci rodinám a podnikatelům s důležitými finančními rozhodnutími. Jihlava je moje zázemí, nikoliv hranice působení. Za klienty jezdím po celé republice — kvůli hypotéce nebo komplexnímu finančnímu plánu za vámi rád přijedu i na druhý konec ČR. Navazující schůzky pak můžeme pro úsporu času řešit online, ale osobně se samozřejmě můžeme potkávat dál.</p>
         <p><strong>Patřím k úzké skupině několika stovek poradců v Česku s evropskou certifikací EFA</strong> (European Financial Advisor). Tato prestižní kvalifikace vyžaduje odbornou praxi, úspěšné složení náročné písemné zkoušky a obhajobu řešení případové studie před komisí. Prověřuje schopnost propojit investice, financování bydlení, pojištění a přípravu na důchod. Pro vás to znamená poradce, který vidí vaše finance v souvislostech a staví plán kolem vašich životních cílů.</p>
         <p>EFA je pro mě dlouhodobý profesní závazek. Udržení certifikace je podmíněno průběžným odborným vzděláváním a dodržováním etického kodexu EFPA. Každý rok proto investuji čas i prostředky do dalšího rozvoje, abyste měli partnera pro důležitá finanční rozhodnutí i ve chvíli, kdy se vaše životní situace nebo podmínky na trhu změní.</p>
       </div></div>
