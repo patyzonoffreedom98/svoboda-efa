@@ -3,6 +3,7 @@ import { googleReviews, reviewSummary } from "@/lib/reviews";
 import ReviewAvatar from "@/components/ReviewAvatar";
 
 export default function ReviewsSection() {
+  const reviewCountLabel = `${reviewSummary.count} ${reviewSummary.count === 1 ? "recenze" : reviewSummary.count < 5 ? "recenze" : "recenzí"}`;
   return <section id="recenze" className="section client-reviews" aria-labelledby="reviews-heading">
     <div className="container">
       <div className="reviews-heading-row">
@@ -13,7 +14,7 @@ export default function ReviewsSection() {
         <a className="reviews-score" href={reviewSummary.url} target="_blank" rel="noopener noreferrer" aria-label={`Hodnocení ${reviewSummary.rating} z 5, ${reviewSummary.count} recenze na Googlu`}>
           <span className="reviews-score-number">{reviewSummary.rating.toFixed(1).replace(".", ",")}<small> / 5</small></span>
           <span className="review-stars" aria-hidden="true">★★★★★</span>
-          <span>{reviewSummary.count} recenze na Googlu ↗</span>
+          <span>{reviewCountLabel} na Googlu ↗</span>
           <small>Stav k {reviewSummary.checked}</small>
         </a>
       </div>
