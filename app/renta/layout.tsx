@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Renta a dlouhodobý plán | Bc. Patrik Svoboda, EFA",
+  title: "Kalkulačka finanční renty – kolik kapitálu potřebuji? | Patrik Svoboda",
   description:
-    "Cesta k rentě nezačíná produktem, ale plánem. Pomohu Vám nastavit dlouhodobou strategii pro budoucí finanční klid.",
+    "Spočítejte si cílový kapitál pro měsíční rentu nebo možnou rentu ze stávajících úspor. Orientační výpočet a plán s poradcem EFA.",
+  alternates: { canonical: "/renta" },
 };
 
 export default function RentaLayout({

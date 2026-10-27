@@ -8,6 +8,7 @@ import ContactActions from "@/components/ContactActions";
 import BookingLink from "@/components/BookingLink";
 import ConsultationFaq from "@/components/ConsultationFaq";
 import ReviewsSection from "@/components/ReviewsSection";
+import LocalBusinessSchema from "@/components/LocalBusinessSchema";
 import StoryCarousel from "@/components/StoryCarousel";
 import { site } from "@/lib/site";
 
@@ -30,7 +31,7 @@ const steps = [
 ];
 
 export default function HomePage() {
-  return <main id="main-content" className="site-shell editorial-home">
+  return <><LocalBusinessSchema /><main id="main-content" className="site-shell editorial-home">
     <section className="hero marketing-hero">
       <div className="container hero-grid">
         <div className="hero-copy fade-up">
@@ -90,5 +91,5 @@ export default function HomePage() {
       </div>
       <div className="contact-card"><h3>Stačí zanechat kontakt.</h3><ContactForm /></div>
     </div></section>
-  </main>;
+  </main></>;
 }

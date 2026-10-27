@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Hypotéka | Bc. Patrik Svoboda, EFA",
+  title: "Hypoteční kalkulačka – výpočet splátky | Patrik Svoboda",
   description:
-    "Pomohu Vám s novou hypotékou, refinancováním i nastavením financování tak, aby dávalo smysl dnes i do budoucna.",
+    "Spočítejte si orientační měsíční splátku hypotéky, úroky a LTV. Kalkulačka zdarma a pomoc s financováním bydlení v Jihlavě i online.",
+  alternates: { canonical: "/hypoteka" },
 };
 
 export default function HypotekaLayout({

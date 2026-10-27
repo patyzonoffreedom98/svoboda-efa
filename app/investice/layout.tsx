@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Investice | Bc. Patrik Svoboda, EFA",
+  title: "Investiční kalkulačka a dlouhodobý plán | Patrik Svoboda",
   description:
-    "Investiční strategie s důrazem na systém, klid a dlouhodobý plán. Pomohu Vám nastavit investice podle Vašich cílů.",
+    "Orientační investiční kalkulačka, historické výnosy a plán pravidelného investování. Srozumitelně s poradcem EFA z Jihlavy.",
+  alternates: { canonical: "/investice" },
 };
 
 export default function InvesticeLayout({
