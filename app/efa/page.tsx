@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "EFA – Evropský finanční poradce | Svoboda EFA",
   description:
     "Co znamená certifikace EFA, jak navazuje na PFP a EFP a kde si ověřit poradce v registru EFPA ČR.",
+  alternates: { canonical: "/efa" },
 };
 
 export default function EfaPage() {
