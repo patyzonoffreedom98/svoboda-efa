@@ -31,6 +31,19 @@ export default function RootLayout({
         <SiteFooter />
         <ReviewBadge />
 
+        <Script id="own-traffic-optout" strategy="beforeInteractive">
+          {`
+            try {
+              const params = new URLSearchParams(window.location.search);
+              const setting = params.get("moje_mereni");
+              if (setting === "vypnout") localStorage.setItem("svoboda-efa-own-traffic", "1");
+              if (setting === "zapnout") localStorage.removeItem("svoboda-efa-own-traffic");
+              if (localStorage.getItem("svoboda-efa-own-traffic") === "1") {
+                window["ga-disable-${GA_ID}"] = true;
+              }
+            } catch (_) {}
+          `}
+        </Script>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
           strategy="afterInteractive"
