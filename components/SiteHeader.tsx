@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { site } from "@/lib/site";
+import BookingLink from "@/components/BookingLink";
 const links = [["/#sluzby", "Služby"], ["/hypoteka", "Hypo kalkulačka"], ["/#pribehy", "Příběhy z praxe"], ["/#spoluprace", "Spolupráce"], ["/#o-mne", "O mně"], ["/#recenze", "Recenze"], ["/kontakt", "Kontakt"]];
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -10,12 +10,12 @@ export default function SiteHeader() {
     <div className="container header-inner">
       <Link href="/" className="brand" onClick={() => setOpen(false)}><Image src="/brand-monogram.png" alt="" width={32} height={52} className="brand-monogram" /><span>{site.name}</span></Link>
       <nav className="desktop-nav" aria-label="Hlavní navigace">{links.map(([href, label]) => <Link key={href} href={href}>{label}</Link>)}</nav>
-      <a href={site.booking} className="header-cta" target="_blank" rel="noreferrer">Vybrat termín</a>
+      <BookingLink className="header-cta">Vybrat termín</BookingLink>
       <button className="menu-toggle" type="button" aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)}>{open ? "Zavřít" : "Menu"}</button>
     </div>
     <nav id="mobile-navigation" className="mobile-nav" aria-label="Mobilní navigace" hidden={!open}>
       {links.map(([href, label]) => <Link key={href} href={href} onClick={() => setOpen(false)}>{label}</Link>)}
-      <a href={site.booking} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>Vybrat termín konzultace</a>
+      <BookingLink onClick={() => setOpen(false)}>Vybrat termín konzultace</BookingLink>
     </nav>
   </header>;
 }

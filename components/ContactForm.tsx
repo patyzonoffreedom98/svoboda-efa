@@ -1,6 +1,7 @@
 "use client";
 import { FormEvent, useId, useRef, useState } from "react";
 import { site } from "@/lib/site";
+import { trackAnalyticsEvent } from "@/lib/analytics";
 export default function ContactForm({ initialMessage = "", topic = "Obecný dotaz" }: { initialMessage?: string; topic?: string }) {
   const id = useId();
   const busy = useRef(false);
@@ -22,6 +23,8 @@ export default function ContactForm({ initialMessage = "", topic = "Obecný dota
         body: JSON.stringify({ name, ...(channel === "email" ? { email: contact } : { phone: contact }), message: String(data.get("message") || "").trim(), topic, source: window.location.pathname, _gotcha: String(data.get("website") || "") }),
       });
       if (!response.ok) throw new Error("Submission failed");
+      // Formspree confirmed a successful submission; do not count page views or failed requests as leads.
+      trackAnalyticsEvent("generate_lead", { lead_type: "contact_form", form_location: window.location.pathname });
       form.reset();
       setStatus("success");
     } catch { setStatus("error"); }
