@@ -30,7 +30,7 @@ export const consultationQuestions = [
   },
   {
     question: "Kde se potkáme a kdy se ozvete?",
-    answer: "Potkat se můžeme po domluvě v hlavní kanceláři na adrese Žižkova 1683/13 v Jihlavě nebo v našich kancelářích v Havlíčkově Brodě, Žďáru nad Sázavou a Světlé nad Sázavou. Pravidelně jezdím i za klienty — často do Brna, Prahy nebo Jihočeského či Olomouckého kraje. Pokud to dává oboustranně smysl, rád přijedu na úvodní seznámení i jinam. Další schůzky můžeme pohodlně řešit online. Na zprávu z webu se vám ozvu do dvou pracovních dnů; termín si můžete vybrat i přes online rezervaci.",
+    answer: "Hlavní kancelář mám na Žižkově 1683/13 v Jihlavě, další možnosti setkání jsou v Havlíčkově Brodě, Žďáru nad Sázavou a Světlé nad Sázavou. Osobně ale pracuji s klienty po celé ČR — kvůli hypotéce, investicím či komplexnímu finančnímu plánu za vámi rád přijedu kamkoliv, nejen na Vysočinu. Navazující schůzky a průběžnou péči můžeme pro vaše pohodlí řešit online, pokud vám to vyhovuje; osobní setkávání samozřejmě zůstává možností. Na zprávu z webu se ozvu do dvou pracovních dnů, případně si můžete vybrat termín přes rezervaci.",
   },
 ];
 

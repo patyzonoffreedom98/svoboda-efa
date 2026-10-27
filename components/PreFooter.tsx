@@ -55,8 +55,8 @@ export default function PreFooter() {
         <div className="rounded-3xl bg-neutral-900/80 border border-neutral-800 p-6 md:p-8">
           <h2 className="text-xl font-semibold mb-3 text-white">Kde působím</h2>
           <p className="text-sm text-neutral-300 mb-3">
-            Vysočina a celá ČR – osobně i online. Hlavní kancelář v Jihlavě, další
-            kanceláře ve Světlé n. Sázavou, Žďáru n. Sázavou a Havlíčkově Brodě.
+            Zázemí mám v Jihlavě a na Vysočině, za klienty ale rád přijedu osobně
+            kamkoliv po ČR. Následné schůzky můžeme podle přání zvládnout i online.
           </p>
           <p className="text-sm text-neutral-300">
             Člen{" "}
