@@ -1,6 +1,6 @@
 import ContactForm from "@/components/ContactForm";
 import ConsultationFaq from "@/components/ConsultationFaq";
-import { site } from "@/lib/site";
+import { site, offices, officeMapUrl } from "@/lib/site";
 export default async function KontaktPage({ searchParams }: { searchParams: Promise<{ tema?: string | string[]; vypocet?: string | string[] }> }) {
   const query = await searchParams;
   const topic = typeof query.tema === "string" ? query.tema.slice(0, 150) : "Obecný dotaz";
@@ -12,6 +12,24 @@ export default async function KontaktPage({ searchParams }: { searchParams: Prom
       <div className="contact-card"><h2>Napište mi.</h2><ContactForm initialMessage={message} topic={topic} /></div>
       <div className="contact-card"><p className="section-label">Bc. Patrik Svoboda, EFA</p><h2>Vyberte si, co vám vyhovuje.</h2><div className="contact-lines"><p><a href={site.phoneHref}>{site.phone}</a></p><p><a href={`mailto:${site.email}`}>{site.email}</a></p></div><div className="hero-actions"><a className="btn btn-gold" href={site.booking} target="_blank" rel="noreferrer">Vybrat termín konzultace</a><a className="btn btn-outline" href={site.whatsapp} target="_blank" rel="noreferrer">Napsat na WhatsApp</a></div><div className="text-stack"><p>Zázemí mám v Jihlavě, za klienty ale pravidelně jezdím — často do Brna, Prahy nebo Jihočeského či Olomouckého kraje. Když to dává oboustranně smysl, přijedu na úvodní setkání i jinam. Potom můžeme pokračovat online.</p><p>Na zprávu z webu se ozvu do dvou pracovních dnů.</p><p>Na první schůzce se seznámíme a projdeme vaši situaci. Nic nepodepisujeme, nevypovídáme ani nevybíráme konkrétní nové produkty.</p></div></div>
     </div>
+    <section id="kancelare" className="office-section" aria-labelledby="offices-heading">
+      <p className="section-label">Kde se potkáme</p>
+      <h2 id="offices-heading">Naše kanceláře na Vysočině.</h2>
+      <div className="office-primary">
+        <div><p className="section-label">Hlavní kancelář · Jihlava</p>
+          <h3>Žižkova 1683/13</h3><p className="office-postcode">586 01 Jihlava</p>
+          <p>Vedle Dělnického domu, budova bývalého Globusu.</p>
+          <p>Termín schůzky si prosím domluvme předem.</p>
+        </div>
+        <a className="btn btn-gold" href={officeMapUrl(offices[0].address)} target="_blank" rel="noreferrer">Zobrazit na mapě ↗</a>
+      </div>
+      <h3 className="office-secondary-title">Další kanceláře · po dohodě</h3>
+      <p className="office-secondary-intro">Rád vám budu po předchozí domluvě k dispozici i na těchto místech.</p>
+      <div className="office-grid">{offices.slice(1).map(office => <div className="office-secondary" key={office.city}>
+        <h4>{office.city}</h4><p>{office.address}</p>
+        <a className="text-link" href={officeMapUrl(office.address)} target="_blank" rel="noreferrer">Zobrazit na mapě ↗</a>
+      </div>)}</div>
+    </section>
     <section className="section faq-layout"><div><p className="section-label">Praktické informace</p><h2>Před první konzultací.</h2></div><ConsultationFaq /></section>
   </div></main>;
 }

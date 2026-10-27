@@ -30,6 +30,15 @@ export const consultationQuestions = [
   },
   {
     question: "Kde se potkáme a kdy se ozvete?",
-    answer: "Potkat se můžeme v kanceláři v Jihlavě, ale pravidelně jezdím i za klienty — často do Brna, Prahy nebo Jihočeského či Olomouckého kraje. Pokud to dává oboustranně smysl, rád přijedu na úvodní seznámení i jinam. Další schůzky můžeme pohodlně řešit online. Na zprávu z webu se vám ozvu do dvou pracovních dnů; termín si můžete vybrat i přes online rezervaci.",
+    answer: "Potkat se můžeme po domluvě v hlavní kanceláři na adrese Žižkova 1683/13 v Jihlavě nebo v našich kancelářích v Havlíčkově Brodě, Žďáru nad Sázavou a Světlé nad Sázavou. Pravidelně jezdím i za klienty — často do Brna, Prahy nebo Jihočeského či Olomouckého kraje. Pokud to dává oboustranně smysl, rád přijedu na úvodní seznámení i jinam. Další schůzky můžeme pohodlně řešit online. Na zprávu z webu se vám ozvu do dvou pracovních dnů; termín si můžete vybrat i přes online rezervaci.",
   },
 ];
+
+export const offices = [
+  { city: "Jihlava", address: "Žižkova 1683/13, 586 01 Jihlava" },
+  { city: "Havlíčkův Brod", address: "Beckovského 2045, 580 01 Havlíčkův Brod" },
+  { city: "Žďár nad Sázavou", address: "Náměstí republiky 1488/1, 591 01 Žďár nad Sázavou" },
+  { city: "Světlá nad Sázavou", address: "Jelenova 102, 582 91 Světlá nad Sázavou" },
+];
+export const officeMapUrl = (address: string) =>
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;

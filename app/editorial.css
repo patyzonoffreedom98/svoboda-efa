@@ -184,3 +184,28 @@ body { background: #0b1926; }
 /* Keep the extra calculator link comfortable on smaller desktop screens. */
 .desktop-nav a{white-space:nowrap}
 @media (min-width:1101px) and (max-width:1280px){.desktop-nav,.header-cta{display:none}.menu-toggle{display:inline-flex}.mobile-nav:not([hidden]){display:block}}
+
+/* Client meeting locations, visually separate from the registered address. */
+.office-section { padding-top: 72px; scroll-margin-top: 110px; }
+.office-section > h2 { margin-bottom: 28px; }
+.office-primary { display: flex; justify-content: space-between; align-items: center; gap: 28px; padding: 32px; border: 1px solid #d8bb7c70; border-radius: 4px; background: #132632; }
+.office-primary h3 { font-family: Georgia,serif; font-size: clamp(1.8rem,4vw,2.5rem); font-weight: 400; color: #eddfc2; }
+.office-primary p { line-height: 1.7; margin: 8px 0; }
+.office-primary .office-postcode { font-size: 1.15rem; color: #eddfc2; }
+.office-primary .btn { flex-shrink: 0; }
+.office-secondary-title { font-size: 1.1rem; margin-top: 32px; }
+.office-secondary-intro { color: #aeb8c1; font-size: .9rem; margin-top: 8px; }
+.office-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; margin-top: 20px; }
+.office-secondary { border-top: 1px solid #ffffff25; padding-top: 18px; font-size: .88rem; line-height: 1.7; }
+.office-secondary h4 { font-size: 1rem; font-weight: 500; }
+.office-secondary p { color: #aeb8c1; margin: 8px 0 12px; }
+.footer-office { margin-top: 20px; }
+.footer-office > span { display: block; color: #aeb8c1; font-size: .75rem; margin-bottom: 5px; }
+.footer-office > a { display: block; color: #eddfc2; font-size: 1.05rem; }
+.site-footer .footer-office p, .site-footer .footer-other-offices { font-size: .8rem; margin-top: 8px; }
+.footer-other-offices a { color: #eddfc2; }
+.site-footer .legal-details { border-top: 1px solid #ffffff20; padding-top: 16px; font-size: .72rem; }
+@media (max-width: 700px) {
+  .office-primary { flex-direction: column; align-items: flex-start; padding: 24px; }
+  .office-grid { grid-template-columns: 1fr; gap: 20px; }
+}
