@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 };
 const services = [
   { title: "Chci řešit bydlení", text: "Koupě bytu, stavba, rekonstrukce nebo konec fixace. Projdeme rozpočet, možnosti financování a pomohu s vyřízením.", href: "/sluzby/hypoteky", cta: "Hypotéky a financování" },
-  { title: "Chci dát penězům směr", text: "Začneme cílem, rezervou a tím, jaké riziko je pro vás přijatelné. Vytvoříme investiční plán a průběžně se k němu budeme vracet.", href: "/pribehy/duvera-v-investicni-plan", cta: "Jak může vypadat spolupráce" },
+  { title: "Chci dát penězům směr", text: "Začneme cílem, rezervou a tím, jaké riziko je pro vás přijatelné. Vytvoříme investiční plán a průběžně se k němu budeme vracet.", href: "/sluzby/investice", cta: "Investiční poradenství" },
   { title: "Chci ochránit rodinu a příjem", text: "Spočítáme, jak by výpadek příjmu zasáhl váš rozpočet. Projdeme stávající pojištění a důležitá rizika. Pomohu i při pojistné události.", href: "/pribehy/pomoc-pri-pojistne-udalosti", cta: "Příklad pomoci při plnění" },
   { title: "Řeším finance ve firmě", text: "Podnikatelská rizika, pojištění i zaměstnanecké benefity. Probereme, co vaše firma potřebuje a co má smysl pro její zaměstnance.", href: "/pribehy/finance-stavebni-firmy", cta: "Příběh firmy se 30 zaměstnanci" },
 ];

@@ -10,6 +10,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/", priority: 1, frequency: "weekly" },
     { path: "/sluzby/hypoteky", priority: 0.9, frequency: "monthly" },
     { path: "/hypoteka", priority: 0.9, frequency: "monthly" },
+    { path: "/sluzby/investice", priority: 0.8, frequency: "monthly" },
+    { path: "/sluzby/renta", priority: 0.8, frequency: "monthly" },
     { path: "/investice", priority: 0.8, frequency: "monthly" },
     { path: "/renta", priority: 0.8, frequency: "monthly" },
     { path: "/kontakt", priority: 0.8, frequency: "monthly" },
